@@ -3,13 +3,9 @@
 > [Framework7](http://www.idangero.us/framework7) is a Mobile UI framework that can be used to build hybrid apps with PhoneGap. This template allows you to get started using Framework7 
   quickly. 
   
-  For a more extensive Framework7 sample, see the [one included in their Github project](https://github.com/nolimits4web/Framework7/tree/master/dist)
-  or the [demo apps on their website](http://www.idangero.us/framework7/apps/#.VpQCc5MrKjQ).
-    
-  Also, for an intro to Framework7, check out [this post on the PhoneGap blog](http://phonegap.com/blog/2015/11/30/framework7/).   
-
-
-## Usage
+  This project was built for using via PhoneGap. Start [PhoneGap Desktop](https://phonegap.com/getstarted/) and add project. Run.
+  
+  Also, you are able to access via desktop.
 
 ### Desktop
 
@@ -18,7 +14,8 @@ In your browser, open the file:
 npm install http-server -g
 cd /www/
 http-server.cmd
-http://127.0.0.1:8080
 ```
+Go to http://127.0.0.1:8080
+
 
   
