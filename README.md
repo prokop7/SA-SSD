@@ -10,20 +10,15 @@
 
 
 ## Usage
-    
-### PhoneGap CLI
 
-    $ phonegap create my-app --template phonegap-template-framework7
-
-### Cordova CLI
-
-    $ cordova create my-app --template phonegap-template-framework7
-    
 ### Desktop
 
 In your browser, open the file:
-
-    /www/index.html
-
+```bash
+npm install http-server -g
+cd /www/
+http-server.cmd
+http://127.0.0.1:8080
+```
 
   
