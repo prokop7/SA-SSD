@@ -123,10 +123,18 @@ $$('#addButton').on('click', function (e) {
 onClickApproveHandler();
 onClickRejectHandler();
 
+function delete_delivery(node) {
+    if (is_current) {
+        node.childNodes[3].remove();
+        history_del.childNodes[1].appendChild(node);
+    }
+}
+
+// TODO divide them into two functions.
 function approveRejectHandler(e) {
     var isPopup = e['path'][6].classList[0] === 'popup';
-
-    e['path'][3].removeChild(e['path'][2]);
+    delete_delivery(e['path'][2]);
+    // e['path'][3].removeChild(e['path'][2]);
     if (isPopup && e['path'][3].childElementCount === 0) {
         var index;
         e['path'][6].classList.forEach(function (t) {
@@ -136,10 +144,10 @@ function approveRejectHandler(e) {
             }
         });
         $$('#delivery' + index).remove();
-        myApp.closeModal($$('.popup-delivery' + index), false)
-        $$('.popup-delivery' + index).remove();
+        myApp.closeModal($$('.popup-delivery' + index), false);
+        delete_delivery($$('.popup-delivery' + index));
     }
-    if (!isPopup) $$('.popup-' + e['path'][2].id).remove();
+    // if (!isPopup) $$('.popup-' + e['path'][2].id).remove();
 }
 
 function onClickApproveHandler() {
@@ -168,11 +176,6 @@ function getHistoryDeliveries() {
         "                                        </div>\n" +
         "                                    </div>\n" +
         "                                </a>\n" +
-        "                                <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-        "                                    <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                                    <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-        "                                    <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-        "                                </div>\n" +
         "                            </li>\n" +
         "                        </ul>\n" +
         "                    </div>");
@@ -188,8 +191,6 @@ $$('.open-current-deliveries').on('click', function (e) {
     }
     is_current = true;
     history_del = $$("#parclesList")[0];
-    console.log($$("#parclesList")[0]);
-    console.log($$("#parclesList")[0].parentNode);
     $$("#parclesList")[0].parentNode.replaceChild(current_del, $$("#parclesList")[0]);
 });
 
@@ -200,9 +201,7 @@ $$('.open-history-deliveries').on('click', function (e) {
         return;
     }
     is_current = false;
-    console.log($$("#parclesList")[0]);
     current_del = $$("#parclesList")[0];
-    console.log(history_del);
     $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
 });
 
