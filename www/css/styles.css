@@ -13,3 +13,14 @@
 .statusbar-overlay {
     background: #000000;
 }
+
+.body {
+    box-sizing: border-box
+}
+
+#logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+}

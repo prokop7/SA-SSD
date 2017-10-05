@@ -44,7 +44,20 @@
 <!-- Left panel with reveal effect-->
 <div class="panel panel-left panel-reveal">
     <div class="content-block">
-        <div data-page="index" class="login">
+        <div class="list-block">
+            <div class="page-content">
+                <div class="current-deliveries">
+                    <p><a href="#" class="open-current-deliveries close-panel">Active deliveries</a></p>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="history-deliveries">
+                    <p><a href="#" class="open-history-deliveries close-panel">History</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div data-page="index" class="login" id="logout">
             <div class="page-content">
                 <p><a href="#" class="open-login-screen close-panel">Log out</a></p>
             </div>
@@ -179,11 +192,11 @@
                             </div>
                         </div>
                     </a>
-                        <div class="swipeout-actions-right">
-                            <a href="#" class="approve-button">Approve</a>
-                            <a href="#" class="reject-button">Reject</a>
-                            <a href="#" class="swipeout-close">Close</a>
-                        </div>
+                    <div class="swipeout-actions-right">
+                        <a href="#" class="approve-button">Approve</a>
+                        <a href="#" class="reject-button">Reject</a>
+                        <a href="#" class="swipeout-close">Close</a>
+                    </div>
                 </li>
             </ul>
         </div>

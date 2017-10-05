@@ -14,6 +14,11 @@ var mainView = myApp.addView('.view-main', {
     swipePanel: 'left'
 });
 
+
+myApp.addView(".history-deliveries", {
+    name: 'history'
+});
+
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function () {
     console.log("Device is ready!");
@@ -56,11 +61,11 @@ function createParcelsFordelivery() {
         "                            </div>\n" +
         "                        </div>\n" +
         "                    </a>\n" +
-    "                        <div class=\"swipeout-actions-right\">\n" +
-    "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-    "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-    "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-    "                        </div>\n" +
+        "                        <div class=\"swipeout-actions-right\">\n" +
+        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                        </div>\n" +
         "                </li>\n" +
         "                <li class=\"swipeout\">\n" +
         "                    <a href=\"#\" class=\"item-content item-link\">\n" +
@@ -70,11 +75,11 @@ function createParcelsFordelivery() {
         "                            </div>\n" +
         "                        </div>\n" +
         "                    </a>\n" +
-    "                        <div class=\"swipeout-actions-right\">\n" +
-    "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-    "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-    "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-    "                        </div>\n" +
+        "                        <div class=\"swipeout-actions-right\">\n" +
+        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                        </div>\n" +
         "                </li>\n" +
         "            </ul>\n" +
         "        </div>\n" +
@@ -94,24 +99,17 @@ function createDelivery() {
         "                                        </div>\n" +
         "                                    </div>\n" +
         "                                </a>\n" +
-    "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-    "                                        <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-    "                                        <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-    "                                        <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-    "                                    </div>\n" +
+        "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
+        "                                        <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                                        <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                                        <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                                    </div>\n" +
         "                            </li>");
     return rows;
 }
 
-// Option 2. Using one 'pageInit' event handler for all pages:
 $$(document).on('pageInit', function (e) {
-    // Get page data from event data
     var page = e.detail.page;
-
-    // if (page.name === 'about') {
-    //     // Following code will be executed for page with data-page attribute equal to "about"
-    //     myApp.alert('Here comes About page');
-    // }
 });
 
 $$('#addButton').on('click', function (e) {
@@ -154,12 +152,57 @@ function onClickRejectHandler() {
     $$('.reject-button').on('click', approveRejectHandler);
 }
 
-// $$('#parcel0').on('click', function (e) {
-// });
+var current_del = $$("#parclesList")[0];
+
+// TODO correct initialization with dates.
+function getHistoryDeliveries() {
+    roomNumber++;
+    document.querySelector('body').appendChild(createParcelsFordelivery());
+    return htmlToElement("<div class=\"list-block\" id=\"parclesList\">\n" +
+        "                        <ul>\n" +
+        "                            <li class=\"swipeout\" id=\"delivery" + roomNumber + "\">\n" +
+        "                                <a href=\"#\" class=\"item-content item-link open-popup\" data-popup=\".popup-delivery" + roomNumber + "\">\n" +
+        "                                    <div class=\"swipeout-content\">\n" +
+        "                                        <div class=\"item-content item-title\">\n" +
+        "                                            <div class=\"item-media\">5/5. St. University, App-30" + roomNumber + "</div>\n" +
+        "                                        </div>\n" +
+        "                                    </div>\n" +
+        "                                </a>\n" +
+        "                                <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
+        "                                    <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                                    <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                                    <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                                </div>\n" +
+        "                            </li>\n" +
+        "                        </ul>\n" +
+        "                    </div>");
+}
+
+var history_del = getHistoryDeliveries();
+var is_current = true;
+
+$$('.open-current-deliveries').on('click', function (e) {
+    if (is_current) {
+        current_del = $$("#parclesList")[0];
+        return;
+    }
+    is_current = true;
+    history_del = $$("#parclesList")[0];
+    console.log($$("#parclesList")[0]);
+    console.log($$("#parclesList")[0].parentNode);
+    $$("#parclesList")[0].parentNode.replaceChild(current_del, $$("#parclesList")[0]);
+});
 
 
-// // Option 2. Using live 'pageInit' event handlers for each page
-// $$(document).on('pageInit', '.page[data-page="about"]', function (e) {
-//     // Following code will be executed for page with data-page attribute equal to "about"
-//     myApp.alert('Here comes About page');
-// })
+$$('.open-history-deliveries').on('click', function (e) {
+    if (!is_current) {
+        history_del = $$("#parclesList")[0];
+        return;
+    }
+    is_current = false;
+    console.log($$("#parclesList")[0]);
+    current_del = $$("#parclesList")[0];
+    console.log(history_del);
+    $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
+});
+
