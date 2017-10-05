@@ -29,8 +29,8 @@
         http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
      -->
 
-    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
-    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -46,13 +46,7 @@
     <div class="content-block">
         <div data-page="index" class="login">
             <div class="page-content">
-                <a href="login.html" class="close-panel">
-                    <div class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">Log out</div>
-                        </div>
-                    </div>
-                </a>
+                <p><a href="#" class="open-login-screen close-panel">Log out</a></p>
             </div>
         </div>
     </div>
@@ -104,25 +98,28 @@
     </div>
     <div class="view view-main">
         <!-- Top Navbar-->
-        <div class="navbar">
-            <div class="navbar-inner">
-                <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="left">
-                    <!--
-                      Right link contains only icon - additional "icon-only" class
-                      Additional "open-panel" class tells app to open panel when we click on this link
-                    -->
-                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                </div>
-                <div class="center sliding">Parcel Monitor</div>
-            </div>
-        </div>
         <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
+        <div class="pages toolbar-through">
+
             <!-- Page, "data-page" contains page name -->
             <div data-page="index" class="page">
                 <!-- Scrollable page content -->
                 <div class="page-content">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                            <div class="left">
+                                <!--
+                                  Right link contains only icon - additional "icon-only" class
+                                  Additional "open-panel" class tells app to open panel when we click on this link
+                                -->
+                                <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                            </div>
+                            <div class="left sliding">Parcel Monitor</div>
+                        </div>
+                    </div>
+
+
                     <div class="list-block" id="parclesList">
                         <ul>
                             <!-- Additional "swipeout" class on li -->
@@ -136,9 +133,10 @@
                                     </div>
                                 </div>
                                 <!-- Swipeout actions right -->
-                                <div class="swipeout-actions-right">
+                                <div class="swipeout-actions-right" id="swipeout-actions-right">
                                     <!-- Swipeout actions links/buttons -->
                                     <a href="#" class="approve-button">Approve</a>
+                                    <a href="#" class="reject-button">Reject</a>
                                     <a class="swipeout-close" href="#">Close</a>
                                 </div>
                             </li>
@@ -150,8 +148,9 @@
                                     </div>
                                 </div>
                                 <div class="swipeout-actions-right">
-                                    <a href="#" class="approve-button" style="">Approve</a>
-                                    <a class="swipeout-close" href="#" style="">Close</a>
+                                    <a href="#" class="approve-button">Approve</a>
+                                    <a href="#" class="reject-button">Reject</a>
+                                    <a class="swipeout-close" href="#">Close</a>
                                 </div>
                             </li>
                         </ul>

@@ -52,9 +52,13 @@ function createParcel() {
     list.appendChild(swipeout_content);
 
     var approve = document.createElement('a');
+    approve.className = 'approve-button';
     approve.href = '#';
     approve.innerHTML = 'Approve';
-    approve.className = 'approve-button';
+    var reject = document.createElement('a');
+    reject.className = 'reject-button';
+    reject.href = '#';
+    reject.innerHTML = 'Reject';
     var swipeout_close = document.createElement('a');
     swipeout_close.className = 'swipeout-close';
     swipeout_close.href = '#';
@@ -64,6 +68,7 @@ function createParcel() {
     // item_content2.className = 'item-content'
     swipeout_actions_right.className = 'swipeout-actions-right';
     swipeout_actions_right.appendChild(approve);
+    swipeout_actions_right.appendChild(reject);
     swipeout_actions_right.appendChild(swipeout_close);
     list.appendChild(swipeout_actions_right);
     return list;
@@ -80,20 +85,27 @@ $$(document).on('pageInit', function (e) {
     // }
 });
 
-onClickHandler();
+onClickApproveHandler();
+onClickRejectHandler();
 
 $$('#addButton').on('click', function (e) {
     document.querySelector('#parclesList ul').appendChild(createParcel());
-    onClickHandler();
+    onClickApproveHandler();
+    onClickRejectHandler();
 });
 
-function approveHandler(e) {
+function approveRejectHandler(e) {
     e['path'][3].removeChild(e['path'][2]);
 }
 
-function onClickHandler() {
-    $$('.approve-button').off('click', approveHandler);
-    $$('.approve-button').on('click', approveHandler);
+function onClickApproveHandler() {
+    $$('.approve-button').off('click', approveRejectHandler);
+    $$('.approve-button').on('click', approveRejectHandler);
+}
+
+function onClickRejectHandler() {
+    $$('.reject-button').off('click', approveRejectHandler);
+    $$('.reject-button').on('click', approveRejectHandler);
 }
 
 
