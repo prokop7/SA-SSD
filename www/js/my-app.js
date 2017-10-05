@@ -55,12 +55,12 @@ function createParcelsFordelivery() {
         "                                <div class=\"item-media\">Toy Gun" + roomNumber + "</div>\n" +
         "                            </div>\n" +
         "                        </div>\n" +
-        "                        <div class=\"swipeout-actions-right\">\n" +
-        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-        "                        </div>\n" +
         "                    </a>\n" +
+    "                        <div class=\"swipeout-actions-right\">\n" +
+    "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+    "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+    "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+    "                        </div>\n" +
         "                </li>\n" +
         "                <li class=\"swipeout\">\n" +
         "                    <a href=\"#\" class=\"item-content item-link\">\n" +
@@ -69,12 +69,12 @@ function createParcelsFordelivery() {
         "                                <div class=\"item-media\">Toy Car</div>\n" +
         "                            </div>\n" +
         "                        </div>\n" +
-        "                        <div class=\"swipeout-actions-right\">\n" +
-        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-        "                        </div>\n" +
         "                    </a>\n" +
+    "                        <div class=\"swipeout-actions-right\">\n" +
+    "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+    "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+    "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+    "                        </div>\n" +
         "                </li>\n" +
         "            </ul>\n" +
         "        </div>\n" +
@@ -93,12 +93,12 @@ function createDelivery() {
         "                                            <div class=\"item-media\">10/5. St. University, App-" + roomNumber + "</div>\n" +
         "                                        </div>\n" +
         "                                    </div>\n" +
-        "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-        "                                        <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                                        <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-        "                                        <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-        "                                    </div>\n" +
         "                                </a>\n" +
+    "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
+    "                                        <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+    "                                        <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+    "                                        <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+    "                                    </div>\n" +
         "                            </li>");
     return rows;
 }
