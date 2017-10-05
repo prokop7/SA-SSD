@@ -15,7 +15,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 // Handle Cordova Device Ready Event
-$$(document).on('deviceready', function() {
+$$(document).on('deviceready', function () {
     console.log("Device is ready!");
 });
 
@@ -26,52 +26,81 @@ $$(document).on('deviceready', function() {
 myApp.onPageInit('about', function (page) {
     // Do something here for "about" page
 
-})
+});
 
-function createParcel() {
-    var list = document.createElement('LI');
-    list.className = "swipeout";
+var roomNumber = 0;
 
-    var swipeout_content = document.createElement('DIV');
-    swipeout_content.className = "swipeout-content";
+/**
+ * @param {String} html representing a single element
+ * @return {Element}
+ */
+function htmlToElement(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.firstChild;
+}
 
-    var item_content = document.createElement('DIV');
-    item_content.className = "item-content";
 
-    var item_media = document.createElement('DIV');
-    item_media.className = "item-media";
-    item_media.appendChild(document.createTextNode('Address'));
+function createParcelsFordelivery() {
+    var rows = htmlToElement("<div class=\"popup popup-delivery" + roomNumber + "\">\n" +
+        "    <div class=\"content-block\">\n" +
+        "        <p>Date: 10/5.</p>\n" +
+        "        <p>Address: St. University, App-" + roomNumber + "</p>\n" +
+        "        <div class=\"list-block\">\n" +
+        "            <ul>\n" +
+        "                <li class=\"swipeout\">\n" +
+        "                    <a href=\"#\" class=\"item-content item-link\">\n" +
+        "                        <div class=\"swipeout-content\">\n" +
+        "                            <div class=\"item-content item-title\">\n" +
+        "                                <div class=\"item-media\">Toy Gun" + roomNumber + "</div>\n" +
+        "                            </div>\n" +
+        "                        </div>\n" +
+        "                        <div class=\"swipeout-actions-right\">\n" +
+        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                        </div>\n" +
+        "                    </a>\n" +
+        "                </li>\n" +
+        "                <li class=\"swipeout\">\n" +
+        "                    <a href=\"#\" class=\"item-content item-link\">\n" +
+        "                        <div class=\"swipeout-content\">\n" +
+        "                            <div class=\"item-content item-title\">\n" +
+        "                                <div class=\"item-media\">Toy Car</div>\n" +
+        "                            </div>\n" +
+        "                        </div>\n" +
+        "                        <div class=\"swipeout-actions-right\">\n" +
+        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                        </div>\n" +
+        "                    </a>\n" +
+        "                </li>\n" +
+        "            </ul>\n" +
+        "        </div>\n" +
+        "        <p><a href=\"#\" class=\"close-popup\">Close delivery</a></p>\n" +
+        "    </div>\n" +
+        "</div>\n");
+    return rows
 
-    var item_inner = document.createElement('DIV');
-    item_inner.className = "item-inner";
-    item_inner.appendChild(document.createTextNode('St. University, App-304'));
+}
 
-    item_content.appendChild(item_media);
-    item_content.appendChild(item_inner);
-    swipeout_content.appendChild(item_content);
-    list.appendChild(swipeout_content);
-
-    var approve = document.createElement('a');
-    approve.className = 'approve-button';
-    approve.href = '#';
-    approve.innerHTML = 'Approve';
-    var reject = document.createElement('a');
-    reject.className = 'reject-button';
-    reject.href = '#';
-    reject.innerHTML = 'Reject';
-    var swipeout_close = document.createElement('a');
-    swipeout_close.className = 'swipeout-close';
-    swipeout_close.href = '#';
-    swipeout_close.innerHTML = 'Close';
-    var swipeout_actions_right = document.createElement('DIV');
-    // var item_content2 = document.createElement('DIV');
-    // item_content2.className = 'item-content'
-    swipeout_actions_right.className = 'swipeout-actions-right';
-    swipeout_actions_right.appendChild(approve);
-    swipeout_actions_right.appendChild(reject);
-    swipeout_actions_right.appendChild(swipeout_close);
-    list.appendChild(swipeout_actions_right);
-    return list;
+function createDelivery() {
+    var rows = htmlToElement("<li class=\"swipeout\" id=\"delivery" + roomNumber + "\">\n" +
+        "                                <a href=\"#\" class=\"item-content item-link open-popup\"  data-popup=\".popup-delivery" + roomNumber + "\">\n" +
+        "                                    <div class=\"swipeout-content\">\n" +
+        "                                        <div class=\"item-content item-title\">\n" +
+        "                                            <div class=\"item-media\">10/5. St. University, App-" + roomNumber + "</div>\n" +
+        "                                        </div>\n" +
+        "                                    </div>\n" +
+        "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
+        "                                        <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
+        "                                        <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                                        <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                                    </div>\n" +
+        "                                </a>\n" +
+        "                            </li>");
+    return rows;
 }
 
 // Option 2. Using one 'pageInit' event handler for all pages:
@@ -85,17 +114,34 @@ $$(document).on('pageInit', function (e) {
     // }
 });
 
-onClickApproveHandler();
-onClickRejectHandler();
-
 $$('#addButton').on('click', function (e) {
-    document.querySelector('#parclesList ul').appendChild(createParcel());
+    roomNumber++;
+    document.querySelector('#parclesList ul').appendChild(createDelivery());
+    document.querySelector('body').appendChild(createParcelsFordelivery());
     onClickApproveHandler();
     onClickRejectHandler();
 });
 
+onClickApproveHandler();
+onClickRejectHandler();
+
 function approveRejectHandler(e) {
+    var isPopup = e['path'][6].classList[0] === 'popup';
+
     e['path'][3].removeChild(e['path'][2]);
+    if (isPopup && e['path'][3].childElementCount === 0) {
+        var index;
+        e['path'][6].classList.forEach(function (t) {
+            var regex = /popup-delivery(\d+)/;
+            if (t.match(regex)) {
+                index = regex.exec(t)[1];
+            }
+        });
+        $$('#delivery' + index).remove();
+        myApp.closeModal($$('.popup-delivery' + index), false)
+        $$('.popup-delivery' + index).remove();
+    }
+    if (!isPopup) $$('.popup-' + e['path'][2].id).remove();
 }
 
 function onClickApproveHandler() {
@@ -108,7 +154,8 @@ function onClickRejectHandler() {
     $$('.reject-button').on('click', approveRejectHandler);
 }
 
-
+// $$('#parcel0').on('click', function (e) {
+// });
 
 
 // // Option 2. Using live 'pageInit' event handlers for each page
