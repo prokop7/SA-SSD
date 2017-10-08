@@ -205,3 +205,12 @@ $$('.open-history-deliveries').on('click', function (e) {
     $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
 });
 
+$$('.open-addresses-warehouses').on('click', function (e) {
+    if (!is_current) {
+        history_del = $$("#parclesList")[0];
+        return;
+    }
+    is_current = false;
+    current_del = $$("#parclesList")[0];
+    $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
+});

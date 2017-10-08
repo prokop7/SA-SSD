@@ -28,10 +28,10 @@
     <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
         http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
      -->
-
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
-
+	<link rel="stylesheet" href="css/framework7-icons.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -42,26 +42,67 @@
 <!-- Panels overlay-->
 <div class="panel-overlay"></div>
 <!-- Left panel with reveal effect-->
-<div class="panel panel-left panel-reveal">
+<div class="panel panel-left panel-cover">
     <div class="content-block">
         <div class="list-block">
             <div class="page-content">
-                <div class="current-deliveries">
-                    <p><a href="#" class="open-current-deliveries close-panel">Active deliveries</a></p>
-                </div>
-            </div>
-            <div class="page-content">
-                <div class="history-deliveries">
-                    <p><a href="#" class="open-history-deliveries close-panel">History</a></p>
-                </div>
+				
+				<div class="current-deliveries">
+								<a href="#" class="open-current-deliveries close-panel">
+								
+									<div class="item-inner">
+										<div class="item-title">Active deliveries</div>
+									</div>
+								</a>
+							</div>
+							
+							<div class="history-deliveries">
+								<a href="#" class="open-history-deliveries close-panel">
+									<div class="item-inner">
+										<div class="item-title">History</div>
+									</div>
+								</a>
+							</div>
+							
+								<a href="addresses-warehouses.html">
+									<div class="item-inner">
+										<div class="item-title">Addresses-warehouses</div>
+									</div>
+								</a>
+								<div class="page-content">
+								<a href="about.html">Addresses-warehouses
+								</a></div>
             </div>
         </div>
-
+		
+		
+		 <div class="views">
+    <!-- Left view -->
+    <div class="view view-main left-view">
+      <!-- Navbar-->
+      <!-- Pages -->
+        <a href="about.html"> About </a>
+      <!-- Toolbar-->
+    </div></div>
+		
+		
+<div id="bottom-part">
+	
+        <div data-page="index" class="warehouses">
+            <div class="page-content">
+                <p><a href="#" class="open-warehouses-screen close-panel">Addresses of warehouses</a></p>
+            </div>
+        </div>
+		
         <div data-page="index" class="login" id="logout">
             <div class="page-content">
                 <p><a href="#" class="open-login-screen close-panel">Log out</a></p>
             </div>
         </div>
+		 <div class="separate"></div>
+		 <div >
+		 Contacts
+		 </div></div>
     </div>
 </div>
 
@@ -110,6 +151,51 @@
             </div>
         </div>
     </div>
+	
+	<div class="warehouses-screen modal-in">
+        <div class="view">
+            <div class="page">
+                <!-- page-content has additional login-screen content -->
+                <div class="page-content warehouses-screen-content">
+                    <div class="warehouses-screen-title">Please Log in</div>
+                    <!-- Login form -->
+                    <form>
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Username</div>
+                                        <div class="item-input">
+                                            <input type="text" name="username" placeholder="Username">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Password</div>
+                                        <div class="item-input">
+                                            <input type="password" name="password" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link list-button close-warehouses-screen">Sign In</a>
+                                </li>
+                            </ul>
+                            <div class="list-block-label">Some text with login information.</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+	
     <div class="view view-main">
         <!-- Top Navbar-->
         <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
