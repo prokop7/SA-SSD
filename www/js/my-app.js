@@ -62,8 +62,8 @@ function createParcelsFordelivery() {
         "                        </div>\n" +
         "                    </a>\n" +
         "                        <div class=\"swipeout-actions-right\">\n" +
-        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
+        "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
+        "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
         "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
         "                        </div>\n" +
         "                </li>\n" +
@@ -76,9 +76,8 @@ function createParcelsFordelivery() {
         "                        </div>\n" +
         "                    </a>\n" +
         "                        <div class=\"swipeout-actions-right\">\n" +
-        "                            <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                            <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
+        "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
         "                        </div>\n" +
         "                </li>\n" +
         "            </ul>\n" +
@@ -100,9 +99,8 @@ function createDelivery() {
         "                                    </div>\n" +
         "                                </a>\n" +
         "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-        "                                        <a href=\"#\" class=\"approve-button\">Approve</a>\n" +
-        "                                        <a href=\"#\" class=\"reject-button\">Reject</a>\n" +
-        "                                        <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+        "                                        <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
+        "                                        <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
         "                                    </div>\n" +
         "                            </li>");
     return rows;
@@ -120,7 +118,7 @@ function createDelivery() {
 */
 
 
-//!!!!!!!!!!!!!!
+/*
 $$('.rejectalert').on('click', function () {
     myApp.prompt(
 	 
@@ -139,7 +137,8 @@ $$('.approvealert').on('click', function () {
     myApp.modalPassword('You private key please:','Customer input', function (password) {
         myApp.alert('Thank you for your cooperation!','Success');
     });
-});
+});*/
+
 /*
 $$('.alert-text').on('click', function () {
   var modal = myApp.modal({
@@ -190,6 +189,8 @@ $scope.showPrompt = function(ev) {
     });
   };
 */
+
+
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 });
@@ -198,8 +199,8 @@ $$('#addButton').on('click', function (e) {
     roomNumber++;
     document.querySelector('#parclesList ul').appendChild(createDelivery());
     document.querySelector('body').appendChild(createParcelsFordelivery());
-   // onClickApproveHandler();
-   // onClickRejectHandler();
+  onClickApproveHandler();
+  onClickRejectHandler();
 });
 
 onClickApproveHandler();
@@ -232,6 +233,33 @@ function approveRejectHandler(e) {
     // if (!isPopup) $$('.popup-' + e['path'][2].id).remove();
 }
 
+
+function onClickApproveHandler() {
+    //$$('.approvealert').off('click', approveRejectHandler1);
+    $$('.approvealert').on('click', function () {
+    myApp.modalPassword('You private key please:','Customer input', function (password) {
+        myApp.alert('Thank you for your cooperation!','Success');
+    });
+});
+}
+
+function onClickRejectHandler() {
+   // $$('.reject-button').off('click', approveRejectHandler);
+    $$('.rejectalert').on('click', function () {
+    myApp.prompt(
+	 
+	'Why the user refused the parcel?', 
+	'Cancellation',
+      function (value) {
+        myApp.alert('The report is generated and sent!','Success');
+      },
+      function (value) {
+        myApp.alert('CANCEL');
+      }
+    );
+});
+}
+/*
 function onClickApproveHandler() {
     $$('.approve-button').off('click', approveRejectHandler);
     $$('.approve-button').on('click', approveRejectHandler);
@@ -241,7 +269,7 @@ function onClickRejectHandler() {
     $$('.reject-button').off('click', approveRejectHandler);
     $$('.reject-button').on('click', approveRejectHandler);
 }
-
+*/
 var current_del = $$("#parclesList")[0];
 
 // TODO correct initialization with dates.
