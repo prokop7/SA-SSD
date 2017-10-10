@@ -29,45 +29,37 @@ if (!getCookie('api_token')) {
     myApp.loginScreen();
 } else {
     api_token = getCookie('api_token');
+    document.querySelector('#driver-name').innerHTML =  getCookie('name');
 }
 
-function delete_cookie( name ) {
+function deleteCookie(name ) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-function success_sign_in(e) {
+function successSignIn(e) {
     myApp.closeModal();
     document.cookie = 'name=' + e.name + ";";
     document.cookie = 'email=' + e.email + ";";
     document.cookie = 'api_token=' + e.api_token + ";";
     api_token = e.api_token;
     document.querySelector('#driver-name').innerHTML =  e.name;
-    console.log($$('#driver-name'));
 }
 
-function error_callback(e) {
+function errorCallback(e) {
     console.log(e);
 }
 
 $$('#sign-in').on('click', function (e) {
     var obj = {"email": $$('#input-login').val(), "password": $$('#input-password').val()};
-    sign_in(URL + 'login', obj, success_sign_in, error_callback);
+    sign_in(URL + 'login', obj, successSignIn, errorCallback);
 });
 
 $$('#sign-out').on('click', function (e) {
     myApp.closePanel();
     myApp.loginScreen();
-    delete_cookie('api_token');
-    delete_cookie('name');
-    delete_cookie('email');
-});
-
-// Now we need to run the code that will be executed only for About page.
-
-// Option 1. Using page callback for page (for "about" page in this case) (recommended way):
-myApp.onPageInit('about', function (page) {
-    // Do something here for "about" page
-
+    deleteCookie('api_token');
+    deleteCookie('name');
+    deleteCookie('email');
 });
 
 var roomNumber = 0;
