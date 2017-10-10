@@ -1,17 +1,13 @@
-// Initialize app
 var myApp = new Framework7({
     swipePanel: 'left',
     material: true
 });
 
-
-// If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 var URL = 'https://tcsw.innopolis.dl-dev.ru/api/';
 
 // Add view
 var mainView = myApp.addView('.view-main', {
-    // Because we want to use dynamic navbar, we need to enable it for this view:
     dynamicNavbar: true,
     swipePanel: 'left'
 
@@ -137,14 +133,6 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-
-// $$('#addButton').on('click', function (e) {
-//     roomNumber++;
-//     document.querySelector('#parclesList ul').appendChild(createParcel());
-//     document.querySelector('body').appendChild(createParcelsFordelivery());
-//     onClickApproveHandler();
-//     onClickRejectHandler();
-// });
 
 onClickApproveHandler();
 onClickRejectHandler();
