@@ -42,7 +42,6 @@ function ajaxWithParameters(type, url, data, successCallback, errorCallback, par
     xhr.onload = function () {
         if (xhr.response) {
             if (xhr.status >= 200 && xhr.status < 400) {
-                console.log(xhr.status);
                 var result;
                 try {
                     result = xhr.response.data;
@@ -53,11 +52,13 @@ function ajaxWithParameters(type, url, data, successCallback, errorCallback, par
                 if (successCallback)
                     successCallback({params: params, result: result});
             } else {
+                console.log(xhr.status);
                 console.error(xhr.response);
                 if (errorCallback)
                     errorCallback({params: params, result: {status: xhr.status, response: xhr.response}});
             }
         } else {
+            console.log(xhr.status);
             console.error('Response is absent!');
         }
     }

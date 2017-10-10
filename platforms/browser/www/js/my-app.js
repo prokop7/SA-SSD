@@ -12,13 +12,11 @@ var myApp = new Framework7({
 var $$ = Dom7;
 var URL = 'https://tcsw.innopolis.dl-dev.ru/api/';
 
-// Add view
 var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true,
     swipePanel: 'left'
 });
 
-mainView.router.loadPage('parcels.html');
 
 myApp.addView(".history-deliveries", {
     name: 'history'
@@ -27,25 +25,37 @@ myApp.addView(".history-deliveries", {
 var api_token;
 
 function appendParcels(parcels) {
-    var node = document.querySelector('#parcelsList ul');
+    var node;
+    node = mainView.activePage.name === 'current-parcels'
+        ? document.querySelector('#parcelsList ul')
+        : document.querySelector('#historyParcelList ul');
     while (node.hasChildNodes()) {
         node.removeChild(node.lastChild);
     }
-    parcels.forEach(function (obj) {
-        var parcel = createParcel(obj.id, obj.name, obj.sender.name, obj.from, obj.to, obj.sender.email);
-        document.querySelector('#parcelsList ul').appendChild(parcel);
-    });
+    if (mainView.activePage.name === 'current-parcels')
+        parcels.forEach(function (obj) {
+            var parcel = createParcel(obj.id, obj.name, obj.sender.name, obj.from, obj.to, obj.sender.email, obj.status);
+            node.appendChild(parcel);
+        });
+    else {
+        parcels.forEach(function (obj) {
+            var parcel = createArchivedParcel(obj.id, obj.name, obj.sender.name, obj.from, obj.to, obj.sender.email, obj.status);
+            node.appendChild(parcel);
+        });
+    }
     onClickApproveHandler();
     onClickRejectHandler();
 }
 
 function loadParcels() {
-    mainView.router.loadPage("parcels.html");
+    if (mainView.activePage.name !== 'history-parcels')
+        mainView.router.loadPage("history-parcels.html");
     ajax('GET', URL + "parcels/driver/my?api_token=" + api_token, '', appendParcels, errorCallback);
 }
 
 function loadActiveParcels() {
-    mainView.router.loadPage("parcels.html");
+    if (mainView.activePage.name !== 'current-parcels')
+        mainView.router.loadPage("current-parcels.html");
     ajax('GET', URL + "parcels/driver/my?status_id=3&api_token=" + api_token, '', appendParcels, errorCallback);
 }
 
@@ -108,7 +118,7 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
-function createParcel(id, parcel_name, sender, from, to, email) {
+function createParcel(id, parcel_name, sender, from, to, email, status) {
     return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +
         "                                <a href=\"#\" class=\"item-content item-link\">\n" +
         "                                    <div class=\"item-inner\">\n" +
@@ -123,11 +133,33 @@ function createParcel(id, parcel_name, sender, from, to, email) {
         "                                        <p>From: " + from + "</p>\n" +
         "                                        <p>To: " + to + "</p>\n" +
         "                                        <p>Email: " + email + "</p>\n" +
+        "                                        <p>Status: " + status + "</p>\n" +
         "                                    </div>\n" +
         "                                </div>\n" +
         "                                <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
         "                                    <a href=\"#\" class=\"approve-button approve-alert\">Approve</a>\n" +
         "                                    <a href=\"#\" class=\"reject-button reject-alert\">Reject</a>\n" +
+        "                                </div>\n" +
+        "                            </li>");
+}
+
+function createArchivedParcel(id, parcel_name, sender, from, to, email, status) {
+    return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +
+        "                                <a href=\"#\" class=\"item-content item-link\">\n" +
+        "                                    <div class=\"item-inner\">\n" +
+        "                                        <div class=\"swipeout-content\">\n" +
+        "                                            <div class=\"item-title\">" + parcel_name + "</div>\n" +
+        "                                        </div>\n" +
+        "                                    </div>\n" +
+        "                                </a>\n" +
+        "                                <div class=\"accordion-item-content\">\n" +
+        "                                    <div class=\"content-block\">\n" +
+        "                                        <p>Name: " + sender + "</p>\n" +
+        "                                        <p>From: " + from + "</p>\n" +
+        "                                        <p>To: " + to + "</p>\n" +
+        "                                        <p>Email: " + email + "</p>\n" +
+        "                                        <p>Status: " + status + "</p>\n" +
+        "                                    </div>\n" +
         "                                </div>\n" +
         "                            </li>");
 }
@@ -145,13 +177,6 @@ function getCookie(name) {
 onClickApproveHandler();
 onClickRejectHandler();
 
-function delete_delivery(node) {
-    if (is_current) {
-        node.childNodes[3].remove();
-        history_del.childNodes[1].appendChild(node);
-    }
-}
-
 function deleteParcel(e) {
     console.log(e);
     $$("#delivery-" + e.params).remove();
@@ -167,29 +192,20 @@ function updateParcel(index, status_id) {
         index);
 }
 
-// TODO divide them into two functions.
 function approveHandler(e) {
     var li = e['path'][2];
     var id = li.id;
     var regex = /delivery-(\d+)/;
     var index = regex.exec(id)[1];
     updateParcel(index, 5);
+}
 
-    // delete_delivery(e['path'][2]);
-    // // e['path'][3].removeChild(e['path'][2]);
-    // if (isPopup && e['path'][3].childElementCount === 0) {
-    //     var index;
-    //     e['path'][6].classList.forEach(function (t) {
-    //         var regex = /popup-delivery(\d+)/;
-    //         if (t.match(regex)) {
-    //             index = regex.exec(t)[1];
-    //         }
-    //     });
-    //     $$('#delivery' + index).remove();
-    //     myApp.closeModal($$('.popup-delivery' + index), false);
-    //     delete_delivery($$('.popup-delivery' + index));
-    // }
-    // if (!isPopup) $$('.popup-' + e['path'][2].id).remove();
+function rejectHandler(e) {
+    var li = e['path'][2];
+    var id = li.id;
+    var regex = /delivery-(\d+)/;
+    var index = regex.exec(id)[1];
+    updateParcel(index, 6);
 }
 
 
@@ -205,20 +221,24 @@ function onClickApproveHandler() {
     // });
 }
 
+
 function onClickRejectHandler() {
-    // $$('.reject-button').off('click', approveRejectHandler);
-    $$('.reject-alert').on('click', function () {
-        myApp.prompt(
-            'Why the user refused the parcel?',
-            'Cancellation',
-            function (value) {
-                myApp.alert('The report is generated and sent!', 'Success');
-            },
-            function (value) {
-                myApp.alert('CANCEL');
-            }
-        );
-    });
+    $$('.reject-button').off('click', rejectHandler);
+    $$('.reject-button').on('click', rejectHandler);
+
+    //TODO temporary disabled.
+    // $$('.reject-alert').on('click', function () {
+    //     myApp.prompt(
+    //         'Why the user refused the parcel?',
+    //         'Cancellation',
+    //         function (value) {
+    //             myApp.alert('The report is generated and sent!', 'Success');
+    //         },
+    //         function (value) {
+    //             myApp.alert('CANCEL');
+    //         }
+    //     );
+    // });
 }
 
 $$('.open-current-deliveries').on('click', loadActiveParcels);
@@ -229,13 +249,3 @@ $$('.addresses-warehouses').on('click', function (e) {
     console.log(mainView.router.loadPage('addresses-warehouses.html'));
     mainView.router.loadPage('addresses-warehouses.html');
 });
-
-// $$('.open-addresses-warehouses').on('click', function (e) {
-//     if (!is_current) {
-//         history_del = $$("#parclesList")[0];
-//         return;
-//     }
-//     is_current = false;
-//     current_del = $$("#parclesList")[0];
-//     $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
-// });
