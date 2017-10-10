@@ -8,3 +8,7 @@ platforms/browser/www/css/styles.css
 platforms/browser/www/index.html
 platforms/browser/www/js/my-app.js
 platforms/browser/www/www.zip
+.idea/modules.xml
+.idea/SA-SSD.iml
+.idea/vcs.xml
+.idea/workspace.xml
