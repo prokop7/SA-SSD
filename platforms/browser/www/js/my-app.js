@@ -41,13 +41,17 @@ function loadParcels() {
     ajax('GET', URL + "parcels/driver/my?api_token=" + api_token, '', appendParcels, errorCallback);
 }
 
+function loadActiveParcels() {
+    ajax('GET', URL + "parcels/driver/my?status_id=3&api_token=" + api_token, '', appendParcels, errorCallback);
+}
+
 
 if (!getCookie('api_token')) {
     myApp.loginScreen();
 } else {
     api_token = getCookie('api_token');
     document.querySelector('#driver-name').innerHTML = getCookie('name');
-    loadParcels();
+    loadActiveParcels();
 }
 
 
@@ -62,11 +66,14 @@ function successSignIn(e) {
     document.cookie = 'api_token=' + e.api_token + ";";
     api_token = e.api_token;
     document.querySelector('#driver-name').innerHTML = e.name;
-    loadParcels();
+    loadActiveParcels();
 }
 
 function errorSignIn(error_code, error) {
-    myApp.addNotification({message: error_code + ": " + error['errors'].email[0],});
+    var n = myApp.addNotification({message: error_code + ": " + error['errors'].email[0]});
+    setTimeout(function () {
+        myApp.closeNotification(n);
+    }, 5000);
 }
 
 function errorCallback(e) {
@@ -96,50 +103,6 @@ function htmlToElement(html) {
     template.innerHTML = html;
     return template.content.firstChild;
 }
-
-
-// function createParcelsForDelivery() {
-//     var rows = htmlToElement("<div class=\"popup popup-delivery" + roomNumber + "\">\n" +
-//         "    <div class=\"content-block\">\n" +
-//         "        <p>Date: 10/5.</p>\n" +
-//         "        <p>Address: St. University, App-" + roomNumber + "</p>\n" +
-//         "        <div class=\"list-block\">\n" +
-//         "            <ul>\n" +
-//         "                <li class=\"swipeout\">\n" +
-//         "                    <a href=\"#\" class=\"item-content item-link\">\n" +
-//         "                        <div class=\"swipeout-content\">\n" +
-//         "                            <div class=\"item-content item-title\">\n" +
-//         "                                <div class=\"item-media\">Toy Gun" + roomNumber + "</div>\n" +
-//         "                            </div>\n" +
-//         "                        </div>\n" +
-//         "                    </a>\n" +
-//         "                        <div class=\"swipeout-actions-right\">\n" +
-//         "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
-//         "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
-//         "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-//         "                        </div>\n" +
-//         "                </li>\n" +
-//         "                <li class=\"swipeout\">\n" +
-//         "                    <a href=\"#\" class=\"item-content item-link\">\n" +
-//         "                        <div class=\"swipeout-content\">\n" +
-//         "                            <div class=\"item-content item-title\">\n" +
-//         "                                <div class=\"item-media\">Toy Car</div>\n" +
-//         "                            </div>\n" +
-//         "                        </div>\n" +
-//         "                    </a>\n" +
-//         "                        <div class=\"swipeout-actions-right\">\n" +
-//         "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
-//         "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
-//         "                        </div>\n" +
-//         "                </li>\n" +
-//         "            </ul>\n" +
-//         "        </div>\n" +
-//         "        <p><a href=\"#\" class=\"close-popup\">Close delivery</a></p>\n" +
-//         "    </div>\n" +
-//         "</div>\n");
-//     return rows
-//
-// }
 
 function createParcel(id, parcel_name, sender, from, to, email) {
     return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +

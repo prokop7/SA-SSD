@@ -10,20 +10,20 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
             -->
-    <!--<meta http-equiv="Content-Security-Policy"-->
-    <!--content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+            <meta http-equiv="Content-Security-Policy"
+            content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
+            <!-- Required meta tags-->
+            <meta charset="utf-8">
+            <meta name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <meta name="format-detection" content="telephone=no">
+            <meta name="msapplication-tap-highlight" content="no">
 
-    <!-- Your app title -->
-    <title>Parcel Monitor</title>
+            <!-- Your app title -->
+            <title>Parcel Monitor</title>
 
     <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
         http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
@@ -36,147 +36,192 @@
 </head>
 
 <body>
-<!-- Status bar overlay for full screen mode (PhoneGap) -->
-<div class="statusbar-overlay"></div>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
 
-<!-- Panels overlay-->
-<div class="panel-overlay"></div>
-<!-- Left panel with reveal effect-->
-<div class="panel panel-left panel-cover">
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-cover">
 
 
-    <div class="view navbar-fixed" data-page="panel-left">
-        <div class="pages">
-            <div data-page="panel-left" class="page">
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="content-block"><img size="40" src="pics/uxceo-128.jpg" class="avatarpic"></div>
-                        <div class="content-block" style="padding: 0 38px;" id="driver-name">
-                        </div>
-                    </div>
 
-                </div>
-                <div class="page-content">
-                    <div class="list-block">
-                        <div class="current-deliveries">
-                            <a href="#" class="open-current-deliveries close-panel ">
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title" style="color:black;">Active deliveries</div>
+        <div class="view navbar-fixed" data-page="panel-left">
+            <div class="pages">
+                <div data-page="panel-left" class="page">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                           <div class="content-block"><img size="40" src="pics/uxceo-128.jpg" class="avatarpic" ></div>
+                           <div class="content-block" style="padding: 0 38px;">Mia Deliever</div></div>
+
+                       </div>
+
+
+                       <div class="page-content">
+                        <div class="list-block">
+
+                            <div class="current-deliveries">
+
+                                <a href="#" class="open-current-deliveries close-panel ">
+                                    <div class="item-content">
+                                        <!--<div class="item-media"><i class="f7-icons  color-gray">bolt_fill</i></div>-->
+
+                                        <div class="item-inner">
+                                            <div class="item-title"style="color:black;">Active deliveries</div>
+                                        </div>
+
                                     </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <!--item-link - arrow-->
-                        <div class="history-deliveries">
-                            <a href="#" class="open-history-deliveries close-panel">
-                                <div class="item-content">
-                                    <div class="item-inner">
+                                </a>
+                            </div>
+                            <!--item-link - arrow-->
+                            <div class="history-deliveries">
+                                <a href="#" class="open-history-deliveries close-panel">
+                                    <div class="item-content">
+                                     <!-- <div class="item-media"><i class="f7-icons  color-gray">book_fill</i></div>-->
+                                     <div class="item-inner">
                                         <div class="item-title" style="color:black;">History</div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <!--warehouses addresses-->
-                        <div class="warehouses">
-                            <a href="addresses-warehouses.html" class="close-panel">
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title" style="color:black;">Warehouses</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!--about-->
-                        <div class="about">
-                            <a href="about.html" class=" close-panel">
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title" style="color:black;">About</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="content-block">
-                            <div data-page="index" class="sign-out">
-                                <div class="page-content">
-                                    <p><a href="#" class="open-login-screen" id="sign-out">Log out</a></p>
+                        <a href="addresses-warehouses.html" class="close-panel" >
+                            <div class="item-content">
+                                <!--<div class="item-media"><i class="f7-icons  color-gray">home_fill</i></div>-->
+                                <div class="item-inner">
+                                    <div class="item-title" style="color:black;">Warehouses</div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
+                            <div class="pages navbar-through toolbar-through">
+                                <!-- Page, "data-page" contains page name -->
+                                <div data-page="index" class="page">
+                                    <!-- Scrollable page content -->
+                                    <div class="page-content">
+                                        <div class="content-block">
+                                            <p>Page content goes here</p>
+                                            <!-- Link to another page -->
+                                            <a href="addresses-warehouses.html">About app</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--about-->
+                            <a href="about.html" class=" close-panel">
+                                <div class="item-content">
+                                   <!--   <div class="item-media"><i class="f7-icons  color-gray">info_fill</i></div>-->
+                                   <div class="item-inner">
+                                    <div class="item-title">About</div>
+                                </div>
+                            </div></a>
+                            <!--log out-->
+                            <div class="content-block">
+                                <div data-page="index" class="login">
+                                    <div class="page-content">
+                                        <p><a href="#" class="open-login-screen close-panel">Log out</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- Views -->
-<div class="views">
-    <!-- Your main view, should have "view-main" class -->
-    <div class="login-screen">
-        <div class="view">
-            <div class="page">
-                <!-- page-content has additional login-screen content -->
-                <div class="page-content login-screen-content">
-                    <div class="login-screen-title">Please Log in</div>
-                    <!-- Login form -->
-                    <form>
-                        <div class="list-block inputs-list">
-                            <ul>
-                                <li class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field">
-                                            <input type="text" id="input-login" name="username"
-                                                   placeholder="Your username">
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="login-screen modal-in">
+            <div class="view">
+                <div class="page">
+                    <!-- page-content has additional login-screen content -->
+                    <div class="page-content login-screen-content">
+                        <div class="login-screen-title">Please Log in</div>
+                        <!-- Login form -->
+                        <form>
+                            <div class="list-block inputs-list">
+                                <ul>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Username</div>
+                                            <div class="item-input item-input-field">
+                                                <input type="text" name="username" placeholder="Your username">
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field">
-                                            <input type="password" id="input-password" name="password"
-                                                   placeholder="Your password">
+
+
+                                    </li>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Password</div>
+                                            <div class="item-input item-input-field">
+                                                <input type="password" name="password" placeholder="Your password">
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="content-block">
-                            <a href="#" class="button button-big item-link list-button" id="sign-in">
-                                Sign In
-                            </a>
-                        </div>
-                    </form>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <div class="content-block"><a href="#" class="button button-big item-link list-button close-login-screen">Sign In</a></div>
+                            <div class="content-block">
+                                <div class="list-block-label">Some text about login information.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="view view-main">
-        <div class="pages toolbar-through">
-            <div data-page="index" class="page">
-                <!-- Scrollable page content -->
-                <div class="page-content">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                            <div class="left">
+
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="index" class="page">
+                    <!-- Scrollable page content -->
+                    <div class="page-content">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                                <div class="left">
                                 <!--
                                   Right link contains only icon - additional "icon-only" class
                                   Additional "open-panel" class tells app to open panel when we click on this link
                               -->
-                                <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                              <a href="#" class="link icon-only open-panel">
+                                <i class="icon icon-bars">
+                                </i></a>
                             </div>
                             <div class="left sliding">Parcel Monitor</div>
                         </div>
                     </div>
-                    <div class="list-block accordion-list" id="parcelsList">
+                    <div class="list-block" id="parclesList">
                         <ul>
+                            <li class="swipeout" id="delivery0">
+                                <a href="#" class="item-content item-link open-popup" data-popup=".popup-delivery0">
+                                    <div class="swipeout-content">
+                                        <div class="item-content item-title">
+                                            <div class="item-media">10/5. St. University, App-0</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="swipeout-actions-right" id="swipeout-actions-right">
+                                    <a href="#" class="approve-button approvealert " >Approve</a>
+                                    <a href="#" class="reject-button rejectalert " >Reject</a>
+                                    <!-- <a href="#" class="swipeout-close" style="    background: #4caf50;">Close</a>-->
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -192,10 +237,62 @@
         </div>
     </div>
 </div>
+<div class="popup popup-delivery0">
+    <div class="content-block">
+        <p>Date: 10/5.</p>
+        <p>Address: St. University, App-0</p>
+        <div class="list-block">
+            <ul>
+                <li class="swipeout">
+                    <a href="#" class="item-content item-link">
+                        <div class="swipeout-content">
+                            <div class="item-content item-title">
+                                <div class="item-media">Toy Gun</div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="swipeout-actions-right">
+                        <a href="#" class="approve-button approvealert">Approve</a>
+                        <a href="#" class="reject-button rejectalert">Reject</a>
+                    </div>
+                </li>
+                <li class="swipeout">
+                    <a href="#" class="item-content item-link">
+                        <div class="swipeout-content">
+                            <div class="item-content item-title">
+                                <div class="item-media">Toy Car</div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="swipeout-actions-right">
+                        <a href="#" class="approve-button approvealert">Approve</a>
+                        <a href="#" class="reject-button rejectalert">Reject</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <p><a href="#" class="close-popup">Close delivery</a></p>
+    </div>
+</div>
+
+
+<!--
+<div class="modal modal-in" style="display: block; margin-top: -107px;">
+<div class="modal-inner">
+<div class="modal-title">Framework7</div>
+<div class="modal-text">Enter your password</div>
+<div class="input-field">
+<input type="password" name="modal-password" placeholder="Password" class="modal-text-input">
+</div></div><div class="modal-buttons modal-buttons-2 ">
+<span class="modal-button">Cancel</span>
+<span class="modal-button modal-button-bold">OK</span>
+</div>
+</div>
+
+-->
 
 
 <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
-<script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript" src="js/my-app.js"></script>
 </body>
 
