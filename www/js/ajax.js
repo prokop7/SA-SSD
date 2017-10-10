@@ -17,9 +17,9 @@ function ajax(type, url, data, successCallback, errorCallback) {
                 if (successCallback)
                     successCallback(result);
             } else {
-                console.error(xhr.response.error);
+                console.error(xhr.response);
                 if (errorCallback)
-                    errorCallback(xhr.status, xhr.response.error);
+                    errorCallback(xhr.status, xhr.response);
             }
         } else {
             console.error('Response is absent!');

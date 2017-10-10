@@ -1,4 +1,3 @@
-
 // Initialize app
 var myApp = new Framework7({
     swipePanel: 'left'
@@ -7,7 +6,7 @@ var myApp = new Framework7({
 
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
-var URL = 'https://tcsw.innopolis.dl-dev.ru/api/' ;
+var URL = 'https://tcsw.innopolis.dl-dev.ru/api/';
 
 // Add view
 var mainView = myApp.addView('.view-main', {
@@ -24,15 +23,34 @@ myApp.addView(".history-deliveries", {
 
 var api_token;
 
+function appendParcels(parcels) {
+    var node = document.querySelector('#parcelsList ul');
+    while (node.hasChildNodes()) {
+        node.removeChild(node.lastChild);
+    }
+    parcels.forEach(function (obj) {
+        var parcel = createParcel(obj.id, obj.name, obj.sender.name, obj.from, obj.to, obj.sender.email);
+        document.querySelector('#parcelsList ul').appendChild(parcel);
+    });
+    onClickApproveHandler();
+    onClickRejectHandler();
+}
+
+function loadParcels() {
+    ajax('GET', URL + "parcels/driver/my?api_token=" + api_token, '', appendParcels, errorCallback);
+}
+
+
 if (!getCookie('api_token')) {
-    console.log(document.cookie.api_token);
     myApp.loginScreen();
 } else {
     api_token = getCookie('api_token');
-    document.querySelector('#driver-name').innerHTML =  getCookie('name');
+    document.querySelector('#driver-name').innerHTML = getCookie('name');
+    loadParcels();
 }
 
-function deleteCookie(name ) {
+
+function deleteCookie(name) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
@@ -42,27 +60,31 @@ function successSignIn(e) {
     document.cookie = 'email=' + e.email + ";";
     document.cookie = 'api_token=' + e.api_token + ";";
     api_token = e.api_token;
-    document.querySelector('#driver-name').innerHTML =  e.name;
+    document.querySelector('#driver-name').innerHTML = e.name;
+    loadParcels();
 }
 
 function errorCallback(e) {
     console.log(e);
 }
 
-$$('#sign-in').on('click', function (e) {
+function errorSignIn(error_code, error) {
+    myApp.alert(error_code + ": " + error['errors'].email[0],error.message);
+}
+
+
+$$('#sign-in').on('click', function () {
     var obj = {"email": $$('#input-login').val(), "password": $$('#input-password').val()};
-    sign_in(URL + 'login', obj, successSignIn, errorCallback);
+    sign_in(URL + 'login', obj, successSignIn, errorSignIn);
 });
 
-$$('#sign-out').on('click', function (e) {
+$$('#sign-out').on('click', function () {
     myApp.closePanel();
     myApp.loginScreen();
     deleteCookie('api_token');
     deleteCookie('name');
     deleteCookie('email');
 });
-
-var roomNumber = 0;
 
 /**
  * @param {String} html representing a single element
@@ -75,68 +97,74 @@ function htmlToElement(html) {
 }
 
 
-function createParcelsFordelivery() {
-    var rows = htmlToElement("<div class=\"popup popup-delivery" + roomNumber + "\">\n" +
-        "    <div class=\"content-block\">\n" +
-        "        <p>Date: 10/5.</p>\n" +
-        "        <p>Address: St. University, App-" + roomNumber + "</p>\n" +
-        "        <div class=\"list-block\">\n" +
-        "            <ul>\n" +
-        "                <li class=\"swipeout\">\n" +
-        "                    <a href=\"#\" class=\"item-content item-link\">\n" +
-        "                        <div class=\"swipeout-content\">\n" +
-        "                            <div class=\"item-content item-title\">\n" +
-        "                                <div class=\"item-media\">Toy Gun" + roomNumber + "</div>\n" +
-        "                            </div>\n" +
-        "                        </div>\n" +
-        "                    </a>\n" +
-        "                        <div class=\"swipeout-actions-right\">\n" +
-        "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
-        "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
-        "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
-        "                        </div>\n" +
-        "                </li>\n" +
-        "                <li class=\"swipeout\">\n" +
-        "                    <a href=\"#\" class=\"item-content item-link\">\n" +
-        "                        <div class=\"swipeout-content\">\n" +
-        "                            <div class=\"item-content item-title\">\n" +
-        "                                <div class=\"item-media\">Toy Car</div>\n" +
-        "                            </div>\n" +
-        "                        </div>\n" +
-        "                    </a>\n" +
-        "                        <div class=\"swipeout-actions-right\">\n" +
-        "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
-        "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
-        "                        </div>\n" +
-        "                </li>\n" +
-        "            </ul>\n" +
-        "        </div>\n" +
-        "        <p><a href=\"#\" class=\"close-popup\">Close delivery</a></p>\n" +
-        "    </div>\n" +
-        "</div>\n");
-    return rows
+// function createParcelsForDelivery() {
+//     var rows = htmlToElement("<div class=\"popup popup-delivery" + roomNumber + "\">\n" +
+//         "    <div class=\"content-block\">\n" +
+//         "        <p>Date: 10/5.</p>\n" +
+//         "        <p>Address: St. University, App-" + roomNumber + "</p>\n" +
+//         "        <div class=\"list-block\">\n" +
+//         "            <ul>\n" +
+//         "                <li class=\"swipeout\">\n" +
+//         "                    <a href=\"#\" class=\"item-content item-link\">\n" +
+//         "                        <div class=\"swipeout-content\">\n" +
+//         "                            <div class=\"item-content item-title\">\n" +
+//         "                                <div class=\"item-media\">Toy Gun" + roomNumber + "</div>\n" +
+//         "                            </div>\n" +
+//         "                        </div>\n" +
+//         "                    </a>\n" +
+//         "                        <div class=\"swipeout-actions-right\">\n" +
+//         "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
+//         "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
+//         "                            <a href=\"#\" class=\"swipeout-close\">Close</a>\n" +
+//         "                        </div>\n" +
+//         "                </li>\n" +
+//         "                <li class=\"swipeout\">\n" +
+//         "                    <a href=\"#\" class=\"item-content item-link\">\n" +
+//         "                        <div class=\"swipeout-content\">\n" +
+//         "                            <div class=\"item-content item-title\">\n" +
+//         "                                <div class=\"item-media\">Toy Car</div>\n" +
+//         "                            </div>\n" +
+//         "                        </div>\n" +
+//         "                    </a>\n" +
+//         "                        <div class=\"swipeout-actions-right\">\n" +
+//         "                            <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
+//         "                            <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
+//         "                        </div>\n" +
+//         "                </li>\n" +
+//         "            </ul>\n" +
+//         "        </div>\n" +
+//         "        <p><a href=\"#\" class=\"close-popup\">Close delivery</a></p>\n" +
+//         "    </div>\n" +
+//         "</div>\n");
+//     return rows
+//
+// }
 
-}
-
-function createDelivery() {
-    var rows = htmlToElement("<li class=\"swipeout\" id=\"delivery" + roomNumber + "\">\n" +
-        "                                <a href=\"#\" class=\"item-content item-link open-popup\"  data-popup=\".popup-delivery" + roomNumber + "\">\n" +
-        "                                    <div class=\"swipeout-content\">\n" +
-        "                                        <div class=\"item-content item-title\">\n" +
-        "                                            <div class=\"item-media\">10/5. St. University, App-" + roomNumber + "</div>\n" +
+function createParcel(id, parcel_name, sender, from, to, email) {
+    return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +
+        "                                <a href=\"#\" class=\"item-content item-link\">\n" +
+        "                                    <div class=\"item-inner\">\n" +
+        "                                        <div class=\"swipeout-content\">\n" +
+        "                                            <div class=\"item-title\">" + parcel_name + "</div>\n" +
         "                                        </div>\n" +
         "                                    </div>\n" +
         "                                </a>\n" +
-        "                                    <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-        "                                        <a href=\"#\" class=\"approve-button approvealert\">Approve</a>\n" +
-        "                                        <a href=\"#\" class=\"reject-button rejectalert\">Reject</a>\n" +
+        "                                <div class=\"accordion-item-content\">\n" +
+        "                                    <div class=\"content-block\">\n" +
+        "                                        <p>Name: " + sender + "</p>\n" +
+        "                                        <p>From: " + from + "</p>\n" +
+        "                                        <p>To: " + to + "</p>\n" +
+        "                                        <p>Email: " + email + "</p>\n" +
         "                                    </div>\n" +
+        "                                </div>\n" +
+        "                                <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
+        "                                    <a href=\"#\" class=\"approve-button approve-alert \">Approve</a>\n" +
+        "                                    <a href=\"#\" class=\"reject-button reject-alert \">Reject</a>\n" +
+        "                                </div>\n" +
         "                            </li>");
-    return rows;
 }
 
 $$(document).on('pageInit', function (e) {
-    var page = e.detail.page;
 });
 
 function getCookie(name) {
@@ -146,14 +174,13 @@ function getCookie(name) {
 }
 
 
-
-$$('#addButton').on('click', function (e) {
-    roomNumber++;
-    document.querySelector('#parclesList ul').appendChild(createDelivery());
-    document.querySelector('body').appendChild(createParcelsFordelivery());
-  onClickApproveHandler();
-  onClickRejectHandler();
-});
+// $$('#addButton').on('click', function (e) {
+//     roomNumber++;
+//     document.querySelector('#parclesList ul').appendChild(createParcel());
+//     document.querySelector('body').appendChild(createParcelsFordelivery());
+//     onClickApproveHandler();
+//     onClickRejectHandler();
+// });
 
 onClickApproveHandler();
 onClickRejectHandler();
@@ -187,30 +214,30 @@ function approveRejectHandler(e) {
 
 
 function onClickApproveHandler() {
-    //$$('.approvealert').off('click', approveRejectHandler1);
-    $$('.approvealert').on('click', function () {
-    myApp.modalPassword('You private key please:','Customer input', function (password) {
-        myApp.alert('Thank you for your cooperation!','Success');
+    //$$('.approve-alert').off('click', approveRejectHandler1);
+    $$('.approve-alert').on('click', function () {
+        myApp.modalPassword('You private key please:', 'Customer input', function (password) {
+            myApp.alert('Thank you for your cooperation!', 'Success');
+        });
     });
-});
 }
 
 function onClickRejectHandler() {
-   // $$('.reject-button').off('click', approveRejectHandler);
-    $$('.rejectalert').on('click', function () {
-    myApp.prompt(
-	 
-	'Why the user refused the parcel?', 
-	'Cancellation',
-      function (value) {
-        myApp.alert('The report is generated and sent!','Success');
-      },
-      function (value) {
-        myApp.alert('CANCEL');
-      }
-    );
-});
+    // $$('.reject-button').off('click', approveRejectHandler);
+    $$('.reject-alert').on('click', function () {
+        myApp.prompt(
+            'Why the user refused the parcel?',
+            'Cancellation',
+            function (value) {
+                myApp.alert('The report is generated and sent!', 'Success');
+            },
+            function (value) {
+                myApp.alert('CANCEL');
+            }
+        );
+    });
 }
+
 /*
 function onClickApproveHandler() {
     $$('.approve-button').off('click', approveRejectHandler);
@@ -222,29 +249,31 @@ function onClickRejectHandler() {
     $$('.reject-button').on('click', approveRejectHandler);
 }
 */
+
 var current_del = $$("#parclesList")[0];
 
 // TODO correct initialization with dates.
-function getHistoryDeliveries() {
-    roomNumber++;
-    document.querySelector('body').appendChild(createParcelsFordelivery());
-    return htmlToElement("<div class=\"list-block\" id=\"parclesList\">\n" +
-        "                        <ul>\n" +
-        "                            <li class=\"swipeout\" id=\"delivery" + roomNumber + "\">\n" +
-        "                                <a href=\"#\" class=\"item-content item-link open-popup\" data-popup=\".popup-delivery" + roomNumber + "\">\n" +
-        "                                    <div class=\"swipeout-content\">\n" +
-        "                                        <div class=\"item-content item-title\">\n" +
-        "                                            <div class=\"item-media\">5/5. St. University, App-30" + roomNumber + "</div>\n" +
-        "                                        </div>\n" +
-        "                                    </div>\n" +
-        "                                </a>\n" +
-        "                            </li>\n" +
-        "                        </ul>\n" +
-        "                    </div>");
-}
+// function getHistoryDeliveries() {
+//     roomNumber++;
+//     document.querySelector('body').appendChild(createParcelsFordelivery());
+//     return htmlToElement("<div class=\"list-block\" id=\"parclesList\">\n" +
+//         "                        <ul>\n" +
+//         "                            <li class=\"swipeout\" id=\"delivery" + roomNumber + "\">\n" +
+//         "                                <a href=\"#\" class=\"item-content item-link open-popup\" data-popup=\".popup-delivery" + roomNumber + "\">\n" +
+//         "                                    <div class=\"swipeout-content\">\n" +
+//         "                                        <div class=\"item-content item-title\">\n" +
+//         "                                            <div class=\"item-media\">5/5. St. University, App-30" + roomNumber + "</div>\n" +
+//         "                                        </div>\n" +
+//         "                                    </div>\n" +
+//         "                                </a>\n" +
+//         "                            </li>\n" +
+//         "                        </ul>\n" +
+//         "                    </div>");
+// }
 
-var history_del = getHistoryDeliveries();
+var history_del;
 var is_current = true;
+
 
 $$('.open-current-deliveries').on('click', function (e) {
     if (is_current) {
