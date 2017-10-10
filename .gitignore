@@ -3,3 +3,8 @@ www/.idea/*
 www/.idea/watcherTasks.xml
 www/.idea/misc.xml
 www/.idea/inspectionProfiles/Project_Default.xml
+platforms/*
+platforms/browser/www/css/styles.css
+platforms/browser/www/index.html
+platforms/browser/www/js/my-app.js
+platforms/browser/www/www.zip

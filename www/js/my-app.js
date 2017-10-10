@@ -1,6 +1,7 @@
 // Initialize app
 var myApp = new Framework7({
-    swipePanel: 'left'
+    swipePanel: 'left',
+    material: true
 });
 
 
@@ -64,12 +65,12 @@ function successSignIn(e) {
     loadParcels();
 }
 
-function errorCallback(e) {
-    console.log(e);
+function errorSignIn(error_code, error) {
+    myApp.addNotification({message: error_code + ": " + error['errors'].email[0],});
 }
 
-function errorSignIn(error_code, error) {
-    myApp.alert(error_code + ": " + error['errors'].email[0],error.message);
+function errorCallback(e) {
+    console.log(e);
 }
 
 
@@ -158,8 +159,8 @@ function createParcel(id, parcel_name, sender, from, to, email) {
         "                                    </div>\n" +
         "                                </div>\n" +
         "                                <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-        "                                    <a href=\"#\" class=\"approve-button approve-alert \">Approve</a>\n" +
-        "                                    <a href=\"#\" class=\"reject-button reject-alert \">Reject</a>\n" +
+        "                                    <a href=\"#\" class=\"approve-button approve-alert\">Approve</a>\n" +
+        "                                    <a href=\"#\" class=\"reject-button reject-alert\">Reject</a>\n" +
         "                                </div>\n" +
         "                            </li>");
 }
@@ -192,34 +193,57 @@ function delete_delivery(node) {
     }
 }
 
+function deleteParcel(e) {
+    console.log(e);
+    $$("#delivery-" + e.params).remove();
+}
+
+function updateParcel(index, status_id) {
+    ajaxWithParameters(
+        'POST',
+        URL + "parcels/" + index + "?api_token=" + api_token,
+        {status_id: status_id},
+        deleteParcel,
+        errorCallback,
+        index);
+}
+
 // TODO divide them into two functions.
-function approveRejectHandler(e) {
-    var isPopup = e['path'][6].classList[0] === 'popup';
-    delete_delivery(e['path'][2]);
-    // e['path'][3].removeChild(e['path'][2]);
-    if (isPopup && e['path'][3].childElementCount === 0) {
-        var index;
-        e['path'][6].classList.forEach(function (t) {
-            var regex = /popup-delivery(\d+)/;
-            if (t.match(regex)) {
-                index = regex.exec(t)[1];
-            }
-        });
-        $$('#delivery' + index).remove();
-        myApp.closeModal($$('.popup-delivery' + index), false);
-        delete_delivery($$('.popup-delivery' + index));
-    }
+function approveHandler(e) {
+    var li = e['path'][2];
+    var id = li.id;
+    var regex = /delivery-(\d+)/;
+    var index = regex.exec(id)[1];
+    updateParcel(index, 5);
+
+    // delete_delivery(e['path'][2]);
+    // // e['path'][3].removeChild(e['path'][2]);
+    // if (isPopup && e['path'][3].childElementCount === 0) {
+    //     var index;
+    //     e['path'][6].classList.forEach(function (t) {
+    //         var regex = /popup-delivery(\d+)/;
+    //         if (t.match(regex)) {
+    //             index = regex.exec(t)[1];
+    //         }
+    //     });
+    //     $$('#delivery' + index).remove();
+    //     myApp.closeModal($$('.popup-delivery' + index), false);
+    //     delete_delivery($$('.popup-delivery' + index));
+    // }
     // if (!isPopup) $$('.popup-' + e['path'][2].id).remove();
 }
 
 
 function onClickApproveHandler() {
-    //$$('.approve-alert').off('click', approveRejectHandler1);
-    $$('.approve-alert').on('click', function () {
-        myApp.modalPassword('You private key please:', 'Customer input', function (password) {
-            myApp.alert('Thank you for your cooperation!', 'Success');
-        });
-    });
+    $$('.approve-button').off('click', approveHandler);
+    $$('.approve-button').on('click', approveHandler);
+
+    //TODO temporary disabled.
+    // $$('.approve-alert').on('click', function () {
+    //     myApp.modalPassword('You private key please:', 'Customer input', function (password) {
+    //         myApp.alert('Thank you for your cooperation!', 'Success');
+    //     });
+    // });
 }
 
 function onClickRejectHandler() {
@@ -275,15 +299,7 @@ var history_del;
 var is_current = true;
 
 
-$$('.open-current-deliveries').on('click', function (e) {
-    if (is_current) {
-        current_del = $$("#parclesList")[0];
-        return;
-    }
-    is_current = true;
-    history_del = $$("#parclesList")[0];
-    $$("#parclesList")[0].parentNode.replaceChild(current_del, $$("#parclesList")[0]);
-});
+$$('.open-current-deliveries').on('click', loadParcels);
 
 
 $$('.open-history-deliveries').on('click', function (e) {
