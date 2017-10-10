@@ -1,6 +1,12 @@
 var myApp = new Framework7({
     swipePanel: 'left',
-    material: true
+    material: true,
+    onAjaxStart: function (xhr) {
+        myApp.showIndicator();
+    },
+    onAjaxComplete: function (xhr) {
+        myApp.hideIndicator();
+    }
 });
 
 var $$ = Dom7;
@@ -10,9 +16,9 @@ var URL = 'https://tcsw.innopolis.dl-dev.ru/api/';
 var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true,
     swipePanel: 'left'
-
 });
 
+mainView.router.loadPage('parcels.html');
 
 myApp.addView(".history-deliveries", {
     name: 'history'
@@ -34,10 +40,12 @@ function appendParcels(parcels) {
 }
 
 function loadParcels() {
+    mainView.router.loadPage("parcels.html");
     ajax('GET', URL + "parcels/driver/my?api_token=" + api_token, '', appendParcels, errorCallback);
 }
 
 function loadActiveParcels() {
+    mainView.router.loadPage("parcels.html");
     ajax('GET', URL + "parcels/driver/my?status_id=3&api_token=" + api_token, '', appendParcels, errorCallback);
 }
 
@@ -213,62 +221,21 @@ function onClickRejectHandler() {
     });
 }
 
-/*
-function onClickApproveHandler() {
-    $$('.approve-button').off('click', approveRejectHandler);
-    $$('.approve-button').on('click', approveRejectHandler);
-}
+$$('.open-current-deliveries').on('click', loadActiveParcels);
 
-function onClickRejectHandler() {
-    $$('.reject-button').off('click', approveRejectHandler);
-    $$('.reject-button').on('click', approveRejectHandler);
-}
-*/
+$$('.open-history-deliveries').on('click', loadParcels);
 
-var current_del = $$("#parclesList")[0];
-
-// TODO correct initialization with dates.
-// function getHistoryDeliveries() {
-//     roomNumber++;
-//     document.querySelector('body').appendChild(createParcelsFordelivery());
-//     return htmlToElement("<div class=\"list-block\" id=\"parclesList\">\n" +
-//         "                        <ul>\n" +
-//         "                            <li class=\"swipeout\" id=\"delivery" + roomNumber + "\">\n" +
-//         "                                <a href=\"#\" class=\"item-content item-link open-popup\" data-popup=\".popup-delivery" + roomNumber + "\">\n" +
-//         "                                    <div class=\"swipeout-content\">\n" +
-//         "                                        <div class=\"item-content item-title\">\n" +
-//         "                                            <div class=\"item-media\">5/5. St. University, App-30" + roomNumber + "</div>\n" +
-//         "                                        </div>\n" +
-//         "                                    </div>\n" +
-//         "                                </a>\n" +
-//         "                            </li>\n" +
-//         "                        </ul>\n" +
-//         "                    </div>");
-// }
-
-var history_del;
-var is_current = true;
-
-
-$$('.open-current-deliveries').on('click', loadParcels);
-
-
-$$('.open-history-deliveries').on('click', function (e) {
-    if (!is_current) {
-        history_del = $$("#parclesList")[0];
-        return;
-    }
-    is_current = false;
-    current_del = $$("#parclesList")[0];
-    $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
+$$('.addresses-warehouses').on('click', function (e) {
+    console.log(mainView.router.loadPage('addresses-warehouses.html'));
+    mainView.router.loadPage('addresses-warehouses.html');
 });
 
-$$('.open-addresses-warehouses').on('click', function (e) {
-    if (!is_current) {
-        history_del = $$("#parclesList")[0];
-        return;
-    }
-    is_current = false;
-    current_del = $$("#parclesList")[0];
-    $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
-});
+// $$('.open-addresses-warehouses').on('click', function (e) {
+//     if (!is_current) {
+//         history_del = $$("#parclesList")[0];
+//         return;
+//     }
+//     is_current = false;
+//     current_del = $$("#parclesList")[0];
+//     $$("#parclesList")[0].parentNode.replaceChild(history_del, $$("#parclesList")[0]);
+// });

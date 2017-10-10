@@ -1,223 +1,74 @@
-<!--&lt;!&ndash;<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--&lt;!&ndash;-->
-<!--Customize this policy to fit your own app's needs. For more guidance, see:-->
-<!--https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy-->
-<!--Some notes:-->
-<!--* gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication-->
-<!--* https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly-->
-<!--* Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:-->
-<!--* Enable inline JS: add 'unsafe-inline' to default-src-->
-<!--&ndash;&gt;-->
-<!--<meta http-equiv="Content-Security-Policy"-->
-<!--content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
-
-<!--&lt;!&ndash; Required meta tags&ndash;&gt;-->
-<!--<meta charset="utf-8">-->
-<!--<meta name="viewport"-->
-<!--content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">-->
-<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
-<!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
-<!--<meta name="format-detection" content="telephone=no">-->
-<!--<meta name="msapplication-tap-highlight" content="no">-->
-
-<!--&lt;!&ndash; Your app title &ndash;&gt;-->
-<!--<title>Addresses of warehouses</title>-->
-
-<!--&lt;!&ndash; This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:-->
-<!--http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html-->
-<!--&ndash;&gt;-->
-<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-<!--<link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">-->
-<!--<link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">-->
-<!--<link rel="stylesheet" href="css/framework7-icons.css">-->
-<!--<link rel="stylesheet" href="css/styles.css">-->
-<!--</head>-->
-
-<!--<body>-->
-<!--&lt;!&ndash; Status bar overlay for full screen mode (PhoneGap) &ndash;&gt;-->
-<!--<div class="statusbar-overlay jj"></div>-->
-
-<!--&lt;!&ndash; Panels overlay&ndash;&gt;-->
-<!--<div class="panel-overlay"></div>-->
-<!--&lt;!&ndash; Left panel with reveal effect&ndash;&gt;-->
-<!--<div class="panel panel-left panel-cover">-->
-<!--<div class="content-block">-->
-<!--<div class="list-block">-->
-<!--<div class="page-content">-->
-<!--пропорпорпорп-->
-<!--<div class="current-deliveries">-->
-<!--<a href="#" class="open-current-deliveries close-panel">-->
-
-<!--<div class="item-inner">-->
-<!--<div class="item-title">Active deliveries</div>-->
-<!--</div>-->
-<!--</a>-->
-<!--</div>-->
-
-<!--<div class="history-deliveries">-->
-<!--<a href="#" class="open-history-deliveries close-panel">-->
-<!--<div class="item-inner">-->
-<!--<div class="item-title">History</div>-->
-<!--</div>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div id="bottom-part">-->
-<!--<div data-page="index" class="login" id="logout">-->
-<!--<div class="page-content">-->
-<!--<p><a href="addresses-warehouses.html" class="open-login-screen close-panel">Addresses of warehouses</a></p>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div data-page="index" class="login" id="logout">-->
-<!--<div class="page-content">-->
-<!--<p><a href="#" class="open-login-screen close-panel">Log out</a></p>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="separate"></div>-->
-<!--<div >-->
-<!--Contacts-->
-<!--</div></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--&ndash;&gt;-->
- <!--Views -->
-<!--<div class="views">-->
-
-<!--<div class="view view-main">-->
-<!--&lt;!&ndash; Top Navbar&ndash;&gt;-->
-<!--&lt;!&ndash; Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes&ndash;&gt;-->
-<!--<div class="pages toolbar-through">-->
-
-<!--&lt;!&ndash; Page, "data-page" contains page name &ndash;&gt;-->
-<!--<div data-page="index" class="page">-->
-<!--&lt;!&ndash; Scrollable page content &ndash;&gt;-->
-<!--<div class="page-content grayback">-->
-<!--<div class="navbar">-->
-<!--<div class="navbar-inner">-->
-<!--&lt;!&ndash; We need cool sliding animation on title element, so we have additional "sliding" class &ndash;&gt;-->
-<!--<div class="left">-->
-<!--&lt;!&ndash;-->
-<!--Right link contains only icon - additional "icon-only" class-->
-<!--Additional "open-panel" class tells app to open panel when we click on this link-->
-<!--&ndash;&gt;-->
-<!--<a href="index.html" class="link back icon-only"><i class="f7-icons  color-grey">arrow_left</i></a>-->
-<!--</div>-->
-<!--<div class="left sliding">Addresses</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--
-first location of warehouse-->
+<!-- first location of warehouse-->
 <div class="pages">
     <!-- Page, "data-page" contains page name -->
     <div class="pages navbar-through toolbar-through">
 
         <!-- Page, "data-page" contains page name -->
         <div data-page="addresses-warehouses" class="page">
-<div class="content-block-title">WAREHOUSES USA</div>
-<div class="card">
-<div class="card-header">Warehouse321</div>
-<div class="card demo-card-header-pic">
-<div style="background-image:url(pics/w1.jpg)" valign="bottom" class="card-header color-white no-border"></div></div>
-<div class="card-content">
-<div class="card-content-inner">
-<p class="color-gray">+345345765</p>
-<!--<i class="f7-icons  color-grey">phone</i> -->
-<p>  Student Services, 100 Campus View Dr, Lincoln, IL 62656, USA</p>
-</div>
-</div>
-<div class="card-footer">
-<a href="#" class="link">Official site</a>
-</div>
-</div>
+            <div class="content-block-title">WAREHOUSES USA</div>
+            <div class="card">
+                <div class="card-header">Warehouse321</div>
+                <div class="card demo-card-header-pic">
+                    <div style="background-image:url(pics/w1.jpg)" valign="bottom"
+                         class="card-header color-white no-border"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <p class="color-gray">+345345765</p>
+                        <!--<i class="f7-icons  color-grey">phone</i> -->
+                        <p> Student Services, 100 Campus View Dr, Lincoln, IL 62656, USA</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="link">Official site</a>
+                </div>
+            </div>
 
-<div class="card demo-card-header-pic">
-<div style="background-image:url(pics/w1.jpg)" valign="bottom" class="card-header color-white no-border">Warehouse "Homka"</div>
-<div class="card-content">
-<div class="card-content-inner">
-<p class="color-gray">+37777765</p>
-<!--<i class="f7-icons  color-grey">phone</i> -->
-<p>26 The Warehouse Way
-Northcote, Auckland 0627</p>
-</div>
-</div>
-<div class="card-footer">
-<a href="#" class="link">Official site</a>
-</div>
-</div>
+            <div class="card demo-card-header-pic">
+                <div style="background-image:url(pics/w1.jpg)" valign="bottom"
+                     class="card-header color-white no-border">Warehouse "Homka"
+                </div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <p class="color-gray">+37777765</p>
+                        <!--<i class="f7-icons  color-grey">phone</i> -->
+                        <p>26 The Warehouse Way
+                            Northcote, Auckland 0627</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="link">Official site</a>
+                </div>
+            </div>
 
-<div class="card">
-<div class="card-header">Clothes warehouse</div>
-<div class="card-content">
-<div class="card-content-inner">
+            <div class="card">
+                <div class="card-header">Clothes warehouse</div>
+                <div class="card-content">
+                    <div class="card-content-inner">
 
-<p class="color-gray">+345345765</p>
-26 The Warehouse Way
-Northcote, Auckland 0627</div>
-</div>
-<div class="card-footer"> <a href="#" class="link">Official site</a></div>
-</div>
+                        <p class="color-gray">+345345765</p>
+                        26 The Warehouse Way
+                        Northcote, Auckland 0627
+                    </div>
+                </div>
+                <div class="card-footer"><a href="#" class="link">Official site</a></div>
+            </div>
 
-<div class="navbar">
-<div class="navbar-inner">
-<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-<div class="left">
-<!--
-Right link contains only icon - additional "icon-only" class
-Additional "open-panel" class tells app to open panel when we click on this link
--->
-<a href="#" class="link icon-only open-panel">
-<i class="icon icon-bars">
-</i></a>
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <div class="left">
+                        <!--
+                        Right link contains only icon - additional "icon-only" class
+                        Additional "open-panel" class tells app to open panel when we click on this link
+                        -->
+                        <a href="#" class="link icon-only open-panel">
+                            <i class="icon icon-bars">
+                            </i></a>
+                    </div>
+                    <div class="left sliding">Warehouses</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="left sliding">Warehouses</div>
-</div>
-</div></div></div>
-<!--\ &lt;!&ndash; Scrollable page content &ndash;&gt;-->
-<!--&lt;!&ndash;<div class="pages">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash; Page, "data-page" contains page name &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="pages navbar-through toolbar-through">&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash; Page, "data-page" contains page name &ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;<div data-page="addresses-warehouses" class="page">&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash; Scrollable page conddddtent &ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="page-content">&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<div class="navbar">&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;<div class="navbar-inner">&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; We need cool sliding animation on title element, so we have additional "sliding" class &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;<div class="left">&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
-                          <!--&lt;!&ndash;&lt;!&ndash;Right link contains only icon - additional "icon-only" class&ndash;&gt;&ndash;&gt;-->
-                          <!--&lt;!&ndash;&lt;!&ndash;Additional "open-panel" class tells app to open panel when we click on this link&ndash;&gt;&ndash;&gt;-->
-                      <!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<a href="#" class="link icon-only open-panel">&ndash;&gt;&ndash;&gt;-->
-                            <!--&lt;!&ndash;&lt;!&ndash;<i class="icon icon-bars">&ndash;&gt;&ndash;&gt;-->
-                            <!--&lt;!&ndash;&lt;!&ndash;</i></a>&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;<div class="left sliding">Parcel Monitor</div>&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="list-block" id="parclesList">&ndash;&gt;-->
-                <!--&lt;!&ndash;<ul>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li class="swipeout" id="delivery0">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a href="#" class="item-content item-link open-popup" data-popup=".popup-delivery0">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class="swipeout-content">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<div class="item-content item-title">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<div class="item-media">10/5. St. University, App-0</div>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="swipeout-actions-right" id="swipeout-actions-right">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#" class="approve-button approvealert ">Approve</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#" class="reject-button rejectalert ">Reject</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;&lt;!&ndash; <a href="#" class="swipeout-close" style="    background: #4caf50;">Close</a>&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
