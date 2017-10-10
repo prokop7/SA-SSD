@@ -1,3 +1,4 @@
+
 // Initialize app
 var myApp = new Framework7({
     swipePanel: 'left'
@@ -6,12 +7,14 @@ var myApp = new Framework7({
 
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
+var URL = 'https://tcsw.innopolis.dl-dev.ru/api/' ;
 
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
     dynamicNavbar: true,
     swipePanel: 'left'
+
 });
 
 
@@ -19,11 +22,45 @@ myApp.addView(".history-deliveries", {
     name: 'history'
 });
 
-// Handle Cordova Device Ready Event
-$$(document).on('deviceready', function () {
-    console.log("Device is ready!");
+var api_token;
+
+if (!getCookie('api_token')) {
+    console.log(document.cookie.api_token);
+    myApp.loginScreen();
+} else {
+    api_token = getCookie('api_token');
+}
+
+function delete_cookie( name ) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+function success_sign_in(e) {
+    myApp.closeModal();
+    document.cookie = 'name=' + e.name + ";";
+    document.cookie = 'email=' + e.email + ";";
+    document.cookie = 'api_token=' + e.api_token + ";";
+    api_token = e.api_token;
+    document.querySelector('#driver-name').innerHTML =  e.name;
+    console.log($$('#driver-name'));
+}
+
+function error_callback(e) {
+    console.log(e);
+}
+
+$$('#sign-in').on('click', function (e) {
+    var obj = {"email": $$('#input-login').val(), "password": $$('#input-password').val()};
+    sign_in(URL + 'login', obj, success_sign_in, error_callback);
 });
 
+$$('#sign-out').on('click', function (e) {
+    myApp.closePanel();
+    myApp.loginScreen();
+    delete_cookie('api_token');
+    delete_cookie('name');
+    delete_cookie('email');
+});
 
 // Now we need to run the code that will be executed only for About page.
 
@@ -106,94 +143,17 @@ function createDelivery() {
     return rows;
 }
 
-/*
-<div class="modal modal-in" style="display: block; margin-top: -107px;">
-<div class="modal-inner">
-<div class="modal-title">Framework7</div>
-<div class="modal-text">Enter your password</div>
-<div class="input-field">
-<input type="password" name="modal-password" placeholder="Password" class="modal-text-input">
-</div></div>
-</div>
-*/
-
-
-/*
-$$('.rejectalert').on('click', function () {
-    myApp.prompt(
-	 
-	'Why the user refused the parcel?', 
-	'Cancellation',
-      function (value) {
-        myApp.alert('The report is generated and sent!','Success');
-      },
-      function (value) {
-        myApp.alert('CANCEL');
-      }
-    );
-});
-//approve
-$$('.approvealert').on('click', function () {
-    myApp.modalPassword('You private key please:','Customer input', function (password) {
-        myApp.alert('Thank you for your cooperation!','Success');
-    });
-});*/
-
-/*
-$$('.alert-text').on('click', function () {
-  var modal = myApp.modal({
-    title: 'Awesome Photos?',
-    text: 'What do you think about my photos?',
-    afterText:  '<div class="swiper-container" style="display: block; margin-top: -107px;">'+
-                  '<div class="swiper-pagination"></div>'+
-                  '<div class="swiper-wrapper">'+
-                    '<div class="swiper-slide"><img src="..." height="150" style="display:block"></div>' +
-                    '<div class="swiper-slide"><img src="..." height="150" style="display:block"></div>'+
-                  '</div>'+
-                '</div>',
-    buttons: [
-      {
-        text: 'cancel'
-      },
-      {
-        text: 'OK!',
-        bold: true,
-        onClick: function () {
-          myApp.alert('Thanks! I know you like it!')
-        }
-      },
-    ]
-  })
-  myApp.swiper($$(modal).find('.swiper-container'), {pagination: '.swiper-pagination'});
-});	
-*/
-//!!!!!!!!!!!!!!!!
-/*
-$scope.showPrompt = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog.prompt()
-      .title('What would you name your dog?')
-      .textContent('Bowser is a common name.')
-      .placeholder('Dog name')
-      .ariaLabel('Dog name')
-      .initialValue('Buddy')
-      .targetEvent(ev)
-      .required(true)
-      .ok('Okay!')
-      .cancel('I\'m a cat person');
-
-    $mdDialog.show(confirm).then(function(result) {
-      $scope.status = 'You decided to name your dog ' + result + '.';
-    }, function() {
-      $scope.status = 'You didn\'t name your dog.';
-    });
-  };
-*/
-
-
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 });
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+
 
 $$('#addButton').on('click', function (e) {
     roomNumber++;
