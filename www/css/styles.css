@@ -17,7 +17,6 @@
 .sign-out {
     position: absolute;
     bottom: 0;
-    left: 16px;
 }
 
 .body {
@@ -65,15 +64,15 @@
 	height: 40px;
 	width: 40px; 
 	position: 	absolute; 
-	top: 8px; 
+	/*top: 8px; */
 	left: 16px;
 }
 .list-block .item-inner:after{
 	background-color:#fff;
 }
-.f7-icons, .framework7-icons{
-	font-size:18px;
-}
+/*.f7-icons, .framework7-icons{*/
+	/*font-size:18px;*/
+/*}*/
 
 .name-big-my{
 	padding-top: 24px;
@@ -96,5 +95,24 @@
 	height: 1px;
 }
 
+.mail-my{
+	padding-left: 16px;
+	margin-top: 37px;
+	font-size: 14px;
+	position: absolute;
+	margin-bottom: 8px;
+}
+.name-below-my{
+	padding-left: 16px;
+	margin-top: 48px;
+	font-size: 16px;
+}
 
-
+.icon-my{
+	font-size: 20px;
+	color: black;
+}
+.left-side-text-my{
+	color:black;
+	font-size: 20px;
+}
