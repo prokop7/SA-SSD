@@ -27,8 +27,8 @@ var api_token;
 function appendParcels(parcels) {
     var node;
     node = mainView.activePage.name === 'current-parcels'
-        ? document.querySelector('#parcelsList ul')
-        : document.querySelector('#historyParcelList ul');
+        ? document.querySelector('#parcelsList')
+        : document.querySelector('#historyParcelList');
     while (node.hasChildNodes()) {
         node.removeChild(node.lastChild);
     }
@@ -118,51 +118,91 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
+//
+// <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
+// " <a href=\"#\" class=\"approve-button approve-alert\">Approve</a>\n" +
+// "                                    <a href=\"#\" class=\"reject-button reject-alert\">Reject</a>\n" +
+// "                                </div>\n" +
+
+
 function createParcel(id, parcel_name, sender, from, to, email, status) {
-    return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +
+    return htmlToElement(
+        "<div class=\"card demo-card-header-pic\">\n" +
+        "<div class=\"name-big-my\">T678U678321</div>\n" +
+        "<div class=\"name-small-my\">" + parcel_name + "</div>\n" +
+        "<div class=\"line-my\"></div>\n" +
+        "<div class=\"accordion-item\" id=\"delivery-" + id + "\">\n" +
         "                                <a href=\"#\" class=\"item-content item-link\">\n" +
         "                                    <div class=\"item-inner\">\n" +
-        "                                        <div class=\"swipeout-content\">\n" +
-        "                                            <div class=\"item-title\">" + parcel_name + "</div>\n" +
-        "                                        </div>\n" +
+        "                                            <div class=\"item-title\" style=\"white-space: inherit;\">To: " + to + "</div>\n" +
+
         "                                    </div>\n" +
         "                                </a>\n" +
+
         "                                <div class=\"accordion-item-content\">\n" +
         "                                    <div class=\"content-block\">\n" +
         "                                        <p>Name: " + sender + "</p>\n" +
         "                                        <p>From: " + from + "</p>\n" +
-        "                                        <p>To: " + to + "</p>\n" +
         "                                        <p>Email: " + email + "</p>\n" +
         "                                        <p>Status: " + status + "</p>\n" +
+
         "                                    </div>\n" +
         "                                </div>\n" +
-        "                                <div class=\"swipeout-actions-right\" id=\"swipeout-actions-right\">\n" +
-        "                                    <a href=\"#\" class=\"approve-button approve-alert\">Approve</a>\n" +
-        "                                    <a href=\"#\" class=\"reject-button reject-alert\">Reject</a>\n" +
-        "                                </div>\n" +
-        "                            </li>");
+        "                               <div class=\"card-footer\">\n" +
+        "                                 <a href=\"#\" class=\"approve-button approve-alert\" style=\"color:green;\">APPROVE</a>\n" +
+        "                                 <a href=\"#\" class=\"reject-button reject-alert\">REJECT</a>\n" +
+        "                               </div>\n" +
+        "                            </div>\n" +
+        "</div>\n");
 }
 
+// function createArchivedParcel(id, parcel_name, sender, from, to, email, status) {
+//     return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +
+//         "                                <a href=\"#\" class=\"item-content item-link\">\n" +
+//         "                                    <div class=\"item-inner\">\n" +
+//         "                                        <div class=\"swipeout-content\">\n" +
+//         "                                            <div class=\"item-title\">" + parcel_name + "</div>\n" +
+//         "                                        </div>\n" +
+//         "                                    </div>\n" +
+//         "                                </a>\n" +
+//         "                                <div class=\"accordion-item-content\">\n" +
+//         "                                    <div class=\"content-block\">\n" +
+//         "                                        <p>Name: " + sender + "</p>\n" +
+//         "                                        <p>From: " + from + "</p>\n" +
+//         "                                        <p>To: " + to + "</p>\n" +
+//         "                                        <p>Email: " + email + "</p>\n" +
+//         "                                        <p>Status: " + status + "</p>\n" +
+//         "                                    </div>\n" +
+//         "                                </div>\n" +
+//         "                            </li>");
+// }
+
 function createArchivedParcel(id, parcel_name, sender, from, to, email, status) {
-    return htmlToElement("<li class=\"swipeout accordion-item\" id=\"delivery-" + id + "\">\n" +
+    return htmlToElement( "<div class=\"card demo-card-header-pic\">\n" +
+        "<div class=\"name-big-my\">T678U678321</div>\n" +
+        "<div class=\"name-small-my\">" + parcel_name + "</div>\n" +
+        "<div class=\"line-my\"></div>\n" +
+        "<div class=\"accordion-item\" id=\"delivery-" + id + "\">\n" +
+
         "                                <a href=\"#\" class=\"item-content item-link\">\n" +
         "                                    <div class=\"item-inner\">\n" +
-        "                                        <div class=\"swipeout-content\">\n" +
-        "                                            <div class=\"item-title\">" + parcel_name + "</div>\n" +
-        "                                        </div>\n" +
+        "                                            <div class=\"item-title\" style=\"white-space: inherit;\">To: " + to + "</div>\n" +
+
         "                                    </div>\n" +
         "                                </a>\n" +
+
         "                                <div class=\"accordion-item-content\">\n" +
         "                                    <div class=\"content-block\">\n" +
-        "                                        <p>Name: " + sender + "</p>\n" +
         "                                        <p>From: " + from + "</p>\n" +
-        "                                        <p>To: " + to + "</p>\n" +
+        "                                        <p>Name_from: " + sender + "</p>\n" +
         "                                        <p>Email: " + email + "</p>\n" +
         "                                        <p>Status: " + status + "</p>\n" +
-        "                                    </div>\n" +
         "                                </div>\n" +
-        "                            </li>");
+        "</div>\n" +
+        "                            </div>\n" +
+        "</div>\n");
 }
+
 
 $$(document).on('pageInit', function (e) {
 });
@@ -248,4 +288,39 @@ $$('.open-history-deliveries').on('click', loadParcels);
 $$('.addresses-warehouses').on('click', function (e) {
     console.log(mainView.router.loadPage('addresses-warehouses.html'));
     mainView.router.loadPage('addresses-warehouses.html');
+    // var el = document.getElementById('choose-element');
+     // font-family: "Roboto Medium", sans-serif;
+     // font-weight: 600;
+     // $('.choose-element').toggleClass('clicked');
+    //  el.style.fontFamily = "\"Roboto Medium\", sans-serif";
+    // el.style.fontWeight = "600";
+    // $('.choose-element').click(function() {
+    //     $( this ).css('color','red');
+    // });
 });
+
+//
+// $('.choose-element').click(function(){
+//     $(this).css('color','red');
+// });
+
+
+// $('.choose-element').click(function(){
+//     $(this).toggleClass('clicked');
+// });
+// $$('.choose-element').on('click', function () {
+//     el.style.fontFamily = "\"Roboto Medium\", sans-serif";
+//     el.style.fontWeight = "600";
+//     el.style.color = "red";
+// });
+// var menu = document.createElement("#choose-element");
+// menu.style.fontSize = "20px";
+// //choosen element
+// function changeElement('choose-element') {
+//     var el = document.getElementById('choose-element');
+//     // font-family: "Roboto Medium", sans-serif;
+//     // font-weight: 600;
+//     el.style.color = "red";
+//     el.style.fontFamily = "\"Roboto Medium\", sans-serif";
+//     el.style.fontWeight = "600";
+// }

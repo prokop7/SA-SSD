@@ -20,6 +20,9 @@
 }
 
 .body {
+	font-family: 'Roboto', sans-serif;
+	background: #f3f3f3;
+	padding-top: 70px;
     box-sizing: border-box
 }
 
@@ -29,8 +32,16 @@
     left: 0;
     padding: 16px;
 }
-
+.demo-card-header-pic{
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+.navbar{
+	background: #4CAF50  ;
+}
 .demo-card-header-pic .card-header {
+
     height: 40vw;
     background-size: cover;
     background-position: center;
@@ -114,5 +125,7 @@
 }
 .left-side-text-my{
 	color:black;
-	font-size: 20px;
+	font-size: 16px;
+	/*font-family: "Roboto Medium", sans-serif;*/
+	/*font-weight: 600;*/
 }
