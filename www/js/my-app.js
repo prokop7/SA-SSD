@@ -7,6 +7,7 @@ var myApp = new Framework7({
     onAjaxComplete: function (xhr) {
         myApp.hideIndicator();
     }
+
 });
 
 var $$ = Dom7;
@@ -45,6 +46,7 @@ function appendParcels(parcels) {
     }
     onClickApproveHandler();
     onClickRejectHandler();
+    onClickRefreshHandler();
 }
 
 function loadParcels() {
@@ -216,6 +218,7 @@ function getCookie(name) {
 
 onClickApproveHandler();
 onClickRejectHandler();
+onClickRefreshHandler();
 
 function deleteParcel(e) {
     console.log(e);
@@ -235,6 +238,7 @@ function updateParcel(index, status_id) {
 function approveHandler(e) {
     var li = e['path'][2];
     var id = li.id;
+    alert( id );
     var regex = /delivery-(\d+)/;
     var index = regex.exec(id)[1];
     updateParcel(index, 5);
@@ -248,7 +252,46 @@ function rejectHandler(e) {
     updateParcel(index, 6);
 }
 
+function onClickRefreshHandler(){
+    var ptrContent = $$('.pull-to-refresh-content');
+// Add 'refresh' listener on it
+    ptrContent.on('refresh', function (e) {
+        // Emulate 2s loading
+        setTimeout(function () {
+            var itemHTML = '<div class="card demo-card-header-pic">' +
+                '<div class="name-big-my">T678U678321</div>' +
+                '<div class="name-small-my">" + parcel_name + "</div>' +
+                '<div class="line-my"></div>' +
+                '<div class="accordion-item" id="delivery">' +
+                '                                <a href="#" class="item-content item-link">' +
+                '                                    <div class="item-inner">' +
+                '                                            <div class="item-title" style="white-space: inherit;">To:   to  </div>' +
+                '</div>' +
+                '                                </a>' +
 
+                '                                <div class="accordion-item-content">' +
+                '                                   <div class="content-block">' +
+                '                                        <p>Name:   sender  </p>' +
+                '                                        <p>From: "  from  "</p>' +
+                '                                        <p>Email: "  email  "</p>' +
+                '                                        <p>Status: "  status  "</p>' +
+                '                                    </div>' +
+                '                                </div>'+
+                '                               <div class="card-footer">' +
+                '                                 <a href="#" class="approve-button approve-alert" style="color:green;">APPROVE</a>' +
+                '                                 <a href="#" class="reject-button reject-alert\">REJECT</a>' +
+                '                               </div>' +
+                '                            </div>'+
+                '</div>';
+            // Prepend new list element
+            ptrContent.find('#parcelsList').prepend(itemHTML);
+
+            // When loading done, we need to reset it
+            myApp.pullToRefreshDone();
+        }, 2000);
+    });
+
+}
 function onClickApproveHandler() {
     $$('.approve-button').off('click', approveHandler);
     $$('.approve-button').on('click', approveHandler);
@@ -324,3 +367,41 @@ $$('.addresses-warehouses').on('click', function (e) {
 //     el.style.fontFamily = "\"Roboto Medium\", sans-serif";
 //     el.style.fontWeight = "600";
 // }
+//
+// var ptrContent = $$('.pull-to-refresh-content');
+// // Add 'refresh' listener on it
+// ptrContent.on('refresh', function (e) {
+//     // Emulate 2s loading
+//     setTimeout(function () {
+//         var itemHTML = '<div class="card demo-card-header-pic">' +
+//             '<div class="name-big-my">T678U678321</div>' +
+//             '<div class="name-small-my">" + parcel_name + "</div>' +
+//             '<div class="line-my"></div>' +
+//             '<div class="accordion-item" id="delivery">' +
+//             '                                <a href="#" class="item-content item-link">' +
+//             '                                    <div class="item-inner">' +
+//             '                                            <div class="item-title" style="white-space: inherit;">To:   to  </div>' +
+//             '</div>' +
+//             '                                </a>' +
+//
+//             '                                <div class="accordion-item-content">' +
+//             '                                   <div class="content-block">' +
+//             '                                        <p>Name:   sender  </p>' +
+//             '                                        <p>From: "  from  "</p>' +
+//             '                                        <p>Email: "  email  "</p>' +
+//             '                                        <p>Status: "  status  "</p>' +
+//             '                                    </div>' +
+//             '                                </div>'+
+//             '                               <div class="card-footer">' +
+//             '                                 <a href="#" class="approve-button approve-alert" style="color:green;">APPROVE</a>' +
+//             '                                 <a href="#" class="reject-button reject-alert\">REJECT</a>' +
+//             '                               </div>' +
+//             '                            </div>'+
+//             '</div>';
+//         // Prepend new list element
+//         ptrContent.find('#parcelsList').prepend(itemHTML);
+//
+//         // When loading done, we need to reset it
+//         myApp.pullToRefreshDone();
+//     }, 2000);
+// });
