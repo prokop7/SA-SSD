@@ -12,3 +12,4 @@ platforms/browser/www/www.zip
 .idea/SA-SSD.iml
 .idea/vcs.xml
 .idea/workspace.xml
+www/node_modules/

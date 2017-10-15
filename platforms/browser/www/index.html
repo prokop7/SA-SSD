@@ -1,152 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <title>Parcel Monitor</title>
-    <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
-    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
-    <link rel="stylesheet" href="css/framework7-icons.css">
-    <link rel="stylesheet" href="css/styles.css">
+	<meta charset="utf-8">
+	<meta name="viewport"
+	      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>My App</title>
+	<!-- built style files will be auto injected -->
 </head>
-
 <body>
-<div class="statusbar-overlay"></div>
-
-<div class="panel-overlay"></div>
-<div class="panel panel-left panel-cover">
-
-    <div class="view navbar-fixed" data-page="panel-left">
-        <div class="pages">
-            <div data-page="panel-left" class="page">
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="content-block"><img size="40" src="pics/uxceo-128.jpg" class="avatarpic"></div>
-                        <div class="content-block" style="padding: 0 38px;" id="driver-name"></div>
-                    </div>
-                </div>
-                <div class="page-content">
-                    <div class="list-block">
-                        <div class="current-deliveries">
-                            <a href="#" class="open-current-deliveries close-panel ">
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title" style="color:black;">Active deliveries</div>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="history-deliveries">
-                            <a href="#" class="open-history-deliveries close-panel">
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title" style="color:black;">History</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="addresses-warehouses">
-                            <a href="#" class="close-panel">
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title" style="color:black;">Warehouses</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="content-block">
-                            <div data-page="index" class="sign-out">
-                                <div class="page-content">
-                                    <p><a href="#" class="open-login-screen close-panel">Sign out</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="views">
-
-    <div class="login-screen">
-        <div class="view">
-            <div class="page">
-                <div class="page-content login-screen-content">
-                    <div class="login-screen-title">Please Log in</div>
-                    <form>
-                        <div class="list-block inputs-list">
-                            <ul>
-                                <li class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field">
-                                            <input type="text" name="username" id="input-login"  placeholder="Your username">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field">
-                                            <input type="password" name="password" id="input-password" placeholder="Your password">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="content-block">
-                            <a href="#" class="button button-big item-link list-button" id="sign-in">
-                                Sign In
-                            </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="view view-main">
-
-        <div class="pages navbar-through toolbar-through">
-            <div data-page="current-parcels" class="page">
-                <div class="page-content">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <div class="left">
-                                <a href="#" class="link icon-only open-panel">
-                                    <i class="icon icon-bars"></i>
-                                </a>
-                            </div>
-                            <div class="left sliding">Parcel Monitor</div>
-                        </div>
-                    </div>
-                    <div class="list-block" id="parcelsList">
-                        <ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="toolbar">
-            <div class="toolbar-inner">
-                <p><a href="#" class="link">Link 2</a></p>
-                <a href="#" class="button" id="addButton">Add</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
-<script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="js/my-app.js"></script>
+<div id="app"></div>
+<!-- built script files will be auto injected -->
 </body>
-
 </html>
