@@ -1,5 +1,5 @@
 <template>
-	<div id="left-panel">
+	<div id="LeftPanel">
 		<f7-panel left reveal layout="dark">
 			<f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
 				<f7-navbar sliding></f7-navbar>
@@ -22,5 +22,7 @@
 </template>
 
 <script>
-	export default {}
+	export default {
+
+	}
 </script>

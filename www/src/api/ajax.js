@@ -1,11 +1,6 @@
-server_url = 'https://tcsw.innopolis.dl-dev.ru/api/';
-export default {
-	sign_in(url, data, successCallback, errorCallback) {
-		ajax("POST", url, data, successCallback, errorCallback);
-	}
-}
+export const server_url = 'https://tcsw.innopolis.dl-dev.ru/api/';
 
-function ajax(type, url, data, successCallback, errorCallback) {
+export function request(type, url, data, successCallback, errorCallback) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(type, url, true);
 	xhr.setRequestHeader('Accept', 'application/json');
@@ -41,7 +36,12 @@ function ajax(type, url, data, successCallback, errorCallback) {
 	xhr.send(JSON.stringify(data));
 }
 
-function ajaxWithParameters(type, url, data, successCallback, errorCallback, params) {
+export function loadActiveParcels(token, appendParcels, errorCallback) {
+	console.log(server_url + "parcels/driver/my?status_id=3&api_token=" + token)
+	request('GET', server_url + "parcels/driver/my?status_id=3&api_token=" + token, '', appendParcels, errorCallback);
+}
+
+export function requestWithParameters(type, url, data, successCallback, errorCallback, params) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(type, url, true);
 	xhr.setRequestHeader('Accept', 'application/json');
@@ -78,7 +78,7 @@ function ajaxWithParameters(type, url, data, successCallback, errorCallback, par
 	xhr.send(JSON.stringify(data));
 }
 
-function get(url, successCallback, errorCallback) {
+export function get(url, successCallback, errorCallback) {
 	ajax("GET", url, '', successCallback, errorCallback);
 }
 
