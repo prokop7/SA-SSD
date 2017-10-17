@@ -27,9 +27,9 @@
 								<p>Phone: {{parcel.phones.to}}</p>
 								<p>Status: {{parcel.status}}</p>
 							</f7-block>
-							<f7-buttons v-if="!isAllParcels">
+							<f7-buttons v-if="parcel.status==='Transit'">
 								<f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
-								<f7-button @click="$emit('remove', parcel.id)" color="red">Reject</f7-button>
+								<f7-button @click="rejectParcel(parcel.id)" color="red">Reject</f7-button>
 							</f7-buttons>
 						</f7-accordion-content>
 					</f7-list-item>
@@ -69,7 +69,7 @@
 					}, 1000);
 			},
 			approveParcel(parcelId) {
-				api.updateParcel(this.token, parcelId, 3, this.removeParcel, function (e) {
+				api.updateParcel(this.token, parcelId, 5, this.removeParcel, function (e) {
 					console.log(e)
 				})
 			},
@@ -79,11 +79,11 @@
 				})
 			},
 			removeParcel(response) {
-				console.log(response)
-				var idToRemove = response.params
-				this.parcels = this.parcels.filter(item => {
-					return item.id !== idToRemove
-				})
+				this.loadParcels()
+//				var idToRemove = response.params
+//				this.parcels = this.parcels.filter(item => {
+//					return item.id !== idToRemove
+//				})
 			},
 			loadAllParcels(event, e) {
 				console.log(event)

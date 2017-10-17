@@ -3,7 +3,7 @@
 	<div id="app">
 		<!-- Statusbar -->
 		<f7-statusbar></f7-statusbar>
-		<left-panel :name="name"></left-panel>
+		<left-panel :name="name" @logout="logout"></left-panel>
 		<!-- Main Views -->
 		<f7-views>
 			<f7-view id="main-view" main>
@@ -91,6 +91,14 @@
 			setToken(token) {
 				this.token = token
 				this.$emit('loadParcels')
+			},
+			logout() {
+				this.token = ""
+				console.log(this.token)
+				console.log(!!this.token)
+				localStorage.removeItem('token')
+				localStorage.removeItem('email')
+				localStorage.removeItem('name')
 			}
 		}
 	}
