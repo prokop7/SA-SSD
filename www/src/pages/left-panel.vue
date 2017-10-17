@@ -2,7 +2,11 @@
 	<div id="LeftPanel">
 		<f7-panel left reveal layout="dark">
 			<f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
-				<f7-navbar sliding></f7-navbar>
+				<f7-navbar sliding>
+					<f7-block>
+						{{name}}
+					</f7-block>
+				</f7-navbar>
 				<f7-pages>
 					<f7-page>
 						<f7-navbar title="Left Panel" sliding></f7-navbar>
@@ -13,7 +17,8 @@
 							              link-close-panel></f7-list-item>
 						</f7-list>
 						<f7-button class="login-button" color="blue" close-panel
-						                 open-login-screen>Login</f7-button>
+						           open-login-screen>Login
+						</f7-button>
 					</f7-page>
 				</f7-pages>
 			</f7-view>
@@ -23,6 +28,8 @@
 
 <script>
 	export default {
-
+		props: {
+			name: {}
+		}
 	}
 </script>

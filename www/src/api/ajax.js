@@ -37,7 +37,6 @@ export function request(type, url, data, successCallback, errorCallback) {
 }
 
 export function loadActiveParcels(token, appendParcels, errorCallback) {
-	console.log(server_url + "parcels/driver/my?status_id=3&api_token=" + token)
 	request('GET', server_url + "parcels/driver/my?status_id=3&api_token=" + token, '', appendParcels, errorCallback);
 }
 

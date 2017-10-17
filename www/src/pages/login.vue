@@ -22,7 +22,7 @@
 									<f7-list-label>
 										{{error.message}}
 									</f7-list-label>
-									<f7-list-label v-for="message in error.errors">
+									<f7-list-label v-for="message in error.errors" :key=message>
 										<p>{{message[0]}}</p>
 									</f7-list-label>
 								</f7-list>
@@ -67,7 +67,6 @@
 			},
 			successSignIn(e) {
 				data.error = undefined
-				console.log(this.token)
 				localStorage.setItem('token', e.api_token)
 				localStorage.setItem('name', e.name)
 				localStorage.setItem('email', e.email)

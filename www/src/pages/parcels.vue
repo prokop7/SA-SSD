@@ -1,6 +1,6 @@
 <template>
 	<div id="parcels">
-		<f7-page title="Parcels" back-link="Back" sliding>
+		<f7-page title="Parcels" back-link="Back" sliding pull-to-refresh @ptr:refresh="loadParcels">
 			<f7-navbar>
 				<f7-nav-left>
 					<f7-link icon="icon-bars" open-panel="left"></f7-link>
@@ -50,8 +50,19 @@
 		data: function () {
 			return data
 		},
+		methods: {
+			loadParcels(event, done) {
+				api.loadActiveParcels(this.token, setData)
+				var self = this;
+				setTimeout(function () {
+					done();
+				}, 2000);
+			}
+		},
 		created: function (e) {
-			api.loadActiveParcels(this.token, setData)
+			this.$on('loadParcels');
+			api.loadActiveParcels(this.token, setData);
+
 		}
 	}
 </script>

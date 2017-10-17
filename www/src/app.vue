@@ -3,13 +3,13 @@
 	<div id="app">
 		<!-- Statusbar -->
 		<f7-statusbar></f7-statusbar>
-		<left-panel></left-panel>
+		<left-panel :name="name"></left-panel>
 		<!-- Main Views -->
 		<f7-views>
 			<f7-view id="main-view" main>
 				<!-- Pages -->
 				<f7-pages navbar-through>
-					<parcels @remove="removeParcel" :token="token">
+					<parcels v-if="token" @remove="removeParcel" :token="token">
 					</parcels>
 				</f7-pages>
 			</f7-view>
@@ -282,7 +282,8 @@
 				}
 			}
 		],
-		"token": localStorage.getItem('token')
+		"token": localStorage.getItem('token'),
+		name: localStorage.getItem('name')
 	};
 
 
@@ -304,6 +305,7 @@
 			},
 			setToken(token) {
 				this.token = token
+				this.$emit('loadParcels')
 			}
 		}
 	}
