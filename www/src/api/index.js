@@ -1,8 +1,8 @@
 import * as ajax from './ajax'
 export default {
-	sign_in(url, data, successCallback, errorCallback) {
-		ajax.request("POST", url, data, successCallback, errorCallback);
-	},
+	signIn: ajax.signIn,
 	loadActiveParcels: ajax.loadActiveParcels,
+	loadAllParcels: ajax.loadAllParcels,
+	updateParcel: ajax.updateParcel,
 	server_url: 'https://tcsw.innopolis.dl-dev.ru/api/',
 }

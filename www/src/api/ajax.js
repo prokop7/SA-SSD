@@ -40,6 +40,10 @@ export function loadActiveParcels(token, appendParcels, errorCallback) {
 	request('GET', server_url + "parcels/driver/my?status_id=3&api_token=" + token, '', appendParcels, errorCallback);
 }
 
+export function loadAllParcels(token, appendParcels, errorCallback) {
+	request('GET', server_url + "parcels/driver/my?api_token=" + token, '', appendParcels, errorCallback);
+}
+
 export function requestWithParameters(type, url, data, successCallback, errorCallback, params) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(type, url, true);
@@ -77,7 +81,22 @@ export function requestWithParameters(type, url, data, successCallback, errorCal
 	xhr.send(JSON.stringify(data));
 }
 
+export function updateParcel(token, index, status_id, successCallback, errorCallback) {
+	requestWithParameters(
+		'POST',
+		server_url + "parcels/" + index + "?api_token=" + token,
+		{status_id: status_id},
+		successCallback,
+		errorCallback,
+		index);
+}
+
+export function signIn(data, successCallback, errorCallback) {
+	request("POST", server_url + 'login', data, successCallback, errorCallback);
+}
+
 export function get(url, successCallback, errorCallback) {
 	ajax("GET", url, '', successCallback, errorCallback);
 }
+
 

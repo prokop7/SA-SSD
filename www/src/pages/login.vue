@@ -8,14 +8,16 @@
 							<f7-login-screen-title>Login</f7-login-screen-title>
 							<f7-list form>
 								<f7-list-item>
+									<f7-label floating>Email</f7-label>
 									<f7-input v-model="email" :email="email" type="text" placeholder="Email"></f7-input>
 								</f7-list-item>
 								<f7-list-item>
+									<f7-label floating>Password</f7-label>
 									<f7-input v-model="password" :password="password" type="password"
 									          placeholder="Password"></f7-input>
 								</f7-list-item>
 							</f7-list>
-							<f7-button @click="signIn()">Sign In {{token}}</f7-button>
+							<f7-button @click="signIn()">Sign In</f7-button>
 
 							<div v-if="error">
 								<f7-list>
@@ -63,7 +65,7 @@
 		methods: {
 			signIn() {
 				var obj = {"email": data.email, "password": data.password};
-				api.sign_in(api.server_url + 'login', obj, this.successSignIn, errorSignIn);
+				api.signIn(obj, this.successSignIn, errorSignIn);
 			},
 			successSignIn(e) {
 				data.error = undefined

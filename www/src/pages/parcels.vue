@@ -9,19 +9,22 @@
 					Parcels
 				</f7-nav-left>
 			</f7-navbar>
+			<f7-label>Switch</f7-label>
+			<f7-input type="switch" v-model="isAllParcels" @onChange="loadParcels"></f7-input>
 			<f7-list>
 				<ul>
-					<f7-list-item accordion-item v-for="parcel in data" :key="parcel.id" :title="parcel.name">
+					<f7-list-item accordion-item v-for="parcel in parcels" :key="parcel.id" :title="parcel.name">
 						<f7-accordion-content>
 							<f7-block>
 								<p>From: {{parcel.from}}</p>
 								<p>To: {{parcel.to}}</p>
 								<p>Location: {{parcel.location}}</p>
 								<p>Email: {{parcel.sender.email}}</p>
+								<p>Phone: {{parcel.phones.to}}</p>
 								<p>Status: {{parcel.status}}</p>
 							</f7-block>
 							<f7-buttons>
-								<f7-button @click="$emit('remove', parcel.id)" color="green">Approve</f7-button>
+								<f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
 								<f7-button @click="$emit('remove', parcel.id)" color="red">Reject</f7-button>
 							</f7-buttons>
 						</f7-accordion-content>
@@ -34,34 +37,56 @@
 <script>
 	import api from '@/api/index'
 
-	var data = {};
-	function setData(e) {
-		data = e.data
-	}
+	var data = {
+		parcels: {},
+		isAllParcels: false
+	};
 
+	function setParcels(d) {
+		data.parcels = d
+	}
 
 	export default {
 		props: {
-			token: {
-				required: true
-			},
-			data: this.data
+			token: {}
 		},
-		data: function () {
+		data() {
 			return data
 		},
 		methods: {
 			loadParcels(event, done) {
-				api.loadActiveParcels(this.token, setData)
-				var self = this;
+				console.log(this)
+				if (!this.isAllParcels)
+					api.loadActiveParcels(this.token, setParcels);
+				else
+					api.loadAllParcels(this.token, setParcels)
 				setTimeout(function () {
 					done();
-				}, 2000);
+				}, 1000);
+			},
+			approveParcel(parcelId) {
+				api.updateParcel(this.token, parcelId, 4, this.removeParcel, function (e) {
+					console.log(e)
+				})
+			},
+			removeParcel(response) {
+				console.log(response)
+				var idToRemove = response.params
+				this.parcels = this.parcels.filter(item => {
+					return item.id !== idToRemove
+				})
+			},
+			loadAllParcels(event, e) {
+				console.log(event)
 			}
 		},
 		created: function (e) {
+			this.token = localStorage.getItem('token');
 			this.$on('loadParcels');
-			api.loadActiveParcels(this.token, setData);
+			if (!this.isAllParcels)
+				api.loadActiveParcels(this.token, setParcels);
+			else
+				api.loadAllParcels(this.token, setParcels)
 
 		}
 	}
