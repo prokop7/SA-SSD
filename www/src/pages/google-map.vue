@@ -24,33 +24,45 @@
 
 		mounted() {
 			const element = document.getElementById('map-field')
-			var uluru = {
-				"lat": 34.1358289,
-				"lng": -117.9220826
-			};
-			var uluru2 = {
-				"lat": 34.1358289,
-				"lng": -120.9220826
-			};
+			var directionsService = new google.maps.DirectionsService;
+			var directionsDisplay = new google.maps.DirectionsRenderer;
 			const options = {
 				zoom: 14,
-				center: uluru
+				center: this.from
 			}
-			var bounds  = new google.maps.LatLngBounds();
 			const map = new google.maps.Map(element, options);
-			var marker1 = new google.maps.Marker({
-				position: uluru,
-				map: map
+
+			directionsDisplay.setMap(map);
+
+			directionsService.route({
+				origin: this.from,
+				destination:  this.to,
+				travelMode: 'DRIVING'
+			}, function(response, status) {
+				if (status === 'OK') {
+					directionsDisplay.setDirections(response);
+				} else {
+					window.alert('Directions request failed due to ' + status);
+				}
 			});
-			var loc = new google.maps.LatLng(marker1.position.lat(), marker1.position.lng());
-			bounds.extend(loc);
-			var marker2 = new google.maps.Marker({
-				position: uluru2,
-				map: map
-			});
-			loc = new google.maps.LatLng(marker2.position.lat(), marker2.position.lng());
-			bounds.extend(loc);
-			map.fitBounds(bounds)
+
+
+
+
+//			var bounds  = new google.maps.LatLngBounds();
+//			var from_loc = new google.maps.Marker({
+//				position: this.from,
+//				map: map
+//			});
+//			var loc = new google.maps.LatLng(from_loc.position.lat(), from_loc.position.lng());
+//			bounds.extend(loc);
+//			var to_loc = new google.maps.Marker({
+//				position: this.to,
+//				map: map
+//			});
+//			loc = new google.maps.LatLng(to_loc.position.lat(), to_loc.position.lng());
+//			bounds.extend(loc);
+//			map.fitBounds(bounds)
 		}
 	}
 </script>

@@ -13,3 +13,8 @@ platforms/browser/www/www.zip
 .idea/vcs.xml
 .idea/workspace.xml
 www/node_modules/
+node_modules/
+www/dist/
+plugins/android.json
+package.json
+info.txt
