@@ -29,6 +29,7 @@
 							</f7-block>
 							<f7-buttons v-if="parcel.status==='Transit'">
 								<f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
+								<f7-button @click="$emit('openOnMap', parcel.from, parcel.to)">Map</f7-button>
 								<f7-button @click="rejectParcel(parcel.id)" color="red">Reject</f7-button>
 							</f7-buttons>
 						</f7-accordion-content>
@@ -91,8 +92,6 @@
 		},
 		created: function (e) {
 			this.$emit('setToken', localStorage.getItem('token'))
-			console.log('Я создался!')
-			console.log(this.token)
 //			this.token = localStorage.getItem('token');
 			this.$on('loadParcels');
 			if (!this.isAllParcels)

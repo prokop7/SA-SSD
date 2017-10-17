@@ -19,5 +19,11 @@
 	</div>
 </template>
 <script>
-	export default {}
+	//	function initMap()
+
+	export default {
+		methods: {
+
+		},
+	}
 </script>

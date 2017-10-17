@@ -14,10 +14,19 @@
 			<f7-view id="main-view" main>
 				<!-- Pages -->
 				<f7-pages navbar-through>
-						<parcels v-if="token && isParcels" @remove="removeParcel" :token="token">
+					<div v-if="token">
+						<parcels v-if="state==='parcels'"
+						         @remove="removeParcel"
+						         @openOnMap="openOnMap"
+						         :token="token">
 						</parcels>
-						<warehouses v-if="token && !isParcels">
+						<warehouses v-if="state==='warehouses'">
 						</warehouses>
+						<google-map v-if="state==='map'"
+						            :from="from"
+						            :to="to">
+						</google-map>
+					</div>
 				</f7-pages>
 			</f7-view>
 		</f7-views>
@@ -32,6 +41,7 @@
 	import Parcels from './pages/parcels.vue'
 	import Warehouses from './pages/warehouses.vue'
 	import LoginScreen from './pages/login.vue'
+	import GoogleMap from './pages/google-map.vue'
 
 
 	var data;
@@ -77,7 +87,9 @@
 		],
 		"token": localStorage.getItem('token'),
 		name: localStorage.getItem('name'),
-		isParcels: true
+		state: 'parcels',
+		from: 0,
+		to: 0
 	};
 
 
@@ -86,7 +98,8 @@
 			LeftPanel,
 			Parcels,
 			LoginScreen,
-			Warehouses
+			Warehouses,
+			GoogleMap
 		},
 		data: function () {
 			return data
@@ -104,18 +117,24 @@
 			},
 			logout() {
 				this.token = ""
-				console.log(this.token)
-				console.log(!!this.token)
 				localStorage.removeItem('token')
 				localStorage.removeItem('email')
 				localStorage.removeItem('name')
 			},
 			loadParcels() {
-				this.isParcels = true
+				this.state = 'parcels'
 			},
 			loadWarehouses() {
-				console.log(this.token)
-				this.isParcels = false
+				this.state = 'warehouses'
+			},
+			loadMap() {
+				this.state = 'map'
+			},
+			openOnMap(location_from, location_to){
+				this.from = location_from
+				this.to = location_to
+				console.log(location_from)
+				this.loadMap()
 			}
 		}
 	}
