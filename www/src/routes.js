@@ -1,6 +1,6 @@
 export default [
   {
-      path: '/parcels/',
+      path: '/parcels/:token',
       component: require('./pages/parcels.vue')
   },
   {

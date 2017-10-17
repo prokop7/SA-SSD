@@ -11,10 +11,19 @@
 					<f7-page>
 						<f7-navbar title="Left Panel" sliding></f7-navbar>
 						<f7-list>
-							<f7-list-item link="/parcels/" title="Parcels" link-view="#main-view"
-							              link-close-panel></f7-list-item>
-							<f7-list-item link="/warehouses/" title="Warehouses" link-view="#main-view"
-							              link-close-panel></f7-list-item>
+							<f7-list-item link="#"
+							              @click="$emit('loadParcels')"
+							              title="Parcels"
+							              link-view="#main-view"
+							              link-close-panel>
+							</f7-list-item>
+
+							<f7-list-item link="#"
+							              @click="$emit('loadWarehouses')"
+							              title="Warehouses"
+							              link-view="#main-view"
+							              link-close-panel>
+							</f7-list-item>
 						</f7-list>
 						<f7-button class="login-button" color="blue" close-panel @click="$emit('logout')"
 						           open-login-screen>Login
@@ -27,9 +36,12 @@
 </template>
 
 <script>
+
 	export default {
 		props: {
-			name: {}
-		}
+			name: {},
+			token: {}
+		},
+		methods: {}
 	}
 </script>

@@ -3,14 +3,21 @@
 	<div id="app">
 		<!-- Statusbar -->
 		<f7-statusbar></f7-statusbar>
-		<left-panel :name="name" @logout="logout"></left-panel>
+		<left-panel
+				:name="name"
+				@logout="logout"
+				@loadParcels="loadParcels"
+				@loadWarehouses="loadWarehouses"
+				:token="token"></left-panel>
 		<!-- Main Views -->
 		<f7-views>
 			<f7-view id="main-view" main>
 				<!-- Pages -->
 				<f7-pages navbar-through>
-					<parcels v-if="token" @remove="removeParcel" :token="token">
-					</parcels>
+						<parcels v-if="token && isParcels" @remove="removeParcel" :token="token">
+						</parcels>
+						<warehouses v-if="token && !isParcels">
+						</warehouses>
 				</f7-pages>
 			</f7-view>
 		</f7-views>
@@ -23,6 +30,7 @@
 
 	import LeftPanel from './pages/left-panel.vue'
 	import Parcels from './pages/parcels.vue'
+	import Warehouses from './pages/warehouses.vue'
 	import LoginScreen from './pages/login.vue'
 
 
@@ -68,7 +76,8 @@
 			}
 		],
 		"token": localStorage.getItem('token'),
-		name: localStorage.getItem('name')
+		name: localStorage.getItem('name'),
+		isParcels: true
 	};
 
 
@@ -77,6 +86,7 @@
 			LeftPanel,
 			Parcels,
 			LoginScreen,
+			Warehouses
 		},
 		data: function () {
 			return data
@@ -90,7 +100,7 @@
 			},
 			setToken(token) {
 				this.token = token
-				this.$emit('loadParcels')
+//				this.$emit('loadParcels')
 			},
 			logout() {
 				this.token = ""
@@ -99,6 +109,13 @@
 				localStorage.removeItem('token')
 				localStorage.removeItem('email')
 				localStorage.removeItem('name')
+			},
+			loadParcels() {
+				this.isParcels = true
+			},
+			loadWarehouses() {
+				console.log(this.token)
+				this.isParcels = false
 			}
 		}
 	}

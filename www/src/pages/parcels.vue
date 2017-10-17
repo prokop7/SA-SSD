@@ -90,7 +90,10 @@
 			}
 		},
 		created: function (e) {
-			this.token = localStorage.getItem('token');
+			this.$emit('setToken', localStorage.getItem('token'))
+			console.log('Я создался!')
+			console.log(this.token)
+//			this.token = localStorage.getItem('token');
 			this.$on('loadParcels');
 			if (!this.isAllParcels)
 				api.loadActiveParcels(this.token, setParcels);
