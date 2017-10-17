@@ -1,6 +1,6 @@
 <template>
 	<div id="warehouses">
-		<f7-page title="Warehouses" back-link="Back" sliding>
+		<f7-page title="Warehouses" sliding>
 			<f7-navbar>
 				<f7-nav-left>
 					<f7-link icon="icon-bars" open-panel="left"></f7-link>

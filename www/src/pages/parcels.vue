@@ -1,6 +1,6 @@
 <template>
 	<div id="parcels">
-		<f7-page title="Parcels" back-link="Back" sliding pull-to-refresh @ptr:refresh="loadParcels">
+		<f7-page title="Parcels" sliding pull-to-refresh @ptr:refresh="loadParcels">
 			<f7-navbar>
 				<f7-nav-left>
 					<f7-link icon="icon-bars" open-panel="left"></f7-link>
@@ -9,10 +9,14 @@
 					Parcels
 				</f7-nav-left>
 			</f7-navbar>
-			<f7-label>Switch</f7-label>
-			<f7-input type="switch" v-model="isAllParcels" @onChange="loadParcels"></f7-input>
 			<f7-list>
 				<ul>
+					<f7-list-group>
+						<f7-list-item checkbox title="Show all parcels" @change="loadParcels" v-model="isAllParcels">
+							<!--<f7-label>Show all parcels</f7-label>-->
+							<!--<f7-input type="switch" v-model="isAllParcels" @change="loadParcels"></f7-input>-->
+						</f7-list-item>
+					</f7-list-group>
 					<f7-list-item accordion-item v-for="parcel in parcels" :key="parcel.id" :title="parcel.name">
 						<f7-accordion-content>
 							<f7-block>
@@ -23,7 +27,7 @@
 								<p>Phone: {{parcel.phones.to}}</p>
 								<p>Status: {{parcel.status}}</p>
 							</f7-block>
-							<f7-buttons>
+							<f7-buttons v-if="!isAllParcels">
 								<f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
 								<f7-button @click="$emit('remove', parcel.id)" color="red">Reject</f7-button>
 							</f7-buttons>
@@ -55,17 +59,22 @@
 		},
 		methods: {
 			loadParcels(event, done) {
-				console.log(this)
 				if (!this.isAllParcels)
 					api.loadActiveParcels(this.token, setParcels);
 				else
 					api.loadAllParcels(this.token, setParcels)
-				setTimeout(function () {
-					done();
-				}, 1000);
+				if (done)
+					setTimeout(function () {
+						done();
+					}, 1000);
 			},
 			approveParcel(parcelId) {
-				api.updateParcel(this.token, parcelId, 4, this.removeParcel, function (e) {
+				api.updateParcel(this.token, parcelId, 3, this.removeParcel, function (e) {
+					console.log(e)
+				})
+			},
+			rejectParcel(parcelId) {
+				api.updateParcel(this.token, parcelId, 6, this.removeParcel, function (e) {
 					console.log(e)
 				})
 			},

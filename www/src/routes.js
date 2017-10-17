@@ -1,9 +1,5 @@
 export default [
   {
-      path: '/left-bar/',
-      component: require('./pages/left-panel.vue')
-  },
-  {
       path: '/parcels/',
       component: require('./pages/parcels.vue')
   },
