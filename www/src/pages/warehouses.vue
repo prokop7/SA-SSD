@@ -19,8 +19,6 @@
 	</div>
 </template>
 <script>
-	//	function initMap()
-
 	export default {
 		methods: {
 

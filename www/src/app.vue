@@ -23,6 +23,8 @@
 						<warehouses v-if="state==='warehouses'">
 						</warehouses>
 						<google-map v-if="state==='map'"
+						            :name="parcelName"
+						            @loadParcels="loadParcels"
 						            :from="from"
 						            :to="to">
 						</google-map>
@@ -89,7 +91,8 @@
 		name: localStorage.getItem('name'),
 		state: 'parcels',
 		from: 0,
-		to: 0
+		to: 0,
+		parcelName: ""
 	};
 
 
@@ -130,9 +133,10 @@
 			loadMap() {
 				this.state = 'map'
 			},
-			openOnMap(location_from, location_to){
+			openOnMap(location_from, location_to, name){
 				this.from = location_from
 				this.to = location_to
+				this.parcelName = name
 				console.log(location_from)
 				this.loadMap()
 			}

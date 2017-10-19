@@ -3,10 +3,10 @@
 		<f7-page title="Map" sliding>
 			<f7-navbar>
 				<f7-nav-left>
-					<f7-link icon="icon-bars" open-panel="left"></f7-link>
+					<f7-link icon="icon-back" link="#" @click="$emit('loadParcels')"></f7-link>
 				</f7-nav-left>
 				<f7-nav-left>
-					Map1
+					{{name}}
 				</f7-nav-left>
 			</f7-navbar>
 			<f7-block inner>
@@ -19,9 +19,11 @@
 	export default {
 		props: {
 			from: {},
-			to: {}
+			to: {},
+			name: {}
 		},
-
+		methods: {
+		},
 		mounted() {
 			const element = document.getElementById('map-field')
 			var directionsService = new google.maps.DirectionsService;

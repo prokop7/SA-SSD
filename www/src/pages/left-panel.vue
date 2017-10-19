@@ -26,7 +26,7 @@
 							</f7-list-item>
 						</f7-list>
 						<f7-button class="login-button" color="blue" close-panel @click="$emit('logout')"
-						           open-login-screen>Login
+						           open-login-screen>Log out
 						</f7-button>
 					</f7-page>
 				</f7-pages>
