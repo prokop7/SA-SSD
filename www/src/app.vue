@@ -45,6 +45,72 @@
 	import LoginScreen from './pages/login.vue'
 	import GoogleMap from './pages/google-map.vue'
 
+	var notification = {
+		initialize: function() {
+			this.bindEvents();
+		},
+		// Bind Event Listeners
+		//
+		// Bind any events that are required on startup. Common events are:
+		// 'load', 'deviceready', 'offline', and 'online'.
+		bindEvents: function() {
+			document.addEventListener('deviceready', this.onDeviceReady, false);
+		},
+		// deviceready Event Handler
+		//
+		// The scope of 'this' is the event. In order to call the 'receivedEvent'
+		// function, we must explicitly call 'app.receivedEvent(...);'
+		onDeviceReady: function() {
+			console.log('Received Device Ready Event');
+			console.log('calling setup push');
+			notification.setupPush();
+		},
+		setupPush: function() {
+			console.log('calling push init');
+			var push = PushNotification.init({
+				"android": {
+					"senderID": "356133547542"
+				},
+				"browser": {},
+				"ios": {
+					"sound": true,
+					"vibration": true,
+					"badge": true
+				},
+				"windows": {}
+			});
+			console.log('after init');
+
+			push.on('registration', function(data) {
+				console.log('registration event: ' + data.registrationId);
+
+				var oldRegId = localStorage.getItem('registrationId');
+				if (oldRegId !== data.registrationId) {
+					// Save new registration ID
+					localStorage.setItem('registrationId', data.registrationId);
+					// Post registrationId to your app server as the value has changed
+				}
+
+				var parentElement = document.getElementById('registration');
+				var listeningElement = parentElement.querySelector('.waiting');
+				var receivedElement = parentElement.querySelector('.received');
+
+				listeningElement.setAttribute('style', 'display:none;');
+				receivedElement.setAttribute('style', 'display:block;');
+			});
+
+			push.on('error', function(e) {
+				console.log("push error = " + e.message);
+			});
+
+			push.on('notification', function(data) {
+				window.f7.addNotification({
+					title: data.title,
+					message: data.message
+				})
+			});
+		}
+	};
 
 	var data;
 	data = {
@@ -139,7 +205,16 @@
 				this.parcelName = name
 				console.log(location_from)
 				this.loadMap()
+			},
+			notify() {
+				window.f7.addNotification({
+					title: 'Framework7',
+					message: 'This is a simple notification message with title and message'
+				})
 			}
+		},
+		mounted: function() {
+			notification.initialize()
 		}
 	}
 </script>

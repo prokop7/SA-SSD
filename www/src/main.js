@@ -12,6 +12,7 @@ import Routes from './routes.js'
 // Import App Component
 import App from './app.vue'
 
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
 
@@ -27,12 +28,12 @@ export var mainVue = new Vue({
 		material: true,
 		routes: Routes,
 		swipePanel: 'left',
-		swipePanelActiveArea: 100
+		swipePanelActiveArea: 100,
 	},
 	// Register App Component
 	components: {
 		'app': App
-	}
+	},
 });
 
 export default {

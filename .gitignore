@@ -19,3 +19,4 @@ plugins/android.json
 package.json
 info.txt
 plugins/
+.idea/
