@@ -23,31 +23,52 @@
 			name: {}
 		},
 		methods: {
+			receivedLocation: function (pos) {
+				this.setupMap(pos)
+			},
+			onError: function (e) {
+				console.log(e)
+			},
+			setupMap(pos) {
+				const element = document.getElementById('map-field')
+				var directionsService = new google.maps.DirectionsService;
+				var directionsDisplay = new google.maps.DirectionsRenderer;
+
+				const options = {
+					zoom: 14,
+					center: this.from
+				}
+				const map = new google.maps.Map(element, options);
+
+				directionsDisplay.setMap(map);
+				var position = {
+					lat: pos.coords.latitude,
+					lng: pos.coords.longitude,
+				}
+
+				var my_loc = new google.maps.Marker({
+					position: position,
+					map: map
+				});
+				var loc = new google.maps.LatLng(my_loc.position.latitude, my_loc.position.longitude);
+
+				directionsService.route({
+					origin: this.from,
+					destination:  this.to,
+					travelMode: 'DRIVING'
+				}, function(response, status) {
+					if (status === 'OK') {
+						directionsDisplay.setDirections(response);
+					} else {
+						window.alert('Directions request failed due to ' + status);
+					}
+				});
+
+
+			}
 		},
 		mounted() {
-			const element = document.getElementById('map-field')
-			var directionsService = new google.maps.DirectionsService;
-			var directionsDisplay = new google.maps.DirectionsRenderer;
-			const options = {
-				zoom: 14,
-				center: this.from
-			}
-			const map = new google.maps.Map(element, options);
-
-			directionsDisplay.setMap(map);
-
-			directionsService.route({
-				origin: this.from,
-				destination:  this.to,
-				travelMode: 'DRIVING'
-			}, function(response, status) {
-				if (status === 'OK') {
-					directionsDisplay.setDirections(response);
-				} else {
-					window.alert('Directions request failed due to ' + status);
-				}
-			});
-
+			navigator.geolocation.getCurrentPosition(this.receivedLocation, this.onError);
 
 
 
