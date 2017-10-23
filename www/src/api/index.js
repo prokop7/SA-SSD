@@ -6,6 +6,7 @@ export default {
 	loadActiveParcels: ajax.loadActiveParcels,
 	loadAllParcels: ajax.loadAllParcels,
 	updateParcel: ajax.updateParcel,
+	sendGeolocation: ajax.sendGeolocation,
 	server_url: 'https://tcsw.innopolis.dl-dev.ru/api/',
 	setupPush: notifications.setupPush
 }

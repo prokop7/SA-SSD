@@ -20,16 +20,16 @@
 					<f7-list-item accordion-item v-for="parcel in parcels" :key="parcel.id" :title="parcel.name">
 						<f7-accordion-content>
 							<f7-block>
-								<p>From: {{parcel.from}}</p>
-								<p>To: {{parcel.to}}</p>
-								<p>Location: {{parcel.location}}</p>
+								<p>From: {{parcel.from.address}}</p>
+								<p>To: {{parcel.to.address}}</p>
+								<p>Location: {{parcel.location.address}}</p>
 								<p>Email: {{parcel.sender.email}}</p>
 								<p>Phone: {{parcel.phones.to}}</p>
 								<p>Status: {{parcel.status}}</p>
 							</f7-block>
 							<f7-buttons v-if="parcel.status==='Transit'">
 								<f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
-								<f7-button @click=" $emit('openOnMap', from, to, parcel.name)">
+								<f7-button @click=" $emit('openOnMap', parcel.from, parcel.to, parcel.name)">
 									Map
 								</f7-button>
 								<f7-button @click="rejectParcel(parcel.id)" color="red">Reject</f7-button>
@@ -46,9 +46,7 @@
 
 	var data = {
 		parcels: {},
-		isAllParcels: false,
-		from: {lat:55.752478, lng:48.743402},
-		to: {lat:55.81398, lng:49.072997}
+		isAllParcels: false
 	};
 
 	function setParcels(d) {

@@ -99,4 +99,7 @@ export function get(url, successCallback, errorCallback) {
 	ajax("GET", url, '', successCallback, errorCallback);
 }
 
+export function sendGeolocation(token, location, successCallback, errorCallback) {
+	request('POST', server_url + "users/driver?api_token=" + token, location, successCallback, errorCallback)
+}
 

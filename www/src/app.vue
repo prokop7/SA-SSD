@@ -26,7 +26,8 @@
 						            :name="parcelName"
 						            @loadParcels="loadParcels"
 						            :from="from"
-						            :to="to">
+						            :to="to"
+						            :pos="pos">
 						</google-map>
 					</div>
 				</f7-pages>
@@ -47,76 +48,52 @@
 	import api from '@/api/index'
 
 	var app = {
-		initialize: function() {
+		initialize: function () {
 			this.bindEvents();
 		},
 		// Bind Event Listeners
 		//
 		// Bind any events that are required on startup. Common events are:
 		// 'load', 'deviceready', 'offline', and 'online'.
-		bindEvents: function() {
+		bindEvents: function () {
 			document.addEventListener('deviceready', this.onDeviceReady, false);
 		},
 		// deviceready Event Handler
 		//
 		// The scope of 'this' is the event. In order to call the 'receivedEvent'
 		// function, we must explicitly call 'app.receivedEvent(...);'
-		onDeviceReady: function() {
-			console.log('Received Device Ready Event');
-			console.log('calling setup push');
+		onDeviceReady: function () {
 			api.setupPush();
+			navigator.geolocation.getCurrentPosition(app.receivedLocation, app.onError);
 		},
 		onSuccess: function (pos) {
-			console.log(pos)
+		},
+		onError: function (e) {
+			window.alert(e)
+		},
+		receivedLocation: function (pos) {
+			var position = {
+				location: {
+					lat: pos.coords.latitude,
+					long: pos.coords.longitude,
+					address: 'Somewhere'
+				}
+			}
+			data.pos = pos
+			api.sendGeolocation(data.token, position)
 		}
+
 	};
 
 	var data;
 	data = {
-		"data": [
-			{
-				"id": 1,
-				"name": "Toy Gun",
-				"from": null,
-				"to": null,
-				"location": null,
-				"creator": {
-					"id": 1,
-					"name": "anton",
-					"email": "a.prokopev@innopolis.ru",
-					"role": "customer",
-					"phone": "89991626709"
-				},
-				"sender": {
-					"id": 1,
-					"name": "anton",
-					"email": "a.prokopev@innopolis.ru",
-					"role": "customer",
-					"phone": "89991626709"
-				},
-				"driver": null,
-				"status": "Created",
-				"created_at": {
-					"date": "2017-10-17 09:26:30.000000",
-					"timezone_type": 3,
-					"timezone": "UTC"
-				},
-				"updated_at": {
-					"date": "2017-10-17 09:26:30.000000",
-					"timezone_type": 3,
-					"timezone": "UTC"
-				},
-				"phones": {
-					"from": "89991626709",
-					"to": "89994005050"
-				}
-			}
-		],
-		"token": localStorage.getItem('token'),
+		data: {},
+		token: localStorage.getItem('token'),
 		name: localStorage.getItem('name'),
 		state: 'parcels',
-		from: 0,
-		to: 0,
+		from: {},
+		to: {},
+		pos: {},
 		parcelName: ""
 	};
 
@@ -158,13 +135,21 @@
 			loadMap() {
 				this.state = 'map'
 			},
-			openOnMap(location_from, location_to, name){
-				this.from = location_from
-				this.to = location_to
+			openOnMap(location_from, location_to, name) {
+				var from = {
+					'lat': location_from.lat,
+					'lng': location_from.long
+				}
+				var to = {
+					'lat': location_to.lat,
+					'lng': location_to.long
+				}
+				this.from = from
+				this.to = to
 				this.parcelName = name
-				console.log(location_from)
 				this.loadMap()
 			},
+			//TODO here called notification.
 			notify() {
 				window.f7.addNotification({
 					title: 'Framework7',
@@ -172,7 +157,7 @@
 				})
 			}
 		},
-		mounted: function() {
+		mounted: function () {
 			app.initialize()
 		}
 	}

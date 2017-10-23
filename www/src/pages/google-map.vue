@@ -20,32 +20,33 @@
 		props: {
 			from: {},
 			to: {},
+			pos: {},
 			name: {}
 		},
 		methods: {
-			receivedLocation: function (pos) {
-				this.setupMap(pos)
-			},
+//			receivedLocation: function (pos) {
+//				this.setupMap(pos)
+//			},
 			onError: function (e) {
 				console.log(e)
 			},
-			setupMap(pos) {
+			setupMap() {
 				const element = document.getElementById('map-field')
 				var directionsService = new google.maps.DirectionsService;
 				var directionsDisplay = new google.maps.DirectionsRenderer;
 
+				var position = {
+					lat: this.pos.coords.latitude,
+					lng: this.pos.coords.longitude,
+				}
 				const options = {
 					zoom: 14,
-					center: this.from
+					center: position
 				}
+
 				const map = new google.maps.Map(element, options);
-
 				directionsDisplay.setMap(map);
-				var position = {
-					lat: pos.coords.latitude,
-					lng: pos.coords.longitude,
-				}
-
+0
 				var my_loc = new google.maps.Marker({
 					position: position,
 					map: map
@@ -59,6 +60,8 @@
 				}, function(response, status) {
 					if (status === 'OK') {
 						directionsDisplay.setDirections(response);
+					} else if (status === 'ZERO_RESULTS') {
+						window.alert('Can\'t find a route.');
 					} else {
 						window.alert('Directions request failed due to ' + status);
 					}
@@ -68,7 +71,7 @@
 			}
 		},
 		mounted() {
-			navigator.geolocation.getCurrentPosition(this.receivedLocation, this.onError);
+			this.setupMap()
 
 
 
