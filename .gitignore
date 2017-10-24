@@ -12,3 +12,11 @@ platforms/browser/www/www.zip
 .idea/SA-SSD.iml
 .idea/vcs.xml
 .idea/workspace.xml
+www/node_modules/
+node_modules/
+www/dist/
+plugins/android.json
+package.json
+info.txt
+plugins/
+.idea/

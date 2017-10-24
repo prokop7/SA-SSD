@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "356133547542",
+    "firebase_url": "https://western-grid-138709.firebaseio.com",
+    "project_id": "western-grid-138709",
+    "storage_bucket": "western-grid-138709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356133547542:android:265bfc6bee913327",
+        "android_client_info": {
+          "package_name": "org.myapp.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356133547542-v5qdhmbppmq3i2oh54fgfks95s6u1fg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbc-cGcf_L2FzEJS0kM9PXsSKf9Q2pExQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
