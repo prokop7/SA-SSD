@@ -1,0 +1,27 @@
+{
+  "name": "com.phonegap.helloworld",
+  "version": "1.0.0",
+  "displayName": "Hello 3",
+  "cordova": {
+    "platforms": [],
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-console": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-firebase": {},
+      "phonegap-plugin-push": {
+        "SENDER_ID": "XXXXXXX"
+      }
+    }
+  },
+  "dependencies": {
+    "cordova": "^7.1.0",
+    "cordova-plugin-console": "~1.0.1",
+    "cordova-plugin-firebase": "^0.1.24",
+    "cordova-plugin-statusbar": "~1.0.1",
+    "cordova-plugin-whitelist": "~1.2.0",
+    "firebase": "^4.5.2",
+    "phonegap-plugin-push": "^1.8.4",
+    "pushwoosh-cordova-plugin": "^7.0.7"
+  }
+}
