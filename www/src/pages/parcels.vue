@@ -13,8 +13,8 @@
 
                 <f7-tabs>
 
-                    <f7-tab id="tab1" active>
-                        <f7-card v-for="parcel in parcels" :key="parcel.id">
+                    <f7-tab id="tabActive" active>
+                        <f7-card v-for="parcel in parcels"v-if="parcel.status!='Blocked'&&parcel.status!='Delivered'"  :key="parcel.id">
                             <f7-card-header>{{parcel.name}}</f7-card-header>
                             <f7-card-content>
                                 <f7-list>
@@ -50,9 +50,10 @@
                             </f7-card-content>
                         </f7-card>
                     </f7-tab>
-                    <f7-tab id="tab2">
-                        <f7-card v-for="parcel in parcels" :key="parcel.id">
+                    <f7-tab id="tabDelivered">
+                        <f7-card v-for="parcel in parcels" v-if="parcel.status=='Delivered'":key="parcel.id">
                             <f7-card-header>{{parcel.name}}</f7-card-header>
+
                             <f7-card-content>
                                 <f7-list>
                                     <ul>
@@ -75,9 +76,9 @@
                         </f7-card>
 
                     </f7-tab>
-                    <f7-tab id="tab3">
+                    <f7-tab id="tabBlocked">
 
-                        <f7-card v-for="parcel in parcels" :key="parcel.id">
+                        <f7-card v-for="parcel in parcels" v-if="parcel.status=='Blocked'" :key="parcel.id">
                             <f7-card-header>{{parcel.name}}</f7-card-header>
                             <f7-card-content>
                                 <f7-list>
@@ -106,9 +107,9 @@
 
 
             <f7-toolbar tabbar labels>
-                <f7-link href="#tab1" tab-link text="Active" active></f7-link>
-                <f7-link href="#tab2" tab-link text="Delivered"></f7-link>
-                <f7-link href="#tab3" tab-link text="Blocked"></f7-link>
+                <f7-link href="#tabActive" tab-link text="Active" active></f7-link>
+                <f7-link href="#tabDelivered" tab-link text="Delivered"></f7-link>
+                <f7-link href="#tabBlocked" tab-link text="Blocked"></f7-link>
             </f7-toolbar>
             <!--<f7-list>-->
                 <!--<ul>-->
@@ -193,9 +194,9 @@
             this.$emit('setToken', localStorage.getItem('token'))
 //			this.token = localStorage.getItem('token');
             this.$on('loadParcels');
-            if (!this.isAllParcels)
-                api.loadActiveParcels(this.token, setParcels);
-            else
+//            if (!this.isAllParcels)
+//                api.loadActiveParcels(this.token, setParcels);
+//            else
                 api.loadAllParcels(this.token, setParcels)
 
         }
