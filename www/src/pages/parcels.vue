@@ -1,102 +1,190 @@
 <template>
-	<div id="parcels">
-		<f7-page title="Parcels" sliding pull-to-refresh @ptr:refresh="loadParcels">
-			<f7-navbar>
-				<f7-nav-left>
-					<f7-link icon="icon-bars" open-panel="left"></f7-link>
-				</f7-nav-left>
-				<f7-nav-left>
-					Parcels
-				</f7-nav-left>
-			</f7-navbar>
-			<f7-list>
-				<ul>
-					<f7-list-group>
-						<f7-list-item checkbox title="Show all parcels" @change="loadParcels" v-model="isAllParcels">
-							<!--<f7-label>Show all parcels</f7-label>-->
-							<!--<f7-input type="switch" v-model="isAllParcels" @change="loadParcels"></f7-input>-->
-						</f7-list-item>
-					</f7-list-group>
-					<f7-list-item accordion-item v-for="parcel in parcels" :key="parcel.id" :title="parcel.name">
-						<f7-accordion-content>
-							<f7-block>
-								<p>From: {{parcel.from.address}}</p>
-								<p>To: {{parcel.to.address}}</p>
-								<p>Location: {{parcel.location.address}}</p>
-								<p>Email: {{parcel.sender.email}}</p>
-								<p>Phone: {{parcel.phones.to}}</p>
-								<p>Status: {{parcel.status}}</p>
-							</f7-block>
-							<f7-buttons v-if="parcel.status==='Transit'">
-								<f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
-								<f7-button @click=" $emit('openOnMap', parcel.from, parcel.to, parcel.name)">
-									Map
-								</f7-button>
-								<f7-button @click="rejectParcel(parcel.id)" color="red">Reject</f7-button>
-							</f7-buttons>
-						</f7-accordion-content>
-					</f7-list-item>
-				</ul>
-			</f7-list>
-		</f7-page>
-	</div>
+    <div id="parcels">
+        <f7-page title="Parcels" sliding pull-to-refresh @ptr:refresh="loadParcels" tabbar-fixed>
+
+            <f7-navbar>
+                <f7-nav-left>
+                    <f7-link icon="icon-bars" open-panel="left"></f7-link>
+                </f7-nav-left>
+                <f7-nav-left>
+                    Parcels
+                </f7-nav-left>
+            </f7-navbar>
+            <f7-block>
+                <f7-tabs swipeable>
+                <f7-tab id="tab1" active>
+                    <f7-card v-for="parcel in parcels" :key="parcel.id">
+                        <f7-card-header >{{parcel.name}}</f7-card-header>
+                        <f7-card-content>
+                            <f7-list>
+                                <ul>
+                            <f7-list-item accordion-item :title="parcel.to.address">
+                                <f7-accordion-content>
+                                    <f7-block>
+                                        <p>From: {{parcel.from.address}}</p>
+                                        <p>To: {{parcel.to.address}}</p>
+                                        <p>Location: {{parcel.location.address}}</p>
+                                        <p>Email: {{parcel.sender.email}}</p>
+                                        <p>Phone: {{parcel.phones.to}}</p>
+                                        <p>Status: {{parcel.status}}</p>
+                                    </f7-block>
+                                    <f7-card-footer>
+                                    <f7-buttons v-if="parcel.status==='Transit'">
+                                        <f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
+                                        <f7-button @click=" $emit('openOnMap', parcel.from, parcel.to, parcel.name)">
+                                            Map
+                                        </f7-button>
+                                        <f7-button @click="rejectParcel(parcel.id)" color="red">Reject</f7-button>
+                                    </f7-buttons></f7-card-footer>
+                                </f7-accordion-content>
+                            </f7-list-item>
+                                </ul></f7-list>
+
+                        </f7-card-content>
+                    </f7-card>
+                </f7-tab>
+                <f7-tab id="tab2">
+                    <f7-card v-for="parcel in parcels" :key="parcel.id">
+                        <f7-card-header >{{parcel.name}}</f7-card-header>
+                        <f7-card-content>
+                            <f7-list>
+                                <ul>
+                                    <f7-list-item accordion-item :title="parcel.to.address">
+                                        <f7-accordion-content>
+                                            <f7-block>
+                                                <p>From: {{parcel.from.address}}</p>
+                                                <p>To: {{parcel.to.address}}</p>
+                                                <p>Location: {{parcel.location.address}}</p>
+                                                <p>Email: {{parcel.sender.email}}</p>
+                                                <p>Phone: {{parcel.phones.to}}</p>
+                                                <p>Status: {{parcel.status}}</p>
+                                            </f7-block>
+                                        </f7-accordion-content>
+                                    </f7-list-item>
+                                </ul></f7-list>
+
+                        </f7-card-content>
+                    </f7-card>
+                </f7-tab>
+                    <f7-tab id="tab3">
+                        <f7-card v-for="parcel in parcels" :key="parcel.id">
+                            <f7-card-header >{{parcel.name}}</f7-card-header>
+                            <f7-card-content>
+                                <f7-list>
+                                    <ul>
+                                        <f7-list-item accordion-item :title="parcel.to.address">
+                                            <f7-accordion-content>
+                                                <f7-block>
+                                                    <p>From: {{parcel.from.address}}</p>
+                                                    <p>To: {{parcel.to.address}}</p>
+                                                    <p>Location: {{parcel.location.address}}</p>
+                                                    <p>Email: {{parcel.sender.email}}</p>
+                                                    <p>Phone: {{parcel.phones.to}}</p>
+                                                    <p>Status: {{parcel.status}}</p>
+                                                </f7-block>
+                                            </f7-accordion-content>
+                                        </f7-list-item>
+                                    </ul></f7-list>
+
+                            </f7-card-content>
+                        </f7-card>
+                    </f7-tab>
+                </f7-tabs>
+            </f7-block>
+
+            <f7-toolbar tabbar labels>
+                <f7-link href="#tab1" tab-link text="Active" active></f7-link>
+                <f7-link href="#tab2" tab-link text="Delivered"></f7-link>
+                <f7-link href="#tab3" tab-link text="Blocked"></f7-link>
+            </f7-toolbar>
+            <f7-list>
+                <ul>
+                    <f7-list-group>
+                        <f7-list-item checkbox title="Show all parcels" @change="loadParcels" v-model="isAllParcels">
+                            <!--<f7-label>Show all parcels</f7-label>-->
+                            <!--<f7-input type="switch" v-model="isAllParcels" @change="loadParcels"></f7-input>-->
+                        </f7-list-item>
+                    </f7-list-group>
+                    <f7-list-item accordion-item v-for="parcel in parcels" :key="parcel.id" :title="parcel.name">
+                        <f7-accordion-content>
+                            <f7-block>
+                                <p>From: {{parcel.from.address}}</p>
+                                <p>To: {{parcel.to.address}}</p>
+                                <p>Location: {{parcel.location.address}}</p>
+                                <p>Email: {{parcel.sender.email}}</p>
+                                <p>Phone: {{parcel.phones.to}}</p>
+                                <p>Status: {{parcel.status}}</p>
+                            </f7-block>
+                            <f7-buttons v-if="parcel.status==='Transit'">
+                                <f7-button @click="approveParcel(parcel.id)" color="green">Approve</f7-button>
+                                <f7-button @click=" $emit('openOnMap', parcel.from, parcel.to, parcel.name)">
+                                    Map
+                                </f7-button>
+                                <f7-button @click="rejectParcel(parcel.id)" color="red">Reject</f7-button>
+                            </f7-buttons>
+                        </f7-accordion-content>
+                    </f7-list-item>
+                </ul>
+            </f7-list>
+        </f7-page>
+    </div>
 </template>
 <script>
-	import api from '@/api/index'
+    import api from '@/api/index'
 
-	var data = {
-		parcels: {},
-		isAllParcels: false
-	};
+    var data = {
+        parcels: {},
+        isAllParcels: false
+    };
 
-	function setParcels(d) {
-		data.parcels = d
-	}
+    function setParcels(d) {
+        data.parcels = d
+    }
 
-	export default {
-		props: {
-			token: {}
-		},
-		data() {
-			return data
-		},
-		methods: {
-			loadParcels(event, done) {
-				if (!this.isAllParcels)
-					api.loadActiveParcels(this.token, setParcels);
-				else
-					api.loadAllParcels(this.token, setParcels)
-				if (done)
-					setTimeout(function () {
-						done();
-					}, 1000);
-			},
-			approveParcel(parcelId) {
-				api.updateParcel(this.token, parcelId, 5, this.removeParcel, function (e) {
-					console.log(e)
-				})
-			},
-			rejectParcel(parcelId) {
-				api.updateParcel(this.token, parcelId, 6, this.removeParcel, function (e) {
-					console.log(e)
-				})
-			},
-			removeParcel(response) {
-				this.loadParcels()
-			},
-			loadAllParcels(event, e) {
-				console.log(event)
-			}
-		},
-		created: function (e) {
-			this.$emit('setToken', localStorage.getItem('token'))
+    export default {
+        props: {
+            token: {}
+        },
+        data() {
+            return data
+        },
+        methods: {
+            loadParcels(event, done) {
+                if (!this.isAllParcels)
+                    api.loadActiveParcels(this.token, setParcels);
+                else
+                    api.loadAllParcels(this.token, setParcels)
+                if (done)
+                    setTimeout(function () {
+                        done();
+                    }, 1000);
+            },
+            approveParcel(parcelId) {
+                api.updateParcel(this.token, parcelId, 5, this.removeParcel, function (e) {
+                    console.log(e)
+                })
+            },
+            rejectParcel(parcelId) {
+                api.updateParcel(this.token, parcelId, 6, this.removeParcel, function (e) {
+                    console.log(e)
+                })
+            },
+            removeParcel(response) {
+                this.loadParcels()
+            },
+            loadAllParcels(event, e) {
+                console.log(event)
+            }
+        },
+        created: function (e) {
+            this.$emit('setToken', localStorage.getItem('token'))
 //			this.token = localStorage.getItem('token');
-			this.$on('loadParcels');
-			if (!this.isAllParcels)
-				api.loadActiveParcels(this.token, setParcels);
-			else
-				api.loadAllParcels(this.token, setParcels)
+            this.$on('loadParcels');
+            if (!this.isAllParcels)
+                api.loadActiveParcels(this.token, setParcels);
+            else
+                api.loadAllParcels(this.token, setParcels)
 
-		}
-	}
+        }
+    }
 </script>

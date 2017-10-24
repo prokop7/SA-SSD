@@ -8,3 +8,30 @@ Your custom styles go here
 	height: 400px;
 	width: 100%;
 }
+.page{
+	background: #EFEFF0;
+}
+/*subnavbar*/
+.tabbar-labels{
+	height: 48px;
+}
+/*refresh*/
+.navbar-fixed .tabbar-labels~.page-content, .navbar-through .tabbar-labels~.page-content {
+	padding-top: 104px;
+}
+/*line transfer*/
+.list-block .item-title {
+	white-space: inherit;
+}
+.tabbar-fixed .toolbar, .tabbar-labels-fixed .toolbar, .toolbar-fixed .toolbar {
+	box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
+}
+/*left panel color*/
+.gg{
+	background: white;
+}
+
+/*remove shadow*/
+.navbar-fixed .navbar, .navbar-through .navbar {
+	box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
+}

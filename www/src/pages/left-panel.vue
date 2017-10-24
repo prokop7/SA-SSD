@@ -1,6 +1,6 @@
 <template>
 	<div id="LeftPanel">
-		<f7-panel left reveal layout="dark">
+		<f7-panel left cover>
 			<f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
 				<f7-navbar sliding>
 					<f7-block>
@@ -8,7 +8,7 @@
 					</f7-block>
 				</f7-navbar>
 				<f7-pages>
-					<f7-page>
+					<f7-page  gg>
 						<f7-navbar title="Left Panel" sliding></f7-navbar>
 						<f7-list>
 							<f7-list-item link="#"
