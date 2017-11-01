@@ -37,8 +37,11 @@ export var mainVue = new Vue({
 	},
 });
 
+export const bus = new Vue();
+
 export default {
-	vue: mainVue
+	vue: mainVue,
+	bus: bus
 }
 
 

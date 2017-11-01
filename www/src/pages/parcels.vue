@@ -19,12 +19,16 @@
 				<parcel-tab :state="'Delivered'"></parcel-tab>
 				<parcel-tab :state="'Blocked'"></parcel-tab>
 			</f7-tabs>
+			<f7-fab color="pink" @click="loadParcels">
+				<i class="material-icons">refresh</i>
+			</f7-fab>
 		</f7-page>
 	</div>
 </template>
 <script>
 	import api from '@/api/index'
 	import ParcelTab from '@/pages/parcel-tab.vue'
+	import {bus} from '@/main'
 
 	var data = {
 		parcels: {},
@@ -45,6 +49,9 @@
 			openOnMap: function (location_from, location_to, name) {
 				console.log(location_from)
 				this.$emit('openOnMap', location_from, location_to, name)
+			},
+			loadParcels: function() {
+				bus.$emit("loadParcels")
 			}
 		},
 		created: function (e) {

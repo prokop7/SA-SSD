@@ -36,14 +36,11 @@
 				</f7-list>
 			</f7-card-content>
 		</f7-card>
-
-		<f7-fab color="pink" @click="loadParcels">
-			<i class="material-icons">refresh</i>
-		</f7-fab>
 	</f7-tab>
 </template>
 <script>
 	import api from '@/api/index'
+	import {bus} from '@/main'
 
 	var data = {
 		parcels: {}
@@ -84,6 +81,11 @@
 		created: function () {
 			this.token = localStorage.getItem('token')
 			this.loadParcels()
+		},
+		mounted: function () {
+			this.$nextTick(function () {
+				bus.$on('loadParcels', this.loadParcels)
+			})
 		}
 
 	}
