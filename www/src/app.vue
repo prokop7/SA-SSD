@@ -2,7 +2,7 @@
 	<!-- App -->
 	<div id="app">
 		<!-- Statusbar -->
-		<f7-statusbar></f7-statusbar>
+		<f7-statusbar>dfdfd</f7-statusbar>
 		<left-panel
 				:name="name"
 				@logout="logout"

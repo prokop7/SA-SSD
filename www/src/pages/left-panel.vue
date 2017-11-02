@@ -8,7 +8,7 @@
 					</f7-block>
 				</f7-navbar>
 				<f7-pages>
-					<f7-page  gg>
+					<f7-page  style="background: white">
 						<f7-navbar title="Left Panel" sliding></f7-navbar>
 						<f7-list>
 							<f7-list-item link="#"
