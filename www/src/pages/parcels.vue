@@ -47,7 +47,6 @@
 		},
 		methods: {
 			openOnMap: function (location_from, location_to, name) {
-				console.log(location_from)
 				this.$emit('openOnMap', location_from, location_to, name)
 			},
 			loadParcels: function() {

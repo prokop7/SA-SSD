@@ -165,6 +165,8 @@
 		},
 		mounted: function () {
 			app.initialize()
+			data.name = localStorage.getItem('name')
+			data.token = localStorage.getItem('token')
 		}
 	}
 </script>
