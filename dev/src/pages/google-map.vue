@@ -9,9 +9,11 @@
 					{{name}}
 				</f7-nav-left>
 			</f7-navbar>
-			<f7-block inner>
-				<div id="map-field"></div>
-			</f7-block>
+			<div id="map-field"></div>
+			<f7-buttons>
+				<f7-button class="button" @click="openOnMap(to.lat, to.lng)">To</f7-button>
+				<f7-button class="button" @click="openOnMap(from.lat, from.lng)" >From</f7-button>
+			</f7-buttons>
 		</f7-page>
 	</div>
 </template>
@@ -68,6 +70,9 @@
 				});
 
 
+			},
+			openOnMap(lat, lng) {
+				window.open("geo:" + lat + ',' + lng);
 			}
 		},
 		mounted() {
