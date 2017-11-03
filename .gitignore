@@ -7,3 +7,4 @@ www/index.html
 dev/node_modules/
 dev/package-lock.json
 plugins/
+package-lock.json
