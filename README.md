@@ -11,9 +11,11 @@
 
 In your browser, open the file:
 ```bash
-npm install http-server -g
-cd /www/
-http-server.cmd
+cd ./dev
+npm install
+npm run dev
+cd ..
+phonegap run android
 ```
 Go to http://127.0.0.1:8080
 

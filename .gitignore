@@ -2,6 +2,8 @@ platforms/*
 .idea/*
 dev/.idea/*
 node_modules/*
-plugins/*
 www/static/
 www/index.html
+dev/node_modules/
+dev/package-lock.json
+plugins/
