@@ -13,11 +13,10 @@ In your browser, open the file:
 ```bash
 cd ./dev
 npm install
-npm run dev
+npm run build
 cd ..
 phonegap run android
 ```
-Go to http://127.0.0.1:8080
 
 
   
