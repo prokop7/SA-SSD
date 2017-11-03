@@ -66,8 +66,6 @@
 			api.setupPush();
 			navigator.geolocation.getCurrentPosition(app.receivedLocation, app.onError);
 		},
-		onSuccess: function (pos) {
-		},
 		onError: function (e) {
 			window.alert(e)
 		},
@@ -81,6 +79,14 @@
 			}
 			data.pos = pos
 			api.sendGeolocation(data.token, position)
+
+			app.aftereffect()
+		},
+		aftereffect: function () {
+			setInterval(app.sendLocation, 60000)
+		},
+		sendLocation: function() {
+			navigator.geolocation.getCurrentPosition(app.receivedLocation, app.onError);
 		}
 
 	};

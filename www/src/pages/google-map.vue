@@ -1,3 +1,4 @@
+
 <template>
 	<div id="google-map">
 		<f7-page title="Map" sliding>
@@ -12,11 +13,13 @@
 			<f7-block inner>
 				<div id="map-field"></div>
 			</f7-block>
+
 		</f7-page>
 	</div>
 </template>
 <script>
 	export default {
+
 		props: {
 			from: {},
 			to: {},
@@ -24,6 +27,7 @@
 			name: {}
 		},
 		methods: {
+
 //			receivedLocation: function (pos) {
 //				this.setupMap(pos)
 //			},
@@ -35,29 +39,29 @@
 				var directionsService = new google.maps.DirectionsService;
 				var directionsDisplay = new google.maps.DirectionsRenderer;
 
-				var position = {
+
+				var position = (this.pos.coords) ? {
 					lat: this.pos.coords.latitude,
 					lng: this.pos.coords.longitude,
-				}
+				} : this.from;
 				const options = {
 					zoom: 14,
 					center: position
 				}
-
 				const map = new google.maps.Map(element, options);
 				directionsDisplay.setMap(map);
-0
 				var my_loc = new google.maps.Marker({
 					position: position,
 					map: map
 				});
 				var loc = new google.maps.LatLng(my_loc.position.latitude, my_loc.position.longitude);
 
+
 				directionsService.route({
 					origin: this.from,
-					destination:  this.to,
+					destination: this.to,
 					travelMode: 'DRIVING'
-				}, function(response, status) {
+				}, function (response, status) {
 					if (status === 'OK') {
 						directionsDisplay.setDirections(response);
 					} else if (status === 'ZERO_RESULTS') {
@@ -72,7 +76,6 @@
 		},
 		mounted() {
 			this.setupMap()
-
 
 
 //			var bounds  = new google.maps.LatLngBounds();
