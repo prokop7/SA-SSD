@@ -19,8 +19,8 @@
 								</f7-block>
 								<f7-card-footer v-if="parcel.status === 'Transit'">
 									<f7-buttons>
-										<!--<f7-button @click="approveParcel(parcel.id)" color="green">-->
-										<f7-button @click=" $emit('approveParcel', parcel.from, parcel.to, parcel.name)">
+										<f7-button @click="approveParcel(parcel.id)" color="green">
+										<!--<f7-button @click=" $emit('approveParcel', parcel.from, parcel.to, parcel.name)">-->
 
 										Approve
 										</f7-button>
