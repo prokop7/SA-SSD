@@ -19,15 +19,13 @@
 								</f7-block>
 								<f7-card-footer v-if="parcel.status === 'Transit'">
 									<f7-buttons>
-										<f7-button @click="approveParcel(parcel.id)" color="green">
-										<!--<f7-button @click=" $emit('approveParcel', parcel.from, parcel.to, parcel.name)">-->
-
-										Approve
+										<f7-button @click=" $emit('approveParcel', parcel.id, parcel.name)" color="green">
+											Approve
 										</f7-button>
 										<f7-button @click=" $emit('openOnMap', parcel.from, parcel.to, parcel.name)">
 											Map
 										</f7-button>
-										<f7-button @click="rejectParcel(parcel.id)" color="red">
+										<f7-button @click="$emit('rejectParcel', parcel.id, parcel.name)" color="red">
 											Reject
 										</f7-button>
 									</f7-buttons>
@@ -56,16 +54,16 @@
 			return data;
 		},
 		methods: {
-			approveParcel(parcelId) {
-				api.updateParcel(this.token, parcelId, 5, this.removeParcel, function (e) {
-					console.log(e)
-				})
-			},
-			rejectParcel(parcelId) {
-				api.updateParcel(this.token, parcelId, 6, this.removeParcel, function (e) {
-					console.log(e)
-				})
-			},
+//			approveParcel(parcelId) {
+//				api.updateParcel(this.token, parcelId, 5, this.removeParcel, function (e) {
+//					console.log(e)
+//				})
+//			},
+//			rejectParcel(parcelId) {
+//				api.updateParcel(this.token, parcelId, 6, this.removeParcel, function (e) {
+//					console.log(e)
+//				})
+//			},
 			removeParcel(response) {
 				this.loadParcels()
 			},

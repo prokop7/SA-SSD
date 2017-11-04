@@ -18,16 +18,28 @@
 						<parcels v-if="state==='parcels'"
 						         @remove="removeParcel"
 						         @openOnMap="openOnMap"
+						         @approveParcel="approveParcel"
+						         @rejectParcel="rejectParcel"
 						         :token="token">
 						</parcels>
 						<warehouses v-if="state==='warehouses'">
 						</warehouses>
+						<approve-parcel v-if="state==='approveParcel'"
+						                :id="parcelId"
+						                :name="parcelName"
+						                @loadParcels="loadParcels">
+						</approve-parcel>
+						<reject-parcel v-if="state==='rejectParcel'"
+						               :id="parcelId"
+						               :name="parcelName"
+						               @loadParcels="loadParcels">
+						</reject-parcel>
 						<google-map v-if="state==='map'"
 						            :name="parcelName"
-						            @loadParcels="loadParcels"
 						            :from="from"
 						            :to="to"
-						            :pos="pos">
+						            :pos="pos"
+						            @loadParcels="loadParcels">
 						</google-map>
 					</div>
 				</f7-pages>
@@ -45,6 +57,8 @@
 	import Warehouses from './pages/warehouses.vue'
 	import LoginScreen from './pages/login.vue'
 	import GoogleMap from './pages/google-map.vue'
+	import ApproveParcel from './pages/approve-parcel.vue'
+	import RejectParcel from './pages/reject-parcel.vue'
 	import api from '@/api/index'
 
 	var app = {
@@ -85,14 +99,12 @@
 		aftereffect: function () {
 			setInterval(app.sendLocation, 60000)
 		},
-		sendLocation: function() {
+		sendLocation: function () {
 			navigator.geolocation.getCurrentPosition(app.receivedLocation, app.onError);
 		}
 
 	};
-
-	var data;
-	data = {
+	var data = {
 		data: {},
 		token: localStorage.getItem('token'),
 		name: localStorage.getItem('name'),
@@ -100,7 +112,8 @@
 		from: {},
 		to: {},
 		pos: {},
-		parcelName: ""
+		parcelName: "",
+		parcelId: 0
 	};
 
 
@@ -110,7 +123,9 @@
 			Parcels,
 			LoginScreen,
 			Warehouses,
-			GoogleMap
+			GoogleMap,
+			ApproveParcel,
+			RejectParcel
 		},
 		data: function () {
 			return data
@@ -155,12 +170,15 @@
 				this.parcelName = name
 				this.loadMap()
 			},
-			//TODO here called notification.
-			notify() {
-				window.f7.addNotification({
-					title: 'Framework7',
-					message: 'This is a simple notification message with title and message'
-				})
+			approveParcel: function (id, name) {
+				this.parcelId = id
+				this.parcelName = name
+				this.state = "approveParcel"
+			},
+			rejectParcel: function (id, name) {
+				this.parcelId = id
+				this.parcelName = name
+				this.state = "rejectParcel"
 			}
 		},
 		mounted: function () {

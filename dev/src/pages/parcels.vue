@@ -15,7 +15,11 @@
 			</f7-toolbar>
 
 			<f7-tabs>
-				<parcel-tab :state="'Transit'" @openOnMap="openOnMap"></parcel-tab>
+				<parcel-tab :state="'Transit'"
+				            @openOnMap="openOnMap"
+				            @approveParcel="approveParcel"
+				            @rejectParcel="rejectParcel">
+				</parcel-tab>
 				<parcel-tab :state="'Delivered'"></parcel-tab>
 				<parcel-tab :state="'Blocked'"></parcel-tab>
 			</f7-tabs>
@@ -49,29 +53,19 @@
 			openOnMap: function (location_from, location_to, name) {
 				this.$emit('openOnMap', location_from, location_to, name)
 			},
-			loadParcels: function() {
+			loadParcels: function () {
 				bus.$emit("loadParcels")
+			},
+			approveParcel: function (id, name) {
+				this.$emit("approveParcel", id, name)
+			},
+			rejectParcel: function (id, name) {
+				this.$emit("rejectParcel", id, name)
 			}
 		},
 		created: function (e) {
 			this.$emit('setToken', localStorage.getItem('token'))
 //			this.token = localStorage.getItem('token');
-//<<<<<<< HEAD
-//            this.$on('loadParcels');
-////            if (!this.isAllParcels)
-////                api.loadActiveParcels(this.token, setParcels);
-////            else
-//            api.loadAllParcels(this.token, setParcels)
-//
-//        }
-//    }
-//=======
-//			this.$on('loadParcels');
-////            if (!this.isAllParcels)
-////                api.loadActiveParcels(this.token, setParcels);
-////            else
-//			api.loadAllParcels(this.token, setParcels)
-
 		},
 		mounted: function () {
 			this.$nextTick(function () {

@@ -10,18 +10,11 @@
 					{{name}}
 				</f7-nav-left>
 			</f7-navbar>
-<<<<<<< HEAD:www/src/pages/google-map.vue
-			<f7-block inner>
-				<div id="map-field"></div>
-			</f7-block>
-
-=======
 			<div id="map-field"></div>
 			<f7-buttons>
 				<f7-button class="button" @click="openOnMap(to.lat, to.lng)">To</f7-button>
 				<f7-button class="button" @click="openOnMap(from.lat, from.lng)" >From</f7-button>
 			</f7-buttons>
->>>>>>> 60bd00a74bcf5d02f3cc01e9052ff7d4d0f57f3d:dev/src/pages/google-map.vue
 		</f7-page>
 	</div>
 </template>
@@ -35,10 +28,6 @@
 			name: {}
 		},
 		methods: {
-
-//			receivedLocation: function (pos) {
-//				this.setupMap(pos)
-//			},
 			onError: function (e) {
 				console.log(e)
 			},
