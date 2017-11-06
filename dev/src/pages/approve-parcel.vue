@@ -57,7 +57,15 @@
 			clear() {
 				var _this = this;
 				_this.$refs.signature.clear();
+			},
+			resizeCanvas() {
+				var canvas = document.getElementById("canvas");
+				canvas.width  =280;
+				canvas.height = 280;
 			}
+		},
+		mounted: function () {
+			this.resizeCanvas()
 		}
 	};
 </script>
