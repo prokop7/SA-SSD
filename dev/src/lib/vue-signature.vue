@@ -43,6 +43,13 @@
 
 						canvas.width  =280;
 						canvas.height = 280;
+						canvas.style.background='white';
+						canvas.style.border='4px dashed rgba(0, 0, 0, .2)';
+                    canvas.style.paddingLeft='0';
+                    canvas.style.paddingRight='0';
+                    canvas.style.marginLeft='auto';
+                    canvas.style.marginRight='auto';
+                   canvas.style.display='block';
 
 				}
 				window.addEventListener("resize", resizeCanvas);
