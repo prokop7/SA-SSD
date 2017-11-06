@@ -8,7 +8,7 @@
                             <!--<img v-bind:src="'/dev/images/Untitled-188.png'"  class="center-my">-->
                             <!--<img src='@/dev/src/images/Untitled-188.png' class="center-my"/>-->
                             <!--<my_image></my_image>-->
-
+                            <img :src="confirm_img" class="center-my" style="argin-top: 20px;width: 241px;">
                             <f7-login-screen-title>Login</f7-login-screen-title>
                             <f7-list form>
                                 <f7-list-item>
@@ -51,7 +51,8 @@
     var data = {
         password: "",
         email: "",
-        error: undefined
+        error: undefined,
+        confirm_img:require('@/images/Untitled-188.png')
     }
 
 
