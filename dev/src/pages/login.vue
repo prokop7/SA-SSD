@@ -5,6 +5,10 @@
                 <f7-view>
                     <f7-pages>
                         <f7-page login-screen>
+                            <!--<img v-bind:src="'/dev/images/Untitled-188.png'"  class="center-my">-->
+                            <img src='@/dev/src/images/Untitled-188.png' class="center-my"/>
+                            <!--<my_image></my_image>-->
+
                             <f7-login-screen-title>Login</f7-login-screen-title>
                             <f7-list form>
                                 <f7-list-item>

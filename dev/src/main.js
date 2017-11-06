@@ -13,15 +13,15 @@ import Routes from './routes.js'
 // Import App Component
 import App from './app.vue'
 
+//image in login page
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
 
 //signature
-// import vueSignature from "vue-signature"
-// Vue.use(vueSignature)
 import vueSignature from "./lib/index.js"
 Vue.use(vueSignature)
+
 // Init App
 export var mainVue = new Vue({
 	el: '#app',

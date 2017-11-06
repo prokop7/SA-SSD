@@ -10,18 +10,16 @@
 					Approve
 				</f7-nav-left>
 			</f7-navbar>
-			<img src="http://pamirtimes.net/wp-content/uploads/2015/03/Security_Approved.png" id="approveicon"class="">
+			<img src="images/confirm.png" id="approveicon"class="">
 			<f7-block-title class="title-style">Confirm receipt of the {{name}}</f7-block-title>
 			<img src="http://cdn.onlinewebfonts.com/svg/img_71904.png" id="trash" @click="clear()"class="">
-			<f7-block>
+			<f7-block class="canvas1 center-my">
 
 				<div id="watermark">
-
-							<hr width="288px" align="center"  size="0" style="    border: 2px;"/>
 					Please, sign here
 
 				</div>
-				<vueSignature  ref="signature" :sigOption="sigConfig" class="canvas1" ></vueSignature>
+				<vueSignature  ref="signature" :sigOption="sigConfig" ></vueSignature>
 				<f7-buttons>
 					<f7-button  fill class="buttonConfirm" @click="save()" style="    background-color: #60bf84;">Confirm</f7-button>
 					</f7-buttons>
