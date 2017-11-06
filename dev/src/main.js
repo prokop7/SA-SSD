@@ -18,9 +18,10 @@ import App from './app.vue'
 Vue.use(Framework7Vue)
 
 //signature
-import vueSignature from "vue-signature"
+// import vueSignature from "vue-signature"
+// Vue.use(vueSignature)
+import vueSignature from "./lib/index.js"
 Vue.use(vueSignature)
-
 // Init App
 export var mainVue = new Vue({
 	el: '#app',
