@@ -45,6 +45,7 @@
             };
         },
 
+<<<<<<< HEAD
         methods: {
             save() {
                 var _this = this;
@@ -61,4 +62,30 @@
             }
         }
     };
+=======
+		methods: {
+			save() {
+				var _this = this;
+				var png = _this.$refs.signature.save()
+				var jpeg = _this.$refs.signature.save('image/jpeg')
+				var svg = _this.$refs.signature.save('image/svg+xml');
+				console.log(png);
+				console.log(jpeg)
+				console.log(svg)
+			},
+			clear() {
+				var _this = this;
+				_this.$refs.signature.clear();
+			},
+			resizeCanvas() {
+				var canvas = document.getElementById("canvas");
+				canvas.width  =280;
+				canvas.height = 280;
+			}
+		},
+		mounted: function () {
+			this.resizeCanvas()
+		}
+	};
+>>>>>>> c4516704aba35515bd8849fa82516591cee4df99
 </script>
