@@ -6,5 +6,6 @@ www/static/
 www/index.html
 dev/node_modules/
 dev/package-lock.json
+www/dist/*
 plugins/
 package-lock.json
