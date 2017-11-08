@@ -119,3 +119,12 @@ Your custom styles go here
 #rejectParcel .buttonConfirm{background-color:#f57d00; }
 #approveParcel .navbar{background: rgb(96, 191, 132);}
 #rejectParcel .navbar{background-color:#f57d00; }
+.icon-style{
+    opacity: 0.5;
+}
+#space-between-icon-and-text_icon{
+    position: absolute;
+}
+#space-between-icon-and-text_text{
+    padding-left: 40px;
+}
