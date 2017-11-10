@@ -70,7 +70,7 @@
 			setParcels(parcels) {
 				this.parcels = parcels
 			},
-			loadParcels(event, done) {
+			loadParcels(done) {
 				api.loadAllParcels(this.token, this.setParcels)
 				if (done)
 					setTimeout(function () {
