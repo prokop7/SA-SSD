@@ -1,7 +1,7 @@
 <template>
 	<div id="parcels">
-		<f7-page title="Parcels" sliding tabbar-fixed>
-			<f7-navbar>
+		<f7-page title="Parcels" sliding  tabbar-fixed  pull-to-refresh @ptr:refresh="onRefresh">
+			<f7-navbar >
 				<f7-nav-left>
 					<f7-link icon="icon-bars" open-panel="left"></f7-link>
 				</f7-nav-left>
@@ -13,7 +13,11 @@
 				<f7-link href="#tab-delivered" tab-link text="Delivered"></f7-link>
 				<f7-link href="#tab-blocked" tab-link text="Blocked"></f7-link>
 			</f7-toolbar>
-
+			<!--<pull-refresh :next="onRefresh" >-->
+				<!--<div slot="list">-->
+					<!--Your code-->
+				<!--</div>-->
+			<!--</pull-refresh>-->
 			<f7-tabs>
 				<parcel-tab :state="'Transit'"
 				            @openOnMap="openOnMap"
@@ -23,9 +27,9 @@
 				<parcel-tab :state="'Delivered'"></parcel-tab>
 				<parcel-tab :state="'Blocked'"></parcel-tab>
 			</f7-tabs>
-			<f7-fab color="pink" @click="loadParcels">
-				<i class="material-icons">refresh</i>
-			</f7-fab>
+			<!--<f7-fab color="pink" @click="loadParcels">-->
+				<!--<i class="material-icons">refresh</i>-->
+			<!--</f7-fab>-->
 		</f7-page>
 	</div>
 </template>
@@ -35,6 +39,8 @@
 	import {bus} from '@/main'
 
 	var data = {
+        counter: 6,
+        items: [1,2,3,4,5],
 		parcels: {},
 		isAllParcels: false
 	};
@@ -50,6 +56,15 @@
 			return data
 		},
 		methods: {
+
+            onRefresh: function (event, done) {
+                var self = this;
+                setTimeout(function () {
+                    self.items.push(self.counter);
+                    self.counter++;
+                    done();
+                }, 2000);
+            },
 			openOnMap: function (location_from, location_to, name) {
 				this.$emit('openOnMap', location_from, location_to, name)
 			},

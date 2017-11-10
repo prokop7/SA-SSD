@@ -13,6 +13,7 @@ import Routes from './routes.js'
 // Import App Component
 import App from './app.vue'
 
+//image in login page
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
@@ -20,6 +21,10 @@ Vue.use(Framework7Vue)
 //signature
 import vueSignature from "vue-signature"
 Vue.use(vueSignature)
+
+//page refresh
+import VuePullToRefresh from 'vue-pull-to-refresh'
+Vue.use(VuePullToRefresh)
 
 // Init App
 export var mainVue = new Vue({
