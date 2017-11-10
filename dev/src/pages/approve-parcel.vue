@@ -6,7 +6,6 @@
                     <f7-link icon="icon-back" link="#" @click="$emit('loadParcels')"></f7-link>
                 </f7-nav-left>
                 <f7-nav-left>
-                    <!--564R5{{name}}TT89-->
                     Approve
                 </f7-nav-left>
             </f7-navbar>
@@ -15,7 +14,6 @@
             <img :src="retry_img" id="trash" @click="clear()" class="">
 
             <f7-block>
-
                 <div id="watermark">Please, sign here</div>
                     <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
                 <f7-buttons>
@@ -38,8 +36,6 @@
         },
         data() {
             return {
-
-
                 confirm_img:require('@/images/confirm1.png'),
                 retry_img:require('@/images/retry1.png'),
                 sigConfig: {
@@ -57,7 +53,7 @@
 				var jpeg = _this.$refs.signature.save('image/jpeg')
 				var svg = _this.$refs.signature.save('image/svg+xml');
 				console.log(png);
-				console.log(jpeg)
+				console.log(jpeg.replace(/^data:image\/(png|jpeg);base64,/, ""))
 				console.log(svg)
 			},
 			clear() {
