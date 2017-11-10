@@ -27,9 +27,9 @@
 				<parcel-tab :state="'Delivered'"></parcel-tab>
 				<parcel-tab :state="'Blocked'"></parcel-tab>
 			</f7-tabs>
-			<!--<f7-fab color="pink" @click="loadParcels">-->
-				<!--<i class="material-icons">refresh</i>-->
-			<!--</f7-fab>-->
+			<f7-fab color="pink" @click="$emit('loadSearch')">
+				<i class="material-icons">search</i>
+			</f7-fab>
 		</f7-page>
 	</div>
 </template>
@@ -39,8 +39,6 @@
 	import {bus} from '@/main'
 
 	var data = {
-        counter: 6,
-        items: [1,2,3,4,5],
 		parcels: {},
 		isAllParcels: false
 	};
@@ -59,11 +57,10 @@
 
             onRefresh: function (event, done) {
                 var self = this;
-                setTimeout(function () {
-                    self.items.push(self.counter);
-                    self.counter++;
-                    done();
-                }, 2000);
+	            bus.$emit("loadParcels", done);
+//                setTimeout(function () {
+//
+//                }, 2000);
             },
 			openOnMap: function (location_from, location_to, name) {
 				this.$emit('openOnMap', location_from, location_to, name)

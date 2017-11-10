@@ -21,10 +21,6 @@ Vue.use(Framework7Vue)
 import vueSignature from "vue-signature"
 Vue.use(vueSignature)
 
-//page refresh
-import VuePullToRefresh from 'vue-pull-to-refresh'
-Vue.use(VuePullToRefresh)
-
 // Init App
 export var mainVue = new Vue({
 	el: '#app',
