@@ -9,15 +9,15 @@
                     Approve
                 </f7-nav-left>
             </f7-navbar>
-            <img :src="confirm_img" id="approveicon" class="">
+            <i class="material-icons icon-style" style="color: rgb(96, 191, 132);" id="approveicon" >verified_user</i>
             <f7-block-title class="title-style">Confirm receipt of the {{name}}</f7-block-title>
-            <img :src="retry_img" id="trash" @click="clear()" class="">
+            <i class="material-icons icon-style"  id="trash" @click="clear()">replay</i>
 
             <f7-block>
                 <div id="watermark">Please, sign here</div>
                     <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
                 <f7-buttons>
-                    <f7-button fill class="buttonConfirm" @click="save()">
+                    <f7-button fill class="buttonConfirm" @click="save()" style="margin-top:16px">
                         Confirm
                     </f7-button>
                 </f7-buttons>
@@ -72,16 +72,6 @@
                 canvas.style.marginRight='auto';
                 canvas.style.display='block';
                 canvas.style.width='-webkit-fill-available';
-//                canvas.textContent="HELLO";
-//                var ctx = canvas.getContext("2d");
-//                ctx.fillText("Hello World",canvas.width/2,canvas.height/2);
-////                ctx.opacity=0.2;
-//                ctx.position= 'fixed';
-//                ctx.opacity= 0.3;
-//                ctx.zIndex=99;
-//                ctx.fontSize='21px';
-////                ctx.text-align: center;
-
 			}
 		},
 		mounted: function () {
