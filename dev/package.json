@@ -34,7 +34,6 @@
     "hard-source-webpack-plugin": "^0.4.9",
     "vue": "^2.2.4",
     "vue-loader": "^13.3.0",
-    "vue-pull-to-refresh": "^1.1.4",
     "vue-signature": "^1.1.4"
   },
   "devDependencies": {
