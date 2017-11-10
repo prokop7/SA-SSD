@@ -18,7 +18,6 @@
 
                 <div id="watermark">Please, sign here</div>
                     <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
-
                 <f7-buttons>
                     <f7-button fill class="buttonConfirm" @click="save()">
                         Confirm

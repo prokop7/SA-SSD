@@ -44,6 +44,13 @@ export function loadAllParcels(token, appendParcels, errorCallback) {
 	request('GET', server_url + "parcels/driver/my?api_token=" + token, '', appendParcels, errorCallback);
 }
 
+export function searchParcels(token, loc, setParcels, errorCallback) {
+	request('GET', server_url + "parcels/search?radius=10000" +
+		"&location[lat]=" + loc.lat +
+		"&location[long]=" + loc.lng +
+		"&api_token=" + token, '', setParcels, errorCallback);
+}
+
 export function requestWithParameters(type, url, data, successCallback, errorCallback, params) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(type, url, true);
@@ -85,7 +92,7 @@ export function updateParcel(token, index, status_id, successCallback, errorCall
 	requestWithParameters(
 		'POST',
 		server_url + "parcels/" + index + "?api_token=" + token,
-		{status_id: status_id},
+		{status_id: status_id, driver_id: '1'},
 		successCallback,
 		errorCallback,
 		index);

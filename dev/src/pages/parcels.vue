@@ -27,9 +27,9 @@
 				<parcel-tab :state="'Delivered'"></parcel-tab>
 				<parcel-tab :state="'Blocked'"></parcel-tab>
 			</f7-tabs>
-			<!--<f7-fab color="pink" @click="loadParcels">-->
-				<!--<i class="material-icons">refresh</i>-->
-			<!--</f7-fab>-->
+			<f7-fab color="pink" @click="$emit('loadSearch')">
+				<i class="material-icons">search</i>
+			</f7-fab>
 		</f7-page>
 	</div>
 </template>

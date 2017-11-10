@@ -2,7 +2,7 @@
 	<!-- App -->
 	<div id="app">
 		<!-- Statusbar -->
-		<f7-statusbar>dfdfd</f7-statusbar>
+		<f7-statusbar></f7-statusbar>
 		<left-panel
 				:name="name"
 				@logout="logout"
@@ -20,6 +20,7 @@
 						         @openOnMap="openOnMap"
 						         @approveParcel="approveParcel"
 						         @rejectParcel="rejectParcel"
+						         @loadSearch="loadSearch"
 						         :token="token">
 						</parcels>
 						<warehouses v-if="state==='warehouses'">
@@ -41,6 +42,10 @@
 						            :pos="pos"
 						            @loadParcels="loadParcels">
 						</google-map>
+						<search-parcels v-if="state==='search-parcels'"
+						                :location="pos"
+						                @loadParcels="loadParcels">
+						</search-parcels>
 					</div>
 				</f7-pages>
 			</f7-view>
@@ -59,6 +64,7 @@
 	import GoogleMap from './pages/google-map.vue'
 	import ApproveParcel from './pages/approve-parcel.vue'
 	import RejectParcel from './pages/reject-parcel.vue'
+	import SearchParcels from './pages/search-parcels.vue'
 	import api from '@/api/index'
 
 	var app = {
@@ -91,9 +97,10 @@
 					address: 'Somewhere'
 				}
 			}
-			data.pos = pos
 			api.sendGeolocation(data.token, position)
 
+			console.log('HERE')
+			data.pos = pos;
 			app.aftereffect()
 		},
 		aftereffect: function () {
@@ -104,6 +111,7 @@
 		}
 
 	};
+
 	var data = {
 		data: {},
 		token: localStorage.getItem('token'),
@@ -111,7 +119,12 @@
 		state: 'parcels',
 		from: {},
 		to: {},
-		pos: {},
+		pos: {
+			coords: {
+				latitude: 48,
+				longitude: 55
+			}
+		},
 		parcelName: "",
 		parcelId: 0
 	};
@@ -125,7 +138,8 @@
 			Warehouses,
 			GoogleMap,
 			ApproveParcel,
-			RejectParcel
+			RejectParcel,
+			SearchParcels
 		},
 		data: function () {
 			return data
@@ -155,6 +169,9 @@
 			},
 			loadMap() {
 				this.state = 'map'
+			},
+			loadSearch() {
+				this.state = 'search-parcels'
 			},
 			openOnMap(location_from, location_to, name) {
 				var from = {
