@@ -36,6 +36,8 @@
         },
         data() {
             return {
+                confirm_img:require('@/images/confirm1.png'),
+                retry_img:require('@/images/retry1.png'),
                 sigConfig: {
                     penColor: "rgb(66, 133, 244)"
                 }
@@ -43,40 +45,36 @@
 
         },
 
-
-        methods: {
-            save() {
-
-                var _this = this;
-
-                var png = _this.$refs.signature.save()
-                var jpeg = _this.$refs.signature.save('image/jpeg')
-                var svg = _this.$refs.signature.save('image/svg+xml');
-                console.log(png);
-                console.log(jpeg)
-                console.log(svg)
-
-            },
-            clear() {
-                var _this = this;
-                _this.$refs.signature.clear();
-            },
-            resizeCanvas() {
-                var canvas = document.getElementById("canvas");
-                canvas.width = innerWidth;
-                canvas.height = 280;
-                canvas.style.background = 'white';
-                canvas.style.border = '4px dashed rgba(0, 0, 0, .2)';
-                canvas.style.paddingLeft = '0';
-                canvas.style.paddingRight = '0';
-                canvas.style.marginLeft = 'auto';
-                canvas.style.marginRight = 'auto';
-                canvas.style.display = 'block';
-                canvas.style.width = '-webkit-fill-available';
-            }
-        },
-        mounted: function () {
-            this.resizeCanvas()
-        }
-    };
+		methods: {
+			save() {
+				var _this = this;
+				var png = _this.$refs.signature.save()
+				var jpeg = _this.$refs.signature.save('image/jpeg')
+				var svg = _this.$refs.signature.save('image/svg+xml');
+				console.log(png);
+				console.log(jpeg.replace(/^data:image\/(png|jpeg);base64,/, ""))
+				console.log(svg)
+			},
+			clear() {
+				var _this = this;
+				_this.$refs.signature.clear();
+			},
+			resizeCanvas() {
+				var canvas = document.getElementById("canvas");
+				canvas.width  =innerWidth;
+				canvas.height = 280;
+                canvas.style.background='white';
+                canvas.style.border='4px dashed rgba(0, 0, 0, .2)';
+                canvas.style.paddingLeft='0';
+                canvas.style.paddingRight='0';
+                canvas.style.marginLeft='auto';
+                canvas.style.marginRight='auto';
+                canvas.style.display='block';
+                canvas.style.width='-webkit-fill-available';
+			}
+		},
+		mounted: function () {
+			this.resizeCanvas()
+		}
+	};
 </script>

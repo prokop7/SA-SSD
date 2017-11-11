@@ -57,9 +57,7 @@
 			loadParcels(done) {
 				api.searchParcels(this.token, this.location, this.setParcels)
 				if (done)
-					setTimeout(function () {
-						done();
-					}, 1000);
+					done()
 			},
 			refreshParcels() {
 				this.loadParcels()
