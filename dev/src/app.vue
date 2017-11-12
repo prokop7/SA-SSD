@@ -42,7 +42,7 @@
 						            :pos="pos"
 						            @loadParcels="loadParcels">
 						</google-map>
-						<search-parcels v-if="state==='search-parcels'"
+						<search-parcels v-if="state==='searchParcels'"
 						                :location="pos"
 						                @loadParcels="loadParcels">
 						</search-parcels>
@@ -121,8 +121,8 @@
 		to: {},
 		pos: {
 			coords: {
-				latitude: 48,
-				longitude: 55
+				latitude: 55.753432,
+				longitude:  48.741957
 			}
 		},
 		parcelName: "",
@@ -171,7 +171,7 @@
 				this.state = 'map'
 			},
 			loadSearch() {
-				this.state = 'search-parcels'
+				this.state = 'searchParcels'
 			},
 			openOnMap(location_from, location_to, name) {
 				var from = {

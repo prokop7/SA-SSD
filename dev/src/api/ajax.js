@@ -44,8 +44,10 @@ export function loadAllParcels(token, appendParcels, errorCallback) {
 	request('GET', server_url + "parcels/driver/my?api_token=" + token, '', appendParcels, errorCallback);
 }
 
-export function searchParcels(token, loc, setParcels, errorCallback) {
-	request('GET', server_url + "parcels/search?radius=10000" +
+export function searchParcels(token, loc, radius, setParcels, errorCallback) {
+	request('GET', server_url + "parcels/search?" +
+		"radius=" + radius +
+		"&limit=" + 10 +
 		"&location[lat]=" + loc.lat +
 		"&location[long]=" + loc.lng +
 		"&api_token=" + token, '', setParcels, errorCallback);
