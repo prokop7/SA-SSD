@@ -18,7 +18,7 @@
 					<!--Your code-->
 				<!--</div>-->
 			<!--</pull-refresh>-->
-			<f7-tabs>
+			<f7-tabs animated>
 				<parcel-tab :state="'Transit'"
 				            @openOnMap="openOnMap"
 				            @approveParcel="approveParcel"
