@@ -14,10 +14,11 @@
             <i class="material-icons icon-style"  id="trash" @click="clear()">replay</i>
 
             <f7-block>
-
                 <div id="watermark">Please, sign here</div>
                 <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
-
+                <f7-list form>
+                    <f7-input type="text" placeholder="Rejected message" v-model="rejectedMessage"></f7-input>
+                </f7-list>
                 <f7-buttons>
                     <f7-button fill class="buttonConfirm" @click="save()" style="margin-top:16px">
                         Confirm
@@ -32,17 +33,17 @@
 	import api from "@/api"
 
     export default {
-
-        name: "approveParcel",
         props: {
             name: {},
-            id: {}
+            id: {},
+	        token: {}
         },
         data() {
             return {
                 sigConfig: {
                     penColor: "rgb(66, 133, 244)"
-                }
+                },
+                rejectedMessage: ""
             };
 
         },
@@ -53,14 +54,13 @@
 	            var _this = this;
 	            var png = _this.$refs.signature.save()
 	            var image = api.convert(png)
-	            api.sendImage(this.token, image, this.rejectParcel, function (eNum, e) {
+                var data = {img: image, parcelId: this.id, statusId: 6, rejectedMessage: this.rejectedMessage}
+	            api.sendImage(this.token, data, function () {
+		            _this.$emit('loadParcels')
+	            }, function (eNum, e) {
 		            alert(e.message)
 	            })
             },
-	        rejectParcel() {
-		        api.updateParcel(this.token, this.id, 6)
-		        this.$emit('loadParcels')
-	        },
             clear() {
                 var _this = this;
                 _this.$refs.signature.clear();

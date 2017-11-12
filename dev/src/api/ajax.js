@@ -36,13 +36,22 @@ export function request(type, url, data, successCallback, errorCallback) {
 	xhr.send(JSON.stringify(data));
 }
 
-export function sendImage(token, img, successCallback, errorCallback) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", server_url + "parcels/?api_token=" + token, true);
-	xhr.setRequestHeader('Accept', 'application/json');
-	xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+export function sendImage(token, data, successCallback, errorCallback) {
 	var fData = new FormData()
-	fData.append('image', img)
+	fData.append('sign_image', data.img)
+	fData.append('status_id', data.statusId)
+	if (data.rejectedMessage)
+		fData.append('rejected_message', data.rejectedMessage);
+
+
+	var xhr = new XMLHttpRequest();
+	xhr.withCredentials = true;
+
+	xhr.open("POST", "https://tcsw.innopolis.dl-dev.ru/api/parcels/" + data.parcelId);
+	xhr.setRequestHeader("accept", "application/json");
+	xhr.setRequestHeader("authorization", "Bearer " + token);
+	xhr.setRequestHeader("cache-control", "no-cache");
+
 	xhr.onload = function () {
 		if (xhr.response) {
 			if (xhr.status >= 200 && xhr.status < 400) {
@@ -70,7 +79,6 @@ export function sendImage(token, img, successCallback, errorCallback) {
 		if (errorCallback)
 			errorCallback(xhr.status);
 	}
-	xhr.responseType = 'json';
 	xhr.send(fData);
 }
 

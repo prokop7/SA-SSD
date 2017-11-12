@@ -50,14 +50,13 @@
 				var _this = this;
 				var png = _this.$refs.signature.save()
 				var image = api.convert(png)
-                api.sendImage(this.token, image, this.confirmParcel, function (eNum, e) {
+                var data = {img: image, parcelId: this.id, statusId: 5}
+                api.sendImage(this.token, data, function () {
+	                _this.$emit('loadParcels')
+                }, function (eNum, e) {
                 	alert(e.message)
                 })
 			},
-            confirmParcel() {
-			    api.updateParcel(this.token, this.id, 5)
-                this.$emit('loadParcels')
-            },
 			clear() {
 				var _this = this;
 				_this.$refs.signature.clear();
