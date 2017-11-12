@@ -29,6 +29,8 @@
 </template>
 
 <script>
+	import api from "@/api"
+
     export default {
 
         name: "approveParcel",
@@ -48,15 +50,17 @@
 
         methods: {
             save() {
-                var _this = this;
-                var png = _this.$refs.signature.save()
-                var jpeg = _this.$refs.signature.save('image/jpeg')
-                var svg = _this.$refs.signature.save('image/svg+xml');
-                console.log(png);
-                console.log(jpeg)
-                console.log(svg)
-
+	            var _this = this;
+	            var png = _this.$refs.signature.save()
+	            var image = api.convert(png)
+	            api.sendImage(this.token, image, this.rejectParcel, function (eNum, e) {
+		            alert(e.message)
+	            })
             },
+	        rejectParcel() {
+		        api.updateParcel(this.token, this.id, 6)
+		        this.$emit('loadParcels')
+	        },
             clear() {
                 var _this = this;
                 _this.$refs.signature.clear();

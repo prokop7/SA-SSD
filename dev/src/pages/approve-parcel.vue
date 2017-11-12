@@ -27,12 +27,13 @@
 </template>
 
 <script>
-    export default {
+    import api from "@/api"
 
-        name: "approveParcel",
+    export default {
         props: {
             name: {},
-            id: {}
+            id: {},
+            token: {}
         },
         data() {
             return {
@@ -44,17 +45,19 @@
             };
 
         },
-
 		methods: {
 			save() {
 				var _this = this;
 				var png = _this.$refs.signature.save()
-				var jpeg = _this.$refs.signature.save('image/jpeg')
-				var svg = _this.$refs.signature.save('image/svg+xml');
-				console.log(png);
-				console.log(jpeg.replace(/^data:image\/(png|jpeg);base64,/, ""))
-				console.log(svg)
+				var image = api.convert(png)
+                api.sendImage(this.token, image, this.confirmParcel, function (eNum, e) {
+                	alert(e.message)
+                })
 			},
+            confirmParcel() {
+			    api.updateParcel(this.token, this.id, 5)
+                this.$emit('loadParcels')
+            },
 			clear() {
 				var _this = this;
 				_this.$refs.signature.clear();

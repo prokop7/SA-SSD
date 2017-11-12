@@ -16,7 +16,6 @@
 				<f7-pages navbar-through>
 					<div v-if="token">
 						<parcels v-if="state==='parcels'"
-						         @remove="removeParcel"
 						         @openOnMap="openOnMap"
 						         @approveParcel="approveParcel"
 						         @rejectParcel="rejectParcel"
@@ -28,12 +27,14 @@
 						<approve-parcel v-if="state==='approveParcel'"
 						                :id="parcelId"
 						                :name="parcelName"
-						                @loadParcels="loadParcels">
+						                @loadParcels="loadParcels"
+						                :token="token">
 						</approve-parcel>
 						<reject-parcel v-if="state==='rejectParcel'"
 						               :id="parcelId"
 						               :name="parcelName"
-						               @loadParcels="loadParcels">
+						               @loadParcels="loadParcels"
+						               :token="token">
 						</reject-parcel>
 						<google-map v-if="state==='map'"
 						            :name="parcelName"
@@ -42,7 +43,7 @@
 						            :pos="pos"
 						            @loadParcels="loadParcels">
 						</google-map>
-						<search-parcels v-if="state==='search-parcels'"
+						<search-parcels v-if="state==='searchParcels'"
 						                :location="pos"
 						                @loadParcels="loadParcels">
 						</search-parcels>
@@ -109,7 +110,6 @@
 		sendLocation: function () {
 			navigator.geolocation.getCurrentPosition(app.receivedLocation, app.onError);
 		}
-
 	};
 
 	var data = {
@@ -121,8 +121,8 @@
 		to: {},
 		pos: {
 			coords: {
-				latitude: 48,
-				longitude: 55
+				latitude: 55.753432,
+				longitude:  48.741957
 			}
 		},
 		parcelName: "",
@@ -146,11 +146,6 @@
 		},
 		props: {},
 		methods: {
-			removeParcel(idToRemove) {
-				this.data = this.data.filter(item => {
-					return item.id !== idToRemove
-				})
-			},
 			setToken(token) {
 				this.token = token
 //				this.$emit('loadParcels')
@@ -171,7 +166,7 @@
 				this.state = 'map'
 			},
 			loadSearch() {
-				this.state = 'search-parcels'
+				this.state = 'searchParcels'
 			},
 			openOnMap(location_from, location_to, name) {
 				var from = {

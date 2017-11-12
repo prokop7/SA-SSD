@@ -15,7 +15,6 @@
 									<p>Location: {{parcel.location.address}}</p>
 									<p>Email: {{parcel.sender.email}}</p>
 									<p>Phone: {{parcel.phones.to}}</p>
-									<p>Status: {{parcel.status}}</p>
 								</f7-block>
 								<f7-card-footer v-if="parcel.status === 'Transit'">
 									<f7-buttons>
