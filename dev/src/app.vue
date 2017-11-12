@@ -16,7 +16,6 @@
 				<f7-pages navbar-through>
 					<div v-if="token">
 						<parcels v-if="state==='parcels'"
-						         @remove="removeParcel"
 						         @openOnMap="openOnMap"
 						         @approveParcel="approveParcel"
 						         @rejectParcel="rejectParcel"
@@ -28,12 +27,14 @@
 						<approve-parcel v-if="state==='approveParcel'"
 						                :id="parcelId"
 						                :name="parcelName"
-						                @loadParcels="loadParcels">
+						                @loadParcels="loadParcels"
+						                :token="token">
 						</approve-parcel>
 						<reject-parcel v-if="state==='rejectParcel'"
 						               :id="parcelId"
 						               :name="parcelName"
-						               @loadParcels="loadParcels">
+						               @loadParcels="loadParcels"
+						               :token="token">
 						</reject-parcel>
 						<google-map v-if="state==='map'"
 						            :name="parcelName"
@@ -109,7 +110,6 @@
 		sendLocation: function () {
 			navigator.geolocation.getCurrentPosition(app.receivedLocation, app.onError);
 		}
-
 	};
 
 	var data = {
@@ -146,11 +146,6 @@
 		},
 		props: {},
 		methods: {
-			removeParcel(idToRemove) {
-				this.data = this.data.filter(item => {
-					return item.id !== idToRemove
-				})
-			},
 			setToken(token) {
 				this.token = token
 //				this.$emit('loadParcels')

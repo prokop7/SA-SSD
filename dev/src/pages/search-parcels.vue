@@ -89,6 +89,7 @@
 				api.updateParcel(this.token, parcel_id, 3, this.refreshParcels)
 			},
 			loadMap() {
+				this.loadParcels()
 				this.onMap = !this.onMap
 			},
 			loadBack() {

@@ -36,6 +36,44 @@ export function request(type, url, data, successCallback, errorCallback) {
 	xhr.send(JSON.stringify(data));
 }
 
+export function sendImage(token, img, successCallback, errorCallback) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", server_url + "parcels/?api_token=" + token, true);
+	xhr.setRequestHeader('Accept', 'application/json');
+	xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+	var fData = new FormData()
+	fData.append('image', img)
+	xhr.onload = function () {
+		if (xhr.response) {
+			if (xhr.status >= 200 && xhr.status < 400) {
+				// console.log(xhr.status);
+				var result;
+				try {
+					result = xhr.response.data;
+				}
+				catch (e) {
+					result = xhr.response.result;
+				}
+				if (successCallback)
+					successCallback(result);
+			} else {
+				console.error(xhr.response);
+				if (errorCallback)
+					errorCallback(xhr.status, xhr.response);
+			}
+		} else {
+			console.error('Response is absent!');
+		}
+	}
+	xhr.onerror = function () {
+		console.error(xhr.status);
+		if (errorCallback)
+			errorCallback(xhr.status);
+	}
+	xhr.responseType = 'json';
+	xhr.send(fData);
+}
+
 export function loadActiveParcels(token, appendParcels, errorCallback) {
 	request('GET', server_url + "parcels/driver/my?status_id=3&api_token=" + token, '', appendParcels, errorCallback);
 }
