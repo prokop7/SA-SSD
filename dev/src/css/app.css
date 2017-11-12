@@ -111,3 +111,27 @@ Your custom styles go here
     padding-left: 40px;
 }
 
+.range1{
+    width: 100%;
+    font-size: 12px;
+    min-width: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex: 0 1 auto;
+    flex-shrink: 1;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    vertical-align: top;
+    color: rgba(0,0,0,.65);
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    width: 35%;
+    -webkit-box-flex: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex: 0 0 auto;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+}
