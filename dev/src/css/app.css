@@ -46,7 +46,8 @@ Your custom styles go here
 }
 
 .signInButton {
-    margin: 16px;
+    margin-top: 16px;
+    width: 80px;
 }
 
 .center-my {

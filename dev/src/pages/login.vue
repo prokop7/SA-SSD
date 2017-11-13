@@ -8,7 +8,8 @@
                             <!--<img v-bind:src="'/dev/images/Untitled-188.png'"  class="center-my">-->
                             <!--<img src='@/dev/src/images/Untitled-188.png' class="center-my"/>-->
                             <!--<my_image></my_image>-->
-                            <img :src="confirm_img" class="center-my" style="argin-top: 20px;width: 241px;">
+                            <img :src="confirm_img" class="center-my" style="    width: 210px;
+    margin-top: 24px;">
                             <f7-login-screen-title>Login</f7-login-screen-title>
                             <f7-list form>
                                 <f7-list-item>
@@ -24,7 +25,7 @@
 
                             </f7-list>
 
-                            <f7-button class="signInButton" fill @click="signIn()">Sign In</f7-button>
+                            <f7-button class="signInButton center-my" fill @click="signIn()">Sign In</f7-button>
 
 
                             <div v-if="error">
