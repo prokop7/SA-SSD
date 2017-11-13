@@ -19,7 +19,7 @@
                 <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
 
                 <i class="material-icons icon-style" id="reasonicon" >warning</i>
-                <f7-block-title class="title-style">why did you cancel the parcel? </f7-block-title>
+                <f7-block-title class="title-style">Why did you cancel the parcel? </f7-block-title>
                 <f7-list form>
 
                     <f7-input type="text" class="reject-input line" placeholder="Rejected message" v-model="rejectedMessage">
