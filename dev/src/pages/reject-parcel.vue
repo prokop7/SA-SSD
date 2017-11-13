@@ -73,7 +73,7 @@
                 _this.$refs.signature.clear();
             },
             resizeCanvas() {
-                var canvas = document.getElementById("canvas");
+	            var canvas = document.querySelector(".canvas");
                 canvas.width  =innerWidth;
                 canvas.height = 280;
                 canvas.style.background='white';

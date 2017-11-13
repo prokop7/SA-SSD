@@ -8,8 +8,8 @@
                             <!--<img v-bind:src="'/dev/images/Untitled-188.png'"  class="center-my">-->
                             <!--<img src='@/dev/src/images/Untitled-188.png' class="center-my"/>-->
                             <!--<my_image></my_image>-->
-                            <img :src="confirm_img" class="center-my" style="    width: 210px;
-    margin-top: 24px;">
+                            <!--<img :src="confirm_img" class="center-my" style="    width: 210px;-->
+    <!--margin-top: 24px;">-->
                             <f7-login-screen-title>Login</f7-login-screen-title>
                             <f7-list form>
                                 <f7-list-item>
