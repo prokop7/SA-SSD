@@ -73,7 +73,7 @@
             clear() {
                 var _this = this;
                 _this.$refs.signature.clear();
-                var canvas = document.getElementById("canvas");
+                var canvas = document.querySelector(".canvas");
                 //draw placeholder inside canvas
                 var context = canvas.getContext('2d');
                 context.fillStyle = "rgba(0, 0, 0, .2)";
@@ -83,8 +83,7 @@
                 context.fillText("Please, sign here", canvas.width/2,canvas.height/2);
             },
             resizeCanvas() {
-                //draw canvas
-                var canvas = document.getElementById("canvas");
+                var canvas = document.querySelector(".canvas");
                 canvas.width  =innerWidth;
                 canvas.height = innerHeight/3;
                 canvas.style.background='white';

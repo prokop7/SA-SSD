@@ -62,7 +62,7 @@
 			clear() {
 				var _this = this;
 				_this.$refs.signature.clear();
-                var canvas = document.getElementById("canvas");
+                var canvas = document.querySelector(".canvas");
                 //draw placeholder inside canvas
                 var context = canvas.getContext('2d');
                 context.fillStyle = "rgba(0, 0, 0, .2)";
@@ -73,9 +73,9 @@
 			},
 			resizeCanvas() {
                 //draw canvas
-                var canvas = document.getElementById("canvas");
-                canvas.width  =innerWidth;
-                canvas.height = innerHeight/3;
+				var canvas = document.querySelector(".canvas");
+				canvas.width  =innerWidth;
+				canvas.height = innerHeight/3;
                 canvas.style.background='white';
                 canvas.style.border='2px dashed rgba(0, 0, 0, .2)';
                 canvas.style.paddingLeft='0';
