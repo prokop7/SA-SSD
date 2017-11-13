@@ -9,7 +9,7 @@
 
 ### Desktop
 
-In your browser, open the file:
+In your console, open the project folder and execute these commands:
 ```bash
 cd ./dev
 npm install
