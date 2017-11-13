@@ -11,23 +11,32 @@
             </f7-navbar>
             <!--<i class="material-icons icon-style" id="approveicon" >verified_user</i>-->
             <f7-block>
-                <f7-block-title class="title-style">Confirm cancellation of the {{name}}</f7-block-title>
+                <f7-block-title class="title-style">
+                    <i class="material-icons icon-style" id="reasonicon" >warning</i>
+                    Why did you cancel the parcel? </f7-block-title>
+                <input class="input1" type="text" placeholder="Rejected message" v-model="rejectedMessage">
+
+
+
+                <f7-block-title class="title-style">
+                    <i class="material-icons icon-style" id="approveicon">verified_user</i>
+
+                    Confirm cancellation of the {{name}}</f7-block-title>
                 <i class="material-icons icon-style"  id="retry" @click="clear()">replay</i>
                 <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
+                <f7-button class="buttonConfirm center-my button-fill-my" fill @click="save()">Confirm</f7-button>
 
-                <!--<i class="material-icons icon-style" id="reasonicon" >warning</i>-->
-                <f7-block-title class="title-style">Why did you cancel the parcel? </f7-block-title>
-                <f7-list form>
 
-                    <!--<f7-input type="text" class="reject-input line input1" placeholder="Rejected message" v-model="rejectedMessage"></f7-input>-->
+                <!--<f7-list form>-->
 
-                </f7-list>
-                <input class="input1" type="text" placeholder="Оставьте сообщение здесь">
-                <f7-buttons>
-                    <f7-button fill class="buttonConfirm" @click="save()" >
-                        Confirm
-                    </f7-button>
-                </f7-buttons>
+                    <!--&lt;!&ndash;<f7-input type="text" class="reject-input line input1" placeholder="Rejected message" v-model="rejectedMessage"></f7-input>&ndash;&gt;-->
+
+                <!--</f7-list>-->
+                <!--<f7-buttons>-->
+                    <!--<f7-button fill class="buttonConfirm" @click="save()" >-->
+                        <!--Confirm-->
+                    <!--</f7-button>-->
+                <!--</f7-buttons>-->
             </f7-block>
         </f7-page>
     </div>
@@ -77,15 +86,16 @@
                 //draw canvas
                 var canvas = document.getElementById("canvas");
                 canvas.width  =innerWidth;
-                canvas.height = innerHeight/2;
+                canvas.height = innerHeight/3;
                 canvas.style.background='white';
-                canvas.style.border='4px dashed rgba(0, 0, 0, .2)';
+                canvas.style.border='2px dashed rgba(0, 0, 0, .2)';
                 canvas.style.paddingLeft='0';
                 canvas.style.paddingRight='0';
                 canvas.style.marginLeft='auto';
                 canvas.style.marginRight='auto';
                 canvas.style.display='block';
                 canvas.style.width='-webkit-fill-available';
+//                canvas.style.height='-webkit-fill-available';
                 //draw placeholder inside canvas
                 var context = canvas.getContext('2d');
                 context.fillStyle = "rgba(0, 0, 0, .2)";
