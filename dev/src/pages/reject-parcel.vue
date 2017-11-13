@@ -9,18 +9,25 @@
                     Reject
                 </f7-nav-left>
             </f7-navbar>
-            <i class="material-icons icon-style" style="color: rgb(96, 191, 132);" id="approveicon" >verified_user</i>
-            <f7-block-title class="title-style">Confirm receipt of the {{name}}</f7-block-title>
+            <i class="material-icons icon-style" id="approveicon" >verified_user</i>
+            <f7-block-title class="title-style">Confirm cancellation of the {{name}}</f7-block-title>
             <i class="material-icons icon-style"  id="trash" @click="clear()">replay</i>
 
             <f7-block>
+
                 <div id="watermark">Please, sign here</div>
                 <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
+
+                <i class="material-icons icon-style" id="reasonicon" >warning</i>
+                <f7-block-title class="title-style">why did you cancel the parcel? </f7-block-title>
                 <f7-list form>
-                    <f7-input type="text" placeholder="Rejected message" v-model="rejectedMessage"></f7-input>
+
+                    <f7-input type="text" class="reject-input line" placeholder="Rejected message" v-model="rejectedMessage">
+
+                    </f7-input>
                 </f7-list>
                 <f7-buttons>
-                    <f7-button fill class="buttonConfirm" @click="save()" style="margin-top:16px">
+                    <f7-button fill class="buttonConfirm" @click="save()" >
                         Confirm
                     </f7-button>
                 </f7-buttons>

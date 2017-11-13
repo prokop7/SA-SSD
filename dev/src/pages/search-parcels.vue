@@ -8,7 +8,7 @@
                 <f7-nav-left>Parcels nearby</f7-nav-left>
             </f7-navbar>
             <div v-if='onMap===false'>
-
+<div>
 
                 <f7-block-title>
                     <f7-label class="leftstr range1">Search Distance:</f7-label>
@@ -25,7 +25,7 @@
                     <f7-button @click="loadParcels()" color="green">Apply</f7-button>
                     <f7-button @click="loadMap()">Show on map</f7-button>
                 </f7-buttons>
-
+</div>
 
                 <f7-card v-for="parcel in parcelsList"
                          :key="parcel.id">

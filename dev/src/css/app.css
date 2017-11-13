@@ -61,8 +61,19 @@ Your custom styles go here
 #approveicon {
     float: left;
     opacity: 1;
-    margin:16px;
-    padding-top: 16px;
+    margin-top: 32px;
+    margin-right:16px;
+    margin-bottom:16px;
+    margin-left: 16px;
+    color: rgb(96, 191, 132)
+}
+#reasonicon {
+    float: left;
+    opacity: 1;
+    margin-right:16px;
+    margin-bottom:16px;
+    margin-top:32px;
+    color: #f44336;;
 }
 
 /*retry signature*/
@@ -148,4 +159,26 @@ Your custom styles go here
 }
 .sliders{
     padding: 24px;
+}
+/*.reject-input{*/
+/*padding-left: 40px;*/
+/*}*/
+.line {
+    border-bottom: 2px solid #ccc; /* Параметры линии */
+    /*margin-bottom: 20px; !* Отступ слева *!*/
+    /*padding-bottom: 10px; !* Расстояние от линии до текста *!*/
+}
+.list-block ul:before {
+     background-color: white;
+}
+
+.list-block .item-inner:after{
+    background-color: white;
+}
+.list-block .item-inner:before{
+    background-color: white;
+}
+.list-block {
+    margin: 16px 0;
+    font-size: 16px;
 }
