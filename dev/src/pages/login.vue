@@ -53,7 +53,7 @@
         password: "",
         email: "",
         error: undefined,
-        confirm_img:require('@/images/Untitled-188.png')
+        confirm_img:require('@/images/Untitled-184.png')
     }
 
 
