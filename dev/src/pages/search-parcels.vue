@@ -8,18 +8,25 @@
                 <f7-nav-left>Parcels nearby</f7-nav-left>
             </f7-navbar>
             <div v-if='onMap===false'>
-                <f7-block inner>
-
-                    <f7-label>Range {{range}}</f7-label>
-                    <f7-input v-model="range" type="range" min="1" max="100" step="1"></f7-input>
-
-                    <f7-buttons>
-                        <f7-button @click="loadParcels()" color="green">Apply</f7-button>
-                        <f7-button @click="loadMap()">Show on map</f7-button>
-                    </f7-buttons>
 
 
-                </f7-block>
+                <f7-block-title>
+                    <f7-label class="leftstr range1">Search Distance:</f7-label>
+                    <f7-label class="rightstr range1">{{range}} km</f7-label>
+                </f7-block-title>
+                    <f7-card class="remove-shadow sliders">
+
+
+                        <f7-input v-model="range" type="range" min="1" max="100" step="1"></f7-input>
+
+                    </f7-card>
+
+                <f7-buttons>
+                    <f7-button @click="loadParcels()" color="green">Apply</f7-button>
+                    <f7-button @click="loadMap()">Show on map</f7-button>
+                </f7-buttons>
+
+
                 <f7-card v-for="parcel in parcelsList"
                          :key="parcel.id">
                     <f7-card-header>{{parcel.name}}</f7-card-header>
@@ -29,8 +36,22 @@
                                 <f7-list-item accordion-item :title="parcel.to.address">
                                     <f7-accordion-content>
                                         <f7-block>
-                                            <p>From: {{parcel.from.address}}</p>
-                                            <p>To: {{parcel.to.address}}</p>
+                                            <f7-grid>
+                                                <f7-col width="25">
+                                                    <p><b>From</b></p>
+                                                </f7-col>
+                                                <f7-col width="75">
+                                                    <p>{{parcel.from.address}}</p>
+                                                </f7-col>
+                                            </f7-grid>
+                                            <f7-grid>
+                                                <f7-col width="25">
+                                                    <p><b>To</b></p>
+                                                </f7-col>
+                                                <f7-col width="75">
+                                                    <p>{{parcel.to.address}}</p>
+                                                </f7-col>
+                                            </f7-grid>
                                         </f7-block>
                                         <f7-card-footer>
                                             <f7-buttons>

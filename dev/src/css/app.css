@@ -41,6 +41,10 @@ Your custom styles go here
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
 }
 
+.remove-shadow{
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
+}
+
 .signInButton {
     margin: 16px;
 }
@@ -113,25 +117,35 @@ Your custom styles go here
 
 .range1{
     width: 100%;
-    font-size: 12px;
-    min-width: 0;
-    -webkit-box-flex: 1;
-    -webkit-flex-shrink: 1;
-    -ms-flex: 0 1 auto;
-    flex-shrink: 1;
+    font-size: 16px;
+    /*min-width: 0;*/
+    /*-webkit-box-flex: 1;*/
+    /*-webkit-flex-shrink: 1;*/
+    /*-ms-flex: 0 1 auto;*/
+    /*flex-shrink: 1;*/
     white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    vertical-align: top;
+    /*position: relative;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*max-width: 100%;*/
+    /*vertical-align: top;*/
     color: rgba(0,0,0,.65);
-    -webkit-transition-duration: .2s;
-    transition-duration: .2s;
-    width: 35%;
-    -webkit-box-flex: 0;
-    -webkit-flex-shrink: 0;
-    -ms-flex: 0 0 auto;
-    flex-shrink: 0;
-    -webkit-tap-highlight-color: transparent;
+    /*-webkit-transition-duration: .2s;*/
+    /*transition-duration: .2s;*/
+    /*width: 35%;*/
+    /*-webkit-box-flex: 0;*/
+    /*-webkit-flex-shrink: 0;*/
+    /*-ms-flex: 0 0 auto;*/
+    /*flex-shrink: 0;*/
+    /*-webkit-tap-highlight-color: transparent;*/
+}
+.leftstr, .rightstr {
+    float: left; /* Обтекание справа */
+    width: 50%; /* Ширина текстового блока */
+}
+.rightstr {
+    text-align: right; /* Выравнивание по правому краю */
+}
+.sliders{
+    padding: 24px;
 }
