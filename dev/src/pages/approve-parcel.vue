@@ -11,10 +11,9 @@
             </f7-navbar>
             <i class="material-icons icon-style" id="approveicon">verified_user</i>
             <f7-block-title class="title-style">Confirm receipt of the {{name}}</f7-block-title>
-            <i class="material-icons icon-style" id="trash" @click="clear()">replay</i>
+            <i class="material-icons icon-style" id="retry" @click="clear()">replay</i>
 
             <f7-block>
-                <div id="watermark">Please, sign here</div>
                 <vueSignature ref="signature" :sigOption="sigConfig"></vueSignature>
                 <f7-buttons>
                     <f7-button fill class="buttonConfirm" @click="save()" style="margin-top:32px">
@@ -58,11 +57,20 @@
 			clear() {
 				var _this = this;
 				_this.$refs.signature.clear();
+                var canvas = document.getElementById("canvas");
+                //draw placeholder inside canvas
+                var context = canvas.getContext('2d');
+                context.fillStyle = "rgba(0, 0, 0, .2)";
+                context.font = "24px Roboto";
+                context.textAlign = "center";
+                context.textBaseline = "middle";
+                context.fillText("Please, sign here", canvas.width/2,canvas.height/2);
 			},
 			resizeCanvas() {
+			    //draw canvas
 				var canvas = document.getElementById("canvas");
 				canvas.width  =innerWidth;
-				canvas.height = 280;
+				canvas.height = innerHeight/2;
                 canvas.style.background='white';
                 canvas.style.border='4px dashed rgba(0, 0, 0, .2)';
                 canvas.style.paddingLeft='0';
@@ -71,6 +79,13 @@
                 canvas.style.marginRight='auto';
                 canvas.style.display='block';
                 canvas.style.width='-webkit-fill-available';
+                //draw placeholder inside canvas
+                var context = canvas.getContext('2d');
+                context.fillStyle = "rgba(0, 0, 0, .2)";
+                context.font = "24px Roboto";
+                context.textAlign = "center";
+                context.textBaseline = "middle";
+                context.fillText("Please, sign here", canvas.width/2,canvas.height/2);
 			}
 		},
 		mounted: function () {
