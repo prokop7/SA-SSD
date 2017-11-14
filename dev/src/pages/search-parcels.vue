@@ -115,8 +115,11 @@
                 api.updateParcel(this.token, parcel_id, 3, this.refreshParcels)
             },
             loadMap() {
+            	var _this = this
                 this.loadParcels()
-                this.onMap = !this.onMap
+                setTimeout(function () {
+	                _this.onMap = !_this.onMap
+                }, 500)
             },
             loadBack() {
                 if (this.onMap)

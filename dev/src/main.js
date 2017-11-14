@@ -30,8 +30,8 @@ export var mainVue = new Vue({
 		/* Uncomment to enable Material theme: */
 		material: true,
 		routes: Routes,
-		swipePanel: 'left',
-		swipePanelActiveArea: 100,
+		// swipePanel: 'left',
+		// swipePanelActiveArea: 100,
 	},
 	// Register App Component
 	components: {
