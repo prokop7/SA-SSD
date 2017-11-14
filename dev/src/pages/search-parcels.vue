@@ -21,6 +21,9 @@
                         </f7-list-item>
 
                     </f7-list>
+                    <!--<div>-->
+                        <!--<vue-slider v-ref:slider :value.sync="value"></vue-slider>-->
+                    <!--</div>-->
                 </f7-block>
                 <f7-buttons>
                     <f7-button @click="loadParcels()" color="green">Apply</f7-button>
@@ -85,7 +88,8 @@
     var data = {
         parcelsList: {},
         onMap: false,
-        range: 5
+        range: 5,
+        value:1
     }
 
     export default {

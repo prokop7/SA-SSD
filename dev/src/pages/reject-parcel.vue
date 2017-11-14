@@ -10,21 +10,45 @@
                 </f7-nav-left>
             </f7-navbar>
             <!--<i class="material-icons icon-style" id="approveicon" >verified_user</i>-->
-            <f7-block style="margin:0!important;">
-                <f7-block-title>
-                    <f7-label class="range1">Why did you cancel the parcel?</f7-label>
-                </f7-block-title>
-                <f7-list form>
+            <f7-block>
+                <!--<div class="content-block-title">Why did you cancel the parcel?</div>-->
+                <!--<f7-block-title>-->
+                    <!--<f7-label class="range1">Why did you cancel the parcel?</f7-label>-->
+                <!--</f7-block-title>-->
+                <!--<f7-list form>-->
 
-                    <f7-list-item style="background:white; border:2px solid rgba(0, 0, 0, .2);">
-                        <f7-input @keyup.enter="submit" type="text" placeholder="Rejected message"
-                                  v-model="rejectedMessage"></f7-input>
-                    </f7-list-item>
+                    <!--<f7-list-item >-->
+                        <!--<f7-label>Reason of cancellation</f7-label>-->
+                        <!--<f7-input @keyup.enter="submit" type="text" placeholder="Rejected message"-->
+                                  <!--v-model="rejectedMessage"></f7-input>-->
+                    <!--</f7-list-item>-->
 
-                </f7-list>
 
-                <f7-block-title>
-                    <f7-label class="range1">Confirm cancellation of the {{name}}</f7-label>
+                <!--</f7-list>-->
+
+
+
+
+
+
+
+
+
+                    <form style="margin-top:40px">
+
+                        <div class="group">
+                            <input v-model="rejectedMessage" type="text" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Reason</label>
+                        </div>
+                    </form>
+
+
+
+
+                <f7-block-title style="margin: 0;font-size: 16px; margin-bottom: 16px;">
+                    <f7-label>Confirm cancellation of the {{name}}</f7-label>
                 </f7-block-title>
                 <i class="material-icons icon-style" id="approveicon">verified_user</i>
                 <i class="material-icons icon-style" id="retry" @click="clear()">replay</i>
@@ -60,7 +84,19 @@
             };
         },
         methods: {
+            confirm: function(){
+                var v = this;
+                console.log(this.$f7);
+                this.$f7.addNotification({
+                        message: 'Receiving the parcel was canceled!',
+                        button: {
+                            text: 'Success',
+                            color: 'lightgreen'
+                        }
+                    });
+            },
             save() {
+//                this.confirm();
                 var _this = this;
                 var png = _this.$refs.signature.save()
                 var image = api.convert(png)

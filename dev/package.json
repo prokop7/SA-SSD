@@ -35,7 +35,8 @@
     "hard-source-webpack-plugin": "^0.4.9",
     "vue": "^2.2.4",
     "vue-loader": "^13.3.0",
-    "vue-signature": "^1.2.0"
+    "vue-signature": "^1.2.0",
+    "vue-slider-component": "^2.4.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
