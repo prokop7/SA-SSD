@@ -14,13 +14,15 @@
                 <f7-block-title>
                     <f7-label class="range1">Why did you cancel the parcel?</f7-label>
                 </f7-block-title>
-                <f7-list form>
+                <f7-list form >
 
                     <f7-list-item style="background:white; border:2px solid rgba(0, 0, 0, .2);">
-                        <f7-input @keyup.enter="submit" type="text" placeholder="Rejected message"
-                                  v-model="rejectedMessage"></f7-input>
+                        <f7-input @keyup.enter="submit"
+                                  type="text"
+                                  placeholder="Rejected message"
+                                  v-model="rejectedMessage">
+                        </f7-input>
                     </f7-list-item>
-
                 </f7-list>
 
                 <f7-block-title>
@@ -52,11 +54,10 @@
         data() {
             return {
                 sigConfig: {
-
                     penColor: "rgb(66, 133, 244)"
                 },
-                rejectedMessage: ""
-
+                rejectedMessage: "",
+                valid: false
             };
         },
         methods: {
@@ -65,10 +66,21 @@
                 var png = _this.$refs.signature.save()
                 var image = api.convert(png)
                 var data = {img: image, parcelId: this.id, statusId: 6, rejectedMessage: this.rejectedMessage}
+                console.log(this.rejectedMessage.length < 3)
+                if (this.rejectedMessage.length < 3){
+                	console.log(this)
+                	window.f7.addNotification({
+		                message: 'Reject message is to short or empty.'
+	                });
+                	return;
+                }
                 api.sendImage(this.token, data, function () {
                     _this.$emit('loadParcels')
                 }, function (eNum, e) {
-                    alert(e.message)
+	                window.f7.addNotification({
+		                message: 'Something went wrong'
+	                });
+	                _this.$emit('loadParcels')
                 })
             },
             clear() {
@@ -76,7 +88,6 @@
                 _this.$refs.signature.clear();
             },
             resizeCanvas() {
-                console.log("resize")
                 const canvas = document.querySelector(".canvas");
                 canvas.style.background = 'white';
                 canvas.style.border = '2px dashed rgba(0, 0, 0, .2)';
@@ -93,7 +104,7 @@
                 context.font = "24px Roboto";
                 context.textAlign = "center";
                 context.textBaseline = "middle";
-                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
+//                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
             }
         },
         mounted: function () {
