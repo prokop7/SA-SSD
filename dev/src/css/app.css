@@ -56,9 +56,13 @@ Your custom styles go here
 }
 
 #approveicon {
-    float: left;
-    opacity: 1;
-    margin-right:16px;
+    margin-top: 16px;
+    /*margin-right: 32px;*/
+    padding-left: 16px;
+    /*right: 0;*/
+    /*padding-top: 32px;*/
+    position: absolute;
+    /*opacity: 1;*/
     color: rgb(96, 191, 132)
 }
 #reasonicon {
@@ -101,8 +105,11 @@ Your custom styles go here
 /*#rejectParcel .buttonConfirm{background-color:#f57d00!important; }*/
 /*#approveParcel .navbar{background: rgb(96, 191, 132);}*/
 /*#rejectParcel .navbar{background-color:#f57d00; }*/
+/*#rejectParcel canvas{*/
+    /*canvas.height: 200;*/
+/*}*/
 .icon-style{
-    opacity: 0.5;
+    /*opacity: 0.5;*/
 }
 #space-between-icon-and-text_icon{
     position: absolute;
@@ -112,6 +119,7 @@ Your custom styles go here
 }
 
 .range1{
+    white-space: initial;
     width: 100%;
     font-size: 16px;
     /*min-width: 0;*/
@@ -119,7 +127,6 @@ Your custom styles go here
     /*-webkit-flex-shrink: 1;*/
     /*-ms-flex: 0 1 auto;*/
     /*flex-shrink: 1;*/
-    white-space: nowrap;
     /*position: relative;*/
     /*overflow: hidden;*/
     /*text-overflow: ellipsis;*/
@@ -177,34 +184,13 @@ Your custom styles go here
 /*.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}*/
 .input1 {
     border: 2px solid rgba(0, 0, 0, .2);
-    font-size: 16px;
-    /*box-shadow: 1px 1px 3px 1px rgba(200, 200, 200, 0.2) inset;*/
-    padding: 1em;
+    /*font-size: 16px;*/
+    box-shadow: 1px 1px 3px 1px rgba(200, 200, 200, 0.2) inset;
+
     width: -webkit-fill-available;
-    outline: none;
-    margin: 0;
-    color: rgba(0, 0, 0, .2);
-    -webkit-appearance: textfield;
+    /*outline: none;*/
+    /*margin: 0;*/
+    /*color: rgb(110, 110, 110);*/
     background-color: white;
-    -webkit-rtl-ordering: logical;
-    user-select: text;
-    cursor: auto;
-    text-rendering: auto;
-    /*color: initial;*/
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    -webkit-writing-mode: horizontal-tb;
 }
-.input1::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
-.input1::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
-.input1:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
-.input1:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
-.input1:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
-.input1:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
-.input1:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
-.input1:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+/*.transition1 input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}*/

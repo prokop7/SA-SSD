@@ -11,7 +11,6 @@ import Routes from './routes.js'
 
 // Import App Component
 import App from './app.vue'
-
 //image in login page
 
 // Init F7 Vue Plugin

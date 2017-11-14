@@ -8,24 +8,25 @@
                 <f7-nav-left>Parcels nearby</f7-nav-left>
             </f7-navbar>
             <div v-if='onMap===false'>
-<div>
 
-                <f7-block-title>
-                    <f7-label class="leftstr range1">Search Distance:</f7-label>
-                    <f7-label class="rightstr range1">{{range}} km</f7-label>
-                </f7-block-title>
-                    <f7-card class="remove-shadow sliders">
+                <f7-block style="margin:0!important;">
+                    <f7-block-title>
+                        <f7-label class="leftstr range1">Search Distance:</f7-label>
+                        <f7-label class="rightstr range1">{{range}} km</f7-label>
+                    </f7-block-title>
+                    <f7-list form>
+                        <f7-list-item style="background:white;">
+                            <f7-input v-model="range" type="range" min="1" max="100" step="1"></f7-input>
 
+                        </f7-list-item>
 
-                        <f7-input v-model="range" type="range" min="1" max="100" step="1"></f7-input>
-
-                    </f7-card>
-
+                    </f7-list>
+                </f7-block>
                 <f7-buttons>
                     <f7-button @click="loadParcels()" color="green">Apply</f7-button>
                     <f7-button @click="loadMap()">Show on map</f7-button>
                 </f7-buttons>
-</div>
+
 
                 <f7-card v-for="parcel in parcelsList"
                          :key="parcel.id">
