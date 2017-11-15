@@ -97,19 +97,6 @@
             return data;
         },
         methods: {
-//			approveParcel(parcelId) {
-//				api.updateParcel(this.token, parcelId, 5, this.removeParcel, function (e) {
-//					console.log(e)
-//				})
-//			},
-//			rejectParcel(parcelId) {
-//				api.updateParcel(this.token, parcelId, 6, this.removeParcel, function (e) {
-//					console.log(e)
-//				})
-//			},
-            removeParcel(response) {
-                this.loadParcels()
-            },
             setParcels(parcels) {
                 this.parcels = parcels
             },
