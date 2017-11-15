@@ -74,7 +74,6 @@
                 var data = {img: image, parcelId: this.id, statusId: 6, rejectedMessage: this.rejectedMessage}
                 console.log(this.rejectedMessage.length < 3)
                 if (this.rejectedMessage.length < 3){
-                	console.log(this)
                 	window.f7.addNotification({
 		                message: 'Reject message is to short or empty.'
 	                });

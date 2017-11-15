@@ -16,8 +16,13 @@
                     </f7-block-title>
                     <f7-list form>
                         <f7-list-item style="background:white;">
-                            <f7-input v-model="range" type="range" min="1" max="100" step="1"></f7-input>
-
+                            <f7-input v-model="range"
+                                      type="range"
+                                      min="1"
+                                      max="100"
+                                      step="1"
+                                      @change="refreshParcels">
+                            </f7-input>
                         </f7-list-item>
 
                     </f7-list>
@@ -26,7 +31,6 @@
                     <!--</div>-->
                 </f7-block>
                 <f7-buttons>
-                    <f7-button @click="loadParcels()" color="green">Apply</f7-button>
                     <f7-button @click="loadMap()">Show on map</f7-button>
                 </f7-buttons>
 
@@ -119,11 +123,7 @@
                 api.updateParcel(this.token, parcel_id, 3, this.refreshParcels)
             },
             loadMap() {
-            	var _this = this
-                this.loadParcels()
-                setTimeout(function () {
-	                _this.onMap = !_this.onMap
-                }, 500)
+	            this.onMap = !this.onMap
             },
             loadBack() {
                 if (this.onMap)
