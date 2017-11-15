@@ -1,11 +1,15 @@
 <template>
     <div id="parcels">
-        <f7-page title="Parcels" sliding tabbar-fixed pull-to-refresh @ptr:refresh="onRefresh">
+        <f7-page title="Parcels" sliding tabbar-fixed>
             <f7-navbar>
                 <f7-nav-left>
-                    <f7-link icon="icon-bars" open-panel="left"></f7-link>
+                    <f7-link open-panel="left"><i class="material-icons dark-blue-color">dehaze</i></f7-link>
+                    <!--<f7-icon icon="icon-back"></f7-icon>-->
+                    <!--<i class="material-icons dehaze1">dehaze</i>-->
+                    <!--<f7-link icon="icon-bars" open-panel="left" color="blue"></f7-link>-->
                 </f7-nav-left>
                 <f7-nav-left>Parcels</f7-nav-left>
+                <f7-nav-right><i class="material-icons refresh1 dark-blue-color" @click="onRefresh">refresh</i></f7-nav-right>
             </f7-navbar>
 
             <f7-toolbar tabbar labels>
@@ -27,9 +31,8 @@
                 <parcel-tab :state="'Delivered'"></parcel-tab>
                 <parcel-tab :state="'Blocked'"></parcel-tab>
             </f7-tabs>
-            <div id="test"></div>
             <f7-fab color="#2196f3" @click="$emit('loadSearch')">
-                <i class="material-icons">search</i>
+                <i class="material-icons dark-blue-color">search</i>
             </f7-fab>
         </f7-page>
     </div>
@@ -93,6 +96,7 @@
 //            },
 
             onRefresh: function (event, done) {
+                console.log("It should work!");
                 var self = this;
                 bus.$emit("loadParcels", done);
 //                setTimeout(function () {

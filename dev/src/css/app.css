@@ -202,8 +202,12 @@ labell{
     left:0px;
     top:10px;
 }
-#test{
-    height: 2300px;
-    background-color: #00caf2;
+.dark-blue-color{
+    color:#014769;
 }
+.refresh1{
+    padding-left: 16px;
+    padding-right:16px ;
+}
+
 /*.transition1 input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}*/

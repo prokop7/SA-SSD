@@ -18,8 +18,8 @@
 						<label>Reason</label>
 					</div>
 				</form>
-				<f7-block-title style="font-size: 16px; margin: 0 0 16px;">
-					<f7-label>Sign up below</f7-label>
+				<f7-block-title style="font-size: 16px; margin: 20px 0 16px;">
+					<f7-label>Signature</f7-label>
 				</f7-block-title>
 				<i class="material-icons icon-style" id="approveicon">verified_user</i>
 				<i class="material-icons icon-style" id="retry" @click="clear()">replay</i>

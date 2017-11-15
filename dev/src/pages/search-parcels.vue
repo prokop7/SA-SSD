@@ -80,6 +80,7 @@
 		</f7-page>
 	</div>
 </template>
+
 <script>
 	import api from '@/api/index'
 	import nearParcelsMap from "@/pages/near-parcels-map.vue"
