@@ -123,6 +123,7 @@ Your custom styles go here
 .button-fill-my {
     width: 80px;
     margin-top: 16px;
+    margin-bottom: 16px;
 }
 .buttonConfirm{
     background-color: rgb(96, 191, 132)!important;

@@ -28,9 +28,9 @@
 						</f7-list-item>
 					</f7-list>
 				</f7-block>
-				<!--<f7-buttons>-->
-					<!--<f7-button @click="loadMap()">Show on map</f7-button>-->
-				<!--</f7-buttons>-->
+
+					<f7-button class="button-fill-my center-my" fill @click="loadMap()" style="width: 120px">Show on map</f7-button>
+
 
 
 				<f7-card v-for="parcel in parcelsList"
