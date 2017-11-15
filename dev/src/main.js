@@ -6,7 +6,6 @@ import Framework7Theme from 'framework7/dist/css/framework7.material.min.css'
 import Framework7ThemeColors from 'framework7/dist/css/framework7.material.colors.min.css'
 import AppStyles from './css/app.css'
 import AppStyles1 from './css/input.css'
-import AppStyles2 from './css/slider.css'
 
 // Import Routes
 import Routes from './routes.js'
@@ -32,8 +31,6 @@ export var mainVue = new Vue({
 		/* Uncomment to enable Material theme: */
 		material: true,
 		routes: Routes,
-		// swipePanel: 'left',
-		// swipePanelActiveArea: 100,
 	},
 	// Register App Component
 	components: {
