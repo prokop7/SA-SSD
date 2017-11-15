@@ -6,6 +6,8 @@
 					<f7-link icon="icon-back" link="#" @click="loadBack()"></f7-link>
 				</f7-nav-left>
 				<f7-nav-left>Parcels nearby</f7-nav-left>
+				<f7-nav-right><i class="material-icons refresh1 dark-blue-color" @click="loadMap()">location_on</i></f7-nav-right>
+
 			</f7-navbar>
 			<div v-if='onMap===false'>
 				<f7-block style="margin:0!important;">
@@ -25,9 +27,9 @@
 						</f7-list-item>
 					</f7-list>
 				</f7-block>
-				<f7-buttons>
-					<f7-button @click="loadMap()">Show on map</f7-button>
-				</f7-buttons>
+				<!--<f7-buttons>-->
+					<!--<f7-button @click="loadMap()">Show on map</f7-button>-->
+				<!--</f7-buttons>-->
 
 
 				<f7-card v-for="parcel in parcelsList"

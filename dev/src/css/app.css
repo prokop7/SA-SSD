@@ -5,10 +5,12 @@ Your custom styles go here
 }
 
 #map-field {
-    height: 400px;
+    height: 100%;
     width: 100%;
 }
-
+#near-parcels-map{
+    height: 100%;
+}
 .page {
     background: #EFEFF0;
 }
