@@ -9,31 +9,7 @@
                     Reject
                 </f7-nav-left>
             </f7-navbar>
-            <!--<i class="material-icons icon-style" id="approveicon" >verified_user</i>-->
             <f7-block>
-                <!--<div class="content-block-title">Why did you cancel the parcel?</div>-->
-                <!--<f7-block-title>-->
-                    <!--<f7-label class="range1">Why did you cancel the parcel?</f7-label>-->
-                <!--</f7-block-title>-->
-                <!--<f7-list form>-->
-
-                    <!--<f7-list-item >-->
-                        <!--<f7-label>Reason of cancellation</f7-label>-->
-                        <!--<f7-input @keyup.enter="submit" type="text" placeholder="Rejected message"-->
-                                  <!--v-model="rejectedMessage"></f7-input>-->
-                    <!--</f7-list-item>-->
-
-
-                <!--</f7-list>-->
-
-
-
-
-
-
-
-
-
                     <form style="margin-top:40px">
 
                         <div class="group">
@@ -43,10 +19,6 @@
                             <label>Reason</label>
                         </div>
                     </form>
-
-
-
-
                 <f7-block-title style="margin: 0;font-size: 16px; margin-bottom: 16px;">
                     <f7-label>Signature</f7-label>
                 </f7-block-title>
@@ -76,11 +48,10 @@
         data() {
             return {
                 sigConfig: {
-
                     penColor: "rgb(66, 133, 244)"
                 },
-                rejectedMessage: ""
-
+                rejectedMessage: "",
+                valid: false
             };
         },
         methods: {
@@ -110,10 +81,20 @@
                 var png = _this.$refs.signature.save()
                 var image = api.convert(png)
                 var data = {img: image, parcelId: this.id, statusId: 6, rejectedMessage: this.rejectedMessage}
+                console.log(this.rejectedMessage.length < 3)
+                if (this.rejectedMessage.length < 3){
+                	window.f7.addNotification({
+		                message: 'Reject message is to short or empty.'
+	                });
+                	return;
+                }
                 api.sendImage(this.token, data, function () {
                     _this.$emit('loadParcels')
                 }, function (eNum, e) {
-                    alert(e.message)
+	                window.f7.addNotification({
+		                message: 'Something went wrong'
+	                });
+	                _this.$emit('loadParcels')
                 })
             },
             clear() {
@@ -121,7 +102,6 @@
                 _this.$refs.signature.clear();
             },
             resizeCanvas() {
-                console.log("resize")
                 const canvas = document.querySelector(".canvas");
 
                 canvas.style.background = 'white';
@@ -135,14 +115,12 @@
 //                canvas.placeholder='dfdfd';
                 canvas.width = innerWidth;
                 canvas.height = innerHeight / 3;
-//                canvas.placeholder("test")
-//                canvas.placeholder="rtrtrtrt";
-//                const context = canvas.getContext('2d');
-//                context.placeholder='kllml';
-//                context.fillStyle = "rgba(0, 0, 0, .2)";
-//                context.font = "24px Roboto";
-//                context.textAlign = "center";
-//                context.textBaseline = "middle";
+
+                const context = canvas.getContext('2d');
+                context.fillStyle = "rgba(0, 0, 0, .2)";
+                context.font = "24px Roboto";
+                context.textAlign = "center";
+                context.textBaseline = "middle";
 //                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
             }
         },

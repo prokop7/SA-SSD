@@ -50,6 +50,14 @@
                                             <p>{{parcel.phones.to}}</p>
                                         </f7-col>
                                     </f7-grid>
+                                    <f7-grid v-if="parcel.status==='Blocked'">
+                                        <f7-col width="25">
+                                            <p><b>Rejected reason</b></p>
+                                        </f7-col>
+                                        <f7-col width="75">
+                                            <p>{{parcel.rejected_message}}</p>
+                                        </f7-col>
+                                    </f7-grid>
                                 </f7-block>
                                 <f7-card-footer v-if="parcel.status === 'Transit'">
                                     <f7-buttons>
