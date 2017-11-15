@@ -48,7 +48,7 @@
 
 
                 <f7-block-title style="margin: 0;font-size: 16px; margin-bottom: 16px;">
-                    <f7-label>Confirm cancellation of the {{name}}</f7-label>
+                    <f7-label>Signature</f7-label>
                 </f7-block-title>
                 <i class="material-icons icon-style" id="approveicon">verified_user</i>
                 <i class="material-icons icon-style" id="retry" @click="clear()">replay</i>
@@ -95,6 +95,15 @@
                         }
                     });
             },
+            clicIt(){ const canvas = document.querySelector(".canvas");
+
+                const context = canvas.getContext('2d');
+                context.fillStyle = "rgba(0, 0, 0, .2)";
+                context.font = "24px Roboto";
+                context.textAlign = "center";
+                context.textBaseline = "middle";
+                context.fillText("Plefgfase, sign here", canvas.width / 2, canvas.height / 2);
+            },
             save() {
 //                this.confirm();
                 var _this = this;
@@ -114,6 +123,7 @@
             resizeCanvas() {
                 console.log("resize")
                 const canvas = document.querySelector(".canvas");
+
                 canvas.style.background = 'white';
                 canvas.style.border = '2px dashed rgba(0, 0, 0, .2)';
                 canvas.style.paddingLeft = '0';
@@ -122,14 +132,18 @@
                 canvas.style.marginRight = 'auto';
                 canvas.style.display = 'block';
                 canvas.style.maxWidth = '100%';
+//                canvas.placeholder='dfdfd';
                 canvas.width = innerWidth;
                 canvas.height = innerHeight / 3;
-                const context = canvas.getContext('2d');
-                context.fillStyle = "rgba(0, 0, 0, .2)";
-                context.font = "24px Roboto";
-                context.textAlign = "center";
-                context.textBaseline = "middle";
-                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
+//                canvas.placeholder("test")
+//                canvas.placeholder="rtrtrtrt";
+//                const context = canvas.getContext('2d');
+//                context.placeholder='kllml';
+//                context.fillStyle = "rgba(0, 0, 0, .2)";
+//                context.font = "24px Roboto";
+//                context.textAlign = "center";
+//                context.textBaseline = "middle";
+//                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
             }
         },
         mounted: function () {
