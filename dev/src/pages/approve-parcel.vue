@@ -11,14 +11,17 @@
             </f7-navbar>
             <!--<i class="material-icons icon-style" id="approveicon">verified_user</i>-->
 
-            <f7-block style="margin:0!important;">
+            <f7-block style="margin:0!important;margin-top:20px">
                 <!--<i class="material-icons icon-style" id="approveicon">verified_user</i>-->
 <!---->
 
                 <!--<i class="material-icons icon-style" id="approveicon">verified_user</i>-->
-                    <f7-block-title>
-                        <f7-label class="range1"> Confirm receipt of the {{name}}</f7-label>
-                    </f7-block-title>
+                    <!--<f7-block-title>-->
+                        <!--<f7-label class="range1"> Confirm receipt of the {{name}}</f7-label>-->
+                    <!--</f7-block-title>-->
+                <f7-block-title style="margin: 0;font-size: 16px; margin-bottom: 16px;">
+                    <f7-label>Confirm receipt of the {{name}}</f7-label>
+                </f7-block-title>
                     <!--<i class="material-icons icon-style" id="approveicon">verified_user</i>-->
                     <!--Confirm receipt of the {{name}}</f7-block-title>-->
                 <i class="material-icons icon-style" id="approveicon">verified_user</i>
