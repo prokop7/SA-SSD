@@ -16,7 +16,7 @@
 						<f7-label class="rightstr range1">{{range}} km</f7-label>
 					</f7-block-title>
 					<f7-list form>
-						<f7-list-item style="background:white;">
+						<!--<f7-list-item style="background:white;">-->
 							<f7-input v-model="range"
 							          type="range"
 							          min="1"
@@ -25,7 +25,7 @@
 							          @change="refreshParcels"
 							style="border-bottom: 1px solid white!important;">
 							</f7-input>
-						</f7-list-item>
+						<!--</f7-list-item>-->
 					</f7-list>
 				</f7-block>
 

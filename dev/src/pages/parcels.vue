@@ -9,7 +9,7 @@
                     <f7-link icon="icon-bars" open-panel="left"></f7-link>
                 </f7-nav-left>
                 <f7-nav-left>Parcels</f7-nav-left>
-                <f7-nav-right><i class="material-icons refresh1 dark-blue-color" @click="onRefresh">refresh</i></f7-nav-right>
+                <f7-nav-right><i class="material-icons refresh1" @click="onRefresh" style="opacity: 0.8;">refresh</i></f7-nav-right>
             </f7-navbar>
 
             <f7-toolbar tabbar labels>
