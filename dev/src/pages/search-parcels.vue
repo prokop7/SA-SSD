@@ -13,23 +13,27 @@
 				<f7-block style="margin:0!important;">
 					<f7-block-title>
 						<f7-label class="leftstr range1">Search Distance:</f7-label>
-						<f7-label class="rightstr range1">{{range}} km</f7-label>
+						<!--<f7-label class="rightstr range1">{{range}} km</f7-label>-->
 					</f7-block-title>
-					<f7-list form>
-						<!--<f7-list-item style="background:white;">-->
-							<f7-input v-model="range"
-							          type="range"
-							          min="1"
-							          max="100"
-							          step="1"
-							          @change="refreshParcels"
-							style="border-bottom: 1px solid white!important;">
-							</f7-input>
-						<!--</f7-list-item>-->
-					</f7-list>
+
+					<div style="margin-top:48px;">
+						<vue-slider v-model="value" ></vue-slider>
+					</div>
+					<!--<f7-list form>-->
+						<!--&lt;!&ndash;<f7-list-item style="background:white;">&ndash;&gt;-->
+							<!--<f7-input v-model="range"-->
+							          <!--type="range"-->
+							          <!--min="1"-->
+							          <!--max="100"-->
+							          <!--step="1"-->
+							          <!--@change="refreshParcels"-->
+							<!--&gt;-->
+							<!--</f7-input>-->
+						<!--&lt;!&ndash;</f7-list-item>&ndash;&gt;-->
+					<!--</f7-list>-->
 				</f7-block>
 
-					<f7-button class="button-fill-my center-my" fill @click="loadMap()" style="width: 120px">Show on map</f7-button>
+				<f7-button class="button-fill-my center-my" fill @click="loadMap()" style="width: 120px">show on map</f7-button>
 
 
 
@@ -76,7 +80,7 @@
 			</div>
 			<near-parcels-map v-if="onMap===true"
 			                  :parcels="parcelsList"
-			                  :radius="range"
+			                  :radius="value"
 			                  :pos="location"
 			                  @loadBack="loadBack">
 			</near-parcels-map>
@@ -87,17 +91,19 @@
 <script>
 	import api from '@/api/index'
 	import nearParcelsMap from "@/pages/near-parcels-map.vue"
+    import vueSlider from 'vue-slider-component'
 
 	var data = {
 		parcelsList: {},
 		onMap: false,
-		range: 5,
-		value: 1
+		value: 5,
+
 	}
 
 	export default {
 		components: {
-			nearParcelsMap
+			nearParcelsMap,
+			vueSlider
 		},
 		props: {
 			location: {}
@@ -111,11 +117,12 @@
 			},
 			loadParcels(done) {
 				var pos = {lat: this.location.coords.latitude, lng: this.location.coords.longitude}
-				api.searchParcels(this.token, pos, this.range, this.setParcels)
+				api.searchParcels(this.token, pos, this.value, this.setParcels)
 				if (done)
 					done()
 			},
 			refreshParcels() {
+			    console.log("dfdfd")
 				this.loadParcels()
 			},
 			acceptParcel(parcel_id) {
@@ -136,6 +143,15 @@
 			this.token = localStorage.getItem('token')
 		},
 		mounted: function () {
+            this.$watch(
+                () => {
+                    return this.value
+                },
+                (newVal, oldVal) => {
+                    this.refreshParcels
+                    console.log(newVal, oldVal)
+                }
+            )
 			this.$nextTick(function () {
 				this.refreshParcels()
 			})

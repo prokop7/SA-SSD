@@ -103,7 +103,6 @@
 				canvas.style.marginRight = 'auto';
 				canvas.style.display = 'block';
 				canvas.style.maxWidth = '100%';
-//                canvas.style.height='-webkit-fill-available';
 				//draw placeholder inside canvas
 				var context = canvas.getContext('2d');
 				context.fillStyle = "rgba(0, 0, 0, .2)";

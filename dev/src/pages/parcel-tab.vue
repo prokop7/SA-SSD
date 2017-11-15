@@ -79,6 +79,9 @@
                 </f7-list>
             </f7-card-content>
         </f7-card>
+        <!--indent, which decide next problem: floating button can overlap reject button
+        *56px (button size) + 16 px (indent of floating button from bottom part of window)-->
+        <div style="height: 72px"></div>
     </f7-tab>
 </template>
 <script>
