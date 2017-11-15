@@ -8,7 +8,6 @@ export default {
 	searchParcels: ajax.searchParcels,
 	loadAllParcels: ajax.loadAllParcels,
 	updateParcel: ajax.updateParcel,
-	setParcel: ajax.setParcel,
 	sendGeolocation: ajax.sendGeolocation,
 	sendImage: ajax.sendImage,
 	server_url: 'https://tcsw.innopolis.dl-dev.ru/api/',

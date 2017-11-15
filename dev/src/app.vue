@@ -24,18 +24,13 @@
 						</parcels>
 						<warehouses v-if="state==='warehouses'">
 						</warehouses>
-						<approve-parcel v-if="state==='approveParcel'"
+						<confirm-parcel v-if="state==='Reject'||state==='Approve'"
 						                :id="parcelId"
+						                :state="state"
 						                :name="parcelName"
 						                @loadParcels="loadParcels"
 						                :token="token">
-						</approve-parcel>
-						<reject-parcel v-if="state==='rejectParcel'"
-						               :id="parcelId"
-						               :name="parcelName"
-						               @loadParcels="loadParcels"
-						               :token="token">
-						</reject-parcel>
+						</confirm-parcel>
 						<google-map v-if="state==='map'"
 						            :name="parcelName"
 						            :from="from"
@@ -63,8 +58,7 @@
 	import Warehouses from './pages/warehouses.vue'
 	import LoginScreen from './pages/login.vue'
 	import GoogleMap from './pages/google-map.vue'
-	import ApproveParcel from './pages/approve-parcel.vue'
-	import RejectParcel from './pages/reject-parcel.vue'
+	import ConfirmParcel from './pages/confirm-parcel.vue'
 	import SearchParcels from './pages/search-parcels.vue'
 	import api from '@/api/index'
 
@@ -122,7 +116,7 @@
 		pos: {
 			coords: {
 				latitude: 55.753432,
-				longitude:  48.741957
+				longitude: 48.741957
 			}
 		},
 		parcelName: "",
@@ -137,9 +131,8 @@
 			LoginScreen,
 			Warehouses,
 			GoogleMap,
-			ApproveParcel,
-			RejectParcel,
-			SearchParcels
+			SearchParcels,
+			ConfirmParcel
 		},
 		data: function () {
 			return data
@@ -185,12 +178,12 @@
 			approveParcel: function (id, name) {
 				this.parcelId = id
 				this.parcelName = name
-				this.state = "approveParcel"
+				this.state = "Approve"
 			},
 			rejectParcel: function (id, name) {
 				this.parcelId = id
 				this.parcelName = name
-				this.state = "rejectParcel"
+				this.state = "Reject"
 			}
 		},
 		mounted: function () {
