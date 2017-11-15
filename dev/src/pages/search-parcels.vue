@@ -22,7 +22,8 @@
 							          min="1"
 							          max="100"
 							          step="1"
-							          @change="refreshParcels">
+							          @change="refreshParcels"
+							style="border-bottom: 1px solid white!important;">
 							</f7-input>
 						</f7-list-item>
 					</f7-list>
