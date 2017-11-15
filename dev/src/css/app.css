@@ -5,10 +5,36 @@ Your custom styles go here
 }
 
 #map-field {
-    height: 400px;
+    height: 100%;
     width: 100%;
 }
+#near-parcels-map{
+    height: 100%;
+}
+.buttons-map{
 
+    left: 16px;
+    right: 16px;
+    /*margin-left: 16px;*/
+    /*margin-right: 16px;*/
+    width: 60%!important;
+    bottom:16px;
+    position: absolute;
+    /* display: block; */
+    z-index: 99;
+}
+.button-map{
+    background-color: rgba(255,255,255,1);
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    display: block;
+    width: 80px;
+    /* height: 29px; */
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.16s ease-out;
+    /* background: white; */
+}
 .page {
     background: #EFEFF0;
 }
@@ -202,4 +228,12 @@ labell{
     left:0px;
     top:10px;
 }
+.dark-blue-color{
+    color:#014769;
+}
+.refresh1{
+    padding-left: 16px;
+    padding-right:16px ;
+}
+
 /*.transition1 input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}*/

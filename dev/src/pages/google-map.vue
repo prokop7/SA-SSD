@@ -10,11 +10,13 @@
 					{{name}}
 				</f7-nav-left>
 			</f7-navbar>
-			<div id="map-field"></div>
-			<f7-buttons>
-				<f7-button class="button" @click="openOnMap(to.lat, to.lng)">To</f7-button>
-				<f7-button class="button" @click="openOnMap(from.lat, from.lng)" >From</f7-button>
+			<f7-buttons class="buttons-map">
+				<f7-button class="button button-map" @click="openOnMap(from.lat, from.lng)" >From</f7-button>
+				<f7-button class="button button-map" @click="openOnMap(to.lat, to.lng)">To</f7-button>
+
 			</f7-buttons>
+			<div id="map-field"></div>
+
 		</f7-page>
 	</div>
 </template>
