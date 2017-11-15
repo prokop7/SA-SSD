@@ -59,6 +59,9 @@
 				var image = api.convert(png)
 				var status_id = (this.state === 'Approve') ? 5 : 6;
 				var data = {img: image, parcelId: this.id, statusId: status_id}
+				if (this.state === 'Reject') {
+					data = {img: image, parcelId: this.id, statusId: status_id, rejectedMessage: this.rejectedMessage}
+				}
 
 				if (this.state === 'Reject' && this.rejectedMessage.length < 3){
 					window.f7.addNotification({
