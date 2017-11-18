@@ -1,30 +1,24 @@
-/* =========
-Your custom styles go here
- ========= */
-.login-button {
-}
-
+/*maps styles - start*/
 #map-field {
     height: 100%;
     width: 100%;
 }
-#near-parcels-map{
+
+#near-parcels-map {
     height: 100%;
 }
-.buttons-map{
 
+.buttons-map {
     left: 16px;
     right: 16px;
-    /*margin-left: 16px;*/
-    /*margin-right: 16px;*/
-    width: 60%!important;
-    bottom:16px;
+    width: 60% !important;
+    bottom: 16px;
     position: absolute;
-    /* display: block; */
     z-index: 99;
 }
-.button-map{
-    color:white;
+
+.button-map {
+    color: white;
     background-color: rgb(33, 150, 243);
     border-radius: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
@@ -36,9 +30,13 @@ Your custom styles go here
     transition: background-color 0.16s ease-out;
     /* background: white; */
 }
+
+/*maps styles - end*/
+
 .page {
     background: #EFEFF0;
 }
+
 
 .buttons-row {
     width: 100%;
@@ -49,7 +47,7 @@ Your custom styles go here
     height: 48px;
 }
 
-/*refresh*/
+/*changing standsrt indentation*/
 .navbar-fixed .tabbar-labels ~ .page-content, .navbar-through .tabbar-labels ~ .page-content {
     padding-top: 104px;
 }
@@ -59,22 +57,12 @@ Your custom styles go here
     white-space: inherit;
 }
 
-.tabbar-fixed .toolbar, .tabbar-labels-fixed .toolbar, .toolbar-fixed .toolbar {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
-}
-
 /*remove shadow*/
-.navbar-fixed .navbar, .navbar-through .navbar {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
+.remove-shadow {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0) !important;
 }
-
-.remove-shadow{
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0), 0 4px 5px 0 rgba(0, 0, 0, 0), 0 1px 10px 0 rgba(0, 0, 0, 0);
-}
-
-
+/*centering of object*/
 .center-my {
-    /*background: white;*/
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -82,21 +70,11 @@ Your custom styles go here
     display: block;
 }
 
-#approveicon {
+#verify-icon {
     margin-top: 16px;
-    /*margin-right: 32px;*/
     padding-left: 16px;
-    /*right: 0;*/
-    /*padding-top: 32px;*/
     position: absolute;
-    /*opacity: 1;*/
     color: rgb(96, 191, 132)
-}
-#reasonicon {
-    float: left;
-    opacity: 1;
-    margin-right:16px;
-    color: #ff9800;
 }
 
 /*retry signature*/
@@ -121,121 +99,68 @@ Your custom styles go here
     line-height: 1.3;
 }
 
-.button-fill-my {
+/*constant button size*/
+.button-size {
     width: 80px;
     margin-top: 16px;
     margin-bottom: 16px;
 }
-.buttonConfirm{
-    background-color: rgb(96, 191, 132)!important;
-}
-/*#approveParcel .buttonConfirm{background-color: rgb(96, 191, 132)!important;}*/
-/*#rejectParcel .buttonConfirm{background-color:#f57d00!important; }*/
-/*#approveParcel .navbar{background: rgb(96, 191, 132);}*/
-/*#rejectParcel .navbar{background-color:#f57d00; }*/
-/*#rejectParcel canvas{*/
-    /*canvas.height: 200;*/
-/*}*/
-.icon-style{
-    /*opacity: 0.5;*/
-}
-#space-between-icon-and-text_icon{
-    position: absolute;
-}
-#space-between-icon-and-text_text{
-    padding-left: 40px;
+
+/*assign color of "confirm button"*/
+.buttonConfirm {
+    background-color: rgb(96, 191, 132) !important;
 }
 
-.range1{
+.icon-opacity {
+    opacity: 0.5;
+}
+
+/*spaces in list of warehouses - start*/
+#space-between-icon-and-text_icon {
+    position: absolute;
+}
+
+#space-between-icon-and-text_text {
+    padding-left: 40px;
+}
+/*spaces in list of warehouses - end*/
+
+/*styles for range label in range - start*/
+.range-title {
+    margin-left: 0px !important;
+}
+
+.range-title-inner {
     white-space: initial;
     width: 100%;
     font-size: 16px;
-    /*min-width: 0;*/
-    /*-webkit-box-flex: 1;*/
-    /*-webkit-flex-shrink: 1;*/
-    /*-ms-flex: 0 1 auto;*/
-    /*flex-shrink: 1;*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
-    /*text-overflow: ellipsis;*/
-    /*max-width: 100%;*/
-    /*vertical-align: top;*/
-    color: rgba(0,0,0,.65);
-    /*-webkit-transition-duration: .2s;*/
-    /*transition-duration: .2s;*/
-    /*width: 35%;*/
-    /*-webkit-box-flex: 0;*/
-    /*-webkit-flex-shrink: 0;*/
-    /*-ms-flex: 0 0 auto;*/
-    /*flex-shrink: 0;*/
-    /*-webkit-tap-highlight-color: transparent;*/
+    color: rgba(0, 0, 0, .65);
 }
-.leftstr, .rightstr {
-    float: left; /* Обтекание справа */
-    width: 50%; /* Ширина текстового блока */
-}
-.rightstr {
-    text-align: right; /* Выравнивание по правому краю */
-}
-.sliders{
-    padding: 24px;
-}
-/*.reject-input{*/
-/*padding-left: 40px;*/
-/*}*/
+/*styles for range label in range - end*/
+
 .line {
-    border-bottom: 2px solid #ccc; /* Параметры линии */
-    /*margin-bottom: 20px; !* Отступ слева *!*/
-    /*padding-bottom: 10px; !* Расстояние от линии до текста *!*/
-}
-.list-block ul:before {
-     background-color: white;
+    border-bottom: 2px solid #ccc;
 }
 
-.list-block .item-inner:after{
+.list-block ul:before {
     background-color: white;
 }
-.list-block .item-inner:before{
+
+.list-block .item-inner:after {
     background-color: white;
 }
-.list-block {
+
+.list-block .item-inner:before {
+    background-color: white;
+}
+
+#LeftPanel .list-block {
     margin: 16px 0;
     font-size: 16px;
 }
-/*.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}*/
-/*.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}*/
-/*.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}*/
-/*.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}*/
-/*.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}*/
-/*.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}*/
-/*.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}*/
-/*.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}*/
-.input1 {
-    border: 2px solid rgba(0, 0, 0, .2);
-    /*font-size: 16px;*/
-    box-shadow: 1px 1px 3px 1px rgba(200, 200, 200, 0.2) inset;
 
-    width: -webkit-fill-available;
-    /*outline: none;*/
-    /*margin: 0;*/
-    /*color: rgb(110, 110, 110);*/
-    background-color: white;
-}
-labell{
-    color:#999;
-    font-size:18px;
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    left:0px;
-    top:10px;
-}
-.dark-blue-color{
-    color:#014769;
-}
-.refresh1{
+/*"refresh list of parcels" style*/
+.refresh1 {
     padding-left: 16px;
-    padding-right:16px ;
+    padding-right: 16px;
 }
-
-/*.transition1 input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}*/

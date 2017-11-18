@@ -19,30 +19,31 @@ Vue.use(Framework7Vue)
 
 //signature
 import vueSignature from "vue-signature"
+
 Vue.use(vueSignature)
 
 // Init App
 export var mainVue = new Vue({
-	el: '#app',
-	template: '<app/>',
-	// Init Framework7 by passing parameters here
-	framework7: {
-		root: '#app',
-		/* Uncomment to enable Material theme: */
-		material: true,
-		routes: Routes,
-	},
-	// Register App Component
-	components: {
-		'app': App
-	},
+    el: '#app',
+    template: '<app/>',
+    // Init Framework7 by passing parameters here
+    framework7: {
+        root: '#app',
+        /* Uncomment to enable Material theme: */
+        material: true,
+        routes: Routes,
+    },
+    // Register App Component
+    components: {
+        'app': App
+    },
 });
 
 export const bus = new Vue();
 
 export default {
-	vue: mainVue,
-	bus: bus
+    vue: mainVue,
+    bus: bus
 }
 
 

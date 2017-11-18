@@ -25,7 +25,7 @@
 
                             </f7-list>
 
-                            <f7-button class="button-fill-my center-my" fill @click="signIn()">Sign In</f7-button>
+                            <f7-button class="button-size center-my" fill @click="signIn()">Sign In</f7-button>
 
 
                             <div v-if="error">

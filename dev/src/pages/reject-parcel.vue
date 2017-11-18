@@ -10,15 +10,15 @@
                 </f7-nav-left>
             </f7-navbar>
             <f7-block>
-                    <form style="margin-top:40px">
+                <form style="margin-top:40px">
 
-                        <div class="group">
-                            <input v-model="rejectedMessage" type="text" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Reason</label>
-                        </div>
-                    </form>
+                    <div class="group">
+                        <input v-model="rejectedMessage" type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Reason</label>
+                    </div>
+                </form>
                 <f7-block-title style="margin: 0;font-size: 16px; margin-bottom: 16px;">
                     <f7-label>Signature</f7-label>
                 </f7-block-title>
@@ -55,18 +55,19 @@
             };
         },
         methods: {
-            confirm: function(){
+            confirm: function () {
                 var v = this;
                 console.log(this.$f7);
                 this.$f7.addNotification({
-                        message: 'Receiving the parcel was canceled!',
-                        button: {
-                            text: 'Success',
-                            color: 'lightgreen'
-                        }
-                    });
+                    message: 'Receiving the parcel was canceled!',
+                    button: {
+                        text: 'Success',
+                        color: 'lightgreen'
+                    }
+                });
             },
-            clicIt(){ const canvas = document.querySelector(".canvas");
+            clicIt() {
+                const canvas = document.querySelector(".canvas");
 
                 const context = canvas.getContext('2d');
                 context.fillStyle = "rgba(0, 0, 0, .2)";
@@ -82,19 +83,19 @@
                 var image = api.convert(png)
                 var data = {img: image, parcelId: this.id, statusId: 6, rejectedMessage: this.rejectedMessage}
                 console.log(this.rejectedMessage.length < 3)
-                if (this.rejectedMessage.length < 3){
-                	window.f7.addNotification({
-		                message: 'Reject message is to short or empty.'
-	                });
-                	return;
+                if (this.rejectedMessage.length < 3) {
+                    window.f7.addNotification({
+                        message: 'Reject message is to short or empty.'
+                    });
+                    return;
                 }
                 api.sendImage(this.token, data, function () {
                     _this.$emit('loadParcels')
                 }, function (eNum, e) {
-	                window.f7.addNotification({
-		                message: 'Something went wrong'
-	                });
-	                _this.$emit('loadParcels')
+                    window.f7.addNotification({
+                        message: 'Something went wrong'
+                    });
+                    _this.$emit('loadParcels')
                 })
             },
             clear() {
@@ -112,7 +113,6 @@
                 canvas.style.marginRight = 'auto';
                 canvas.style.display = 'block';
                 canvas.style.maxWidth = '100%';
-//                canvas.placeholder='dfdfd';
                 canvas.width = innerWidth;
                 canvas.height = innerHeight / 3;
 
@@ -121,7 +121,7 @@
                 context.font = "24px Roboto";
                 context.textAlign = "center";
                 context.textBaseline = "middle";
-//                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
+                context.fillText("Please, sign here", canvas.width / 2, canvas.height / 2);
             }
         },
         mounted: function () {

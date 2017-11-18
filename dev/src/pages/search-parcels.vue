@@ -11,8 +11,8 @@
 			</f7-navbar>
 			<div v-if='onMap===false'>
 				<f7-block style="margin:0!important;">
-					<f7-block-title>
-						<f7-label class="leftstr range1">Search Distance:</f7-label>
+					<f7-block-title class="range-title">
+						<f7-label class="range-title-inner">Search Distance:</f7-label>
 						<!--<f7-label class="rightstr range1">{{range}} km</f7-label>-->
 					</f7-block-title>
 
@@ -33,7 +33,7 @@
 					<!--</f7-list>-->
 				</f7-block>
 
-				<f7-button class="button-fill-my center-my" fill @click="loadMap()" style="width: 120px">show on map</f7-button>
+				<f7-button class="button-size center-my" fill @click="loadMap()" style="width: 120px">show on map</f7-button>
 
 
 
