@@ -129,7 +129,7 @@
 					return this.value
 				},
 				(newVal, oldVal) => {
-					this.refreshParcels
+					this.refreshParcels()
 					console.log(newVal, oldVal)
 				}
 			)
