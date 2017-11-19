@@ -1,7 +1,7 @@
 <template>
 	<div id="search-parcel">
 		<f7-page title="Search" sliding>
-			<f7-navbar>
+			<f7-navbar class="remove-shadow">
 				<f7-nav-left>
 					<f7-link icon="icon-back" link="#" @click="loadBack()"></f7-link>
 				</f7-nav-left>

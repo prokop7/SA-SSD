@@ -1,7 +1,7 @@
 <template>
 	<div id="parcels">
 		<f7-page title="Parcels" sliding tabbar-fixed>
-			<f7-navbar>
+			<f7-navbar class="remove-shadow">
 				<f7-nav-left>
 					<f7-link icon="icon-bars" open-panel="left"></f7-link>
 				</f7-nav-left>
