@@ -6,10 +6,12 @@
                     <f7-link icon="icon-bars" open-panel="left"></f7-link>
                 </f7-nav-left>
                 <f7-nav-left>Parcels</f7-nav-left>
-                <f7-nav-right><i class="material-icons refresh1 dark-blue-color" @click="onRefresh">refresh</i></f7-nav-right>
+                <!-- refresh list of parcels - start-->
+                <f7-nav-right><i class="material-icons refresh1" @click="onRefresh">refresh</i></f7-nav-right>
+                <!-- refresh list of parcels - end-->
             </f7-navbar>
-
-            <f7-toolbar tabbar labels>
+            <!-- 3 states of parcels: Transit, Delivered, Blocked - start-->
+            <f7-toolbar tabbar labels class="remove-shadow">
                 <f7-link href="#tab-transit" tab-link text="Transit"></f7-link>
                 <f7-link href="#tab-delivered" tab-link text="Delivered"></f7-link>
                 <f7-link href="#tab-blocked" tab-link text="Blocked"></f7-link>
@@ -23,9 +25,13 @@
                 <parcel-tab :state="'Delivered'"></parcel-tab>
                 <parcel-tab :state="'Blocked'"></parcel-tab>
             </f7-tabs>
+            <!-- 3 states of parcels: Transit, Delivered, Blocked - start-->
+
+            <!-- floating button: search parcels near driver location - start-->
             <f7-fab color="#2196f3" @click="$emit('loadSearch')">
                 <i class="material-icons">search</i>
             </f7-fab>
+            <!-- floating button: search parcels near driver location - end-->
         </f7-page>
     </div>
 </template>
@@ -51,6 +57,7 @@
             return data
         },
         methods: {
+            //refresh list of parcels
             onRefresh: function (event, done) {
                 bus.$emit("loadParcels", done);
             },

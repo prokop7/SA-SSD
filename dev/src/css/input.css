@@ -1,93 +1,122 @@
-#confirmParcel .group 			  {
-    position:relative;
-    margin-bottom:16px;
-}
-#confirmParcel input 				{
-    background: #efeff0;
-    font-size:18px;
-    padding:8px 8px 8px 5px;
+/*styles for input field in confirm parcel page*/
+#confirmParcel .group {
     position: relative;
-    display:block;
-    width:-webkit-fill-available;
-    border:none;
-    border-bottom:1px solid #757575;
+    margin-bottom: 16px;
 }
-#confirmParcel input:focus 		{ outline:none; }
+
+#confirmParcel input {
+    background: #efeff0;
+    font-size: 18px;
+    padding: 8px 8px 8px 5px;
+    position: relative;
+    display: block;
+    width: -webkit-fill-available;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+#confirmParcel input:focus {
+    outline: none;
+}
 
 /* LABEL ======================================= */
-#confirmParcel label 				 {
-    color:#999;
-    font-size:18px;
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    left:0px;
-    top:8px;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
+#confirmParcel label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    top: 8px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
 }
 
 /* active state */
-#confirmParcel input:focus ~ label, input:valid ~ label 		{
-    top:-20px;
-    font-size:16px;
-    color:#2196f3;
+#confirmParcel input:focus ~ label, input:valid ~ label {
+    top: -20px;
+    font-size: 16px;
+    color: #2196f3;
 }
 
 /* BOTTOM BARS ================================= */
-#confirmParcel .bar 	{ position:relative; display:block; width:100%; }
-#confirmParcel .bar:before, .bar:after 	{
-    content:'';
-    height:2px;
-    width:0;
-    bottom:1px;
-    position:absolute;
-    background:#2196f3;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
+#confirmParcel .bar {
+    position: relative;
+    display: block;
+    width: 100%;
 }
+
+#confirmParcel .bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #2196f3;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
 #confirmParcel .bar:before {
-    left:50%;
+    left: 50%;
 }
+
 #confirmParcel .bar:after {
-    right:50%;
+    right: 50%;
 }
 
 /* active state */
 #confirmParcel input:focus ~ .bar:before, input:focus ~ .bar:after {
-    width:50%;
+    width: 50%;
 }
 
 /* HIGHLIGHTER ================================== */
 #confirmParcel .highlight {
-    position:absolute;
-    height:60%;
-    width:100px;
-    top:25%;
-    left:0;
-    pointer-events:none;
-    opacity:0.5;
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 /* active state */
 #confirmParcel input:focus ~ .highlight {
-    -webkit-animation:inputHighlighter 0.3s ease;
-    -moz-animation:inputHighlighter 0.3s ease;
-    animation:inputHighlighter 0.3s ease;
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
 }
 
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
-    from { background:#5264AE; }
-    to 	{ width:0; background:transparent; }
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
 }
+
 @-moz-keyframes inputHighlighter {
-    from { background:#5264AE; }
-    to 	{ width:0; background:transparent; }
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
 }
+
 @keyframes inputHighlighter {
-    from { background:#5264AE; }
-    to 	{ width:0; background:transparent; }
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
 }
