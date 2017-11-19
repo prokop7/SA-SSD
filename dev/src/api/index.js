@@ -2,6 +2,7 @@ import * as ajax from './ajax'
 import * as notifications from './notifications'
 import * as converter from './converter'
 
+// Implement Facade for accessing all third-party methods.
 export default {
 	signIn: ajax.signIn,
 	loadActiveParcels: ajax.loadActiveParcels,

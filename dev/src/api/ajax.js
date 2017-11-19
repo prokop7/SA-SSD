@@ -1,5 +1,6 @@
 export const server_url = 'https://tcsw.innopolis.dl-dev.ru/api/';
 
+// Default implementation of AJAX request
 export function request(type, url, data, successCallback, errorCallback) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(type, url, true);

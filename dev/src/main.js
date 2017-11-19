@@ -39,6 +39,10 @@ export var mainVue = new Vue({
     },
 });
 
+/***
+ * bus - extra component to provide reverse data/event access.
+ * Used in parcels.vue to call refresh page from child node.
+ */
 export const bus = new Vue();
 
 export default {

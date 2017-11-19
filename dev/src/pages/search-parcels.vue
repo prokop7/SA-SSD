@@ -6,36 +6,19 @@
 					<f7-link icon="icon-back" link="#" @click="loadBack()"></f7-link>
 				</f7-nav-left>
 				<f7-nav-left>Parcels nearby</f7-nav-left>
-				<!--<f7-nav-right><i class="material-icons refresh1 dark-blue-color" @click="loadMap()">location_on</i></f7-nav-right>-->
-
 			</f7-navbar>
 			<div v-if='onMap===false'>
 				<f7-block style="margin:0!important;">
 					<f7-block-title class="range-title">
 						<f7-label class="range-title-inner">Search Distance:</f7-label>
-						<!--<f7-label class="rightstr range1">{{range}} km</f7-label>-->
 					</f7-block-title>
-
 					<div style="margin-top:48px;">
-						<vue-slider v-model="value" ></vue-slider>
+						<vue-slider v-model="value"></vue-slider>
 					</div>
-					<!--<f7-list form>-->
-						<!--&lt;!&ndash;<f7-list-item style="background:white;">&ndash;&gt;-->
-							<!--<f7-input v-model="range"-->
-							          <!--type="range"-->
-							          <!--min="1"-->
-							          <!--max="100"-->
-							          <!--step="1"-->
-							          <!--@change="refreshParcels"-->
-							<!--&gt;-->
-							<!--</f7-input>-->
-						<!--&lt;!&ndash;</f7-list-item>&ndash;&gt;-->
-					<!--</f7-list>-->
 				</f7-block>
 
-				<f7-button class="button-size center-my" fill @click="loadMap()" style="width: 120px">show on map</f7-button>
-
-
+				<f7-button class="button-size center-my" fill @click="loadMap()" style="width: 120px">show on map
+				</f7-button>
 
 				<f7-card v-for="parcel in parcelsList"
 				         :key="parcel.id">
@@ -91,13 +74,12 @@
 <script>
 	import api from '@/api/index'
 	import nearParcelsMap from "@/pages/near-parcels-map.vue"
-    import vueSlider from 'vue-slider-component'
+	import vueSlider from 'vue-slider-component'
 
 	var data = {
 		parcelsList: {},
 		onMap: false,
 		value: 5,
-
 	}
 
 	export default {
@@ -122,7 +104,6 @@
 					done()
 			},
 			refreshParcels() {
-			    console.log("dfdfd")
 				this.loadParcels()
 			},
 			acceptParcel(parcel_id) {
@@ -143,15 +124,15 @@
 			this.token = localStorage.getItem('token')
 		},
 		mounted: function () {
-            this.$watch(
-                () => {
-                    return this.value
-                },
-                (newVal, oldVal) => {
-                    this.refreshParcels
-                    console.log(newVal, oldVal)
-                }
-            )
+			this.$watch(
+				() => {
+					return this.value
+				},
+				(newVal, oldVal) => {
+					this.refreshParcels
+					console.log(newVal, oldVal)
+				}
+			)
 			this.$nextTick(function () {
 				this.refreshParcels()
 			})
