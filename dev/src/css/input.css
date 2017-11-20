@@ -7,14 +7,14 @@
 #confirmParcel input {
     background: #efeff0;
     font-size: 18px;
-    padding: 8px 8px 8px 5px;
+    padding: 8px 8px 8px 0px;
     position: relative;
     display: block;
     width: -webkit-fill-available;
     border: none;
     border-bottom: 1px solid #757575;
 }
-
+::-webkit-input-placeholder {color:#999}
 #confirmParcel input:focus {
     outline: none;
 }
@@ -22,101 +22,45 @@
 /* LABEL ======================================= */
 #confirmParcel label {
     color: #999;
-    font-size: 18px;
-    font-weight: normal;
+    /*font-size: 18px;*/
+    /*font-weight: normal;*/
     position: absolute;
-    pointer-events: none;
     left: 0px;
-    top: 8px;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
-}
-
-/* active state */
-#confirmParcel input:focus ~ label, input:valid ~ label {
+    /*top: 8px;*/
     top: -20px;
     font-size: 16px;
-    color: #2196f3;
+    font-weight: 500;
+    color: rgba(0,0,0,.54);
 }
 
-/* BOTTOM BARS ================================= */
-#confirmParcel .bar {
-    position: relative;
-    display: block;
+
+#confirmParcel input.focus-state:invalid{
+    border-bottom: 2px solid #f44336;
+    /*color:#ff9800;*/
+}
+#confirmParcel input.not-empty-state:invalid{
+    border-bottom: 2px solid #f44336;
+    /*color:#ff9800;*/
+}
+#confirmParcel input:valid{
+    border-bottom: 2px solid rgb(96, 191, 132);
+    /*color:#ff9800;*/
+}
+#confirmParcel input.focus-state:invalid+ span:after {
+    white-space: inherit;
     width: 100%;
+    content: 'Max length is 100 characters and min length is 5';
+    color:#f44336;
 }
-
-#confirmParcel .bar:before, .bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
+#confirmParcel input.not-empty-state:invalid+ span:after {
+    white-space: inherit;
+    width: 100%;
+    content: 'Max length is 100 characters and min length is 5';
+    color:#f44336;
+}
+#confirmParcel input:valid+span.helper:after {
+    color: rgb(96, 191, 132);
+    content: 'Good!';
     position: absolute;
-    background: #2196f3;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
-}
-
-#confirmParcel .bar:before {
-    left: 50%;
-}
-
-#confirmParcel .bar:after {
-    right: 50%;
-}
-
-/* active state */
-#confirmParcel input:focus ~ .bar:before, input:focus ~ .bar:after {
-    width: 50%;
-}
-
-/* HIGHLIGHTER ================================== */
-#confirmParcel .highlight {
-    position: absolute;
-    height: 60%;
-    width: 100px;
-    top: 25%;
-    left: 0;
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-/* active state */
-#confirmParcel input:focus ~ .highlight {
-    -webkit-animation: inputHighlighter 0.3s ease;
-    -moz-animation: inputHighlighter 0.3s ease;
-    animation: inputHighlighter 0.3s ease;
-}
-
-/* ANIMATIONS ================ */
-@-webkit-keyframes inputHighlighter {
-    from {
-        background: #5264AE;
-    }
-    to {
-        width: 0;
-        background: transparent;
-    }
-}
-
-@-moz-keyframes inputHighlighter {
-    from {
-        background: #5264AE;
-    }
-    to {
-        width: 0;
-        background: transparent;
-    }
-}
-
-@keyframes inputHighlighter {
-    from {
-        background: #5264AE;
-    }
-    to {
-        width: 0;
-        background: transparent;
-    }
+    width: 100%;
 }
