@@ -13,7 +13,7 @@
                 <!--Block for entering reason of cancellation - start-->
                 <form style="margin-top:40px" v-if="state==='Reject'">
                     <div class="group">
-                        <input v-model="rejectedMessage" type="text" pattern="^[a-zA-Z]+$*" minlength="5"
+                        <input v-model="rejectedMessage" type="text" pattern="[a-zA-Z0-9\s]+" minlength="5"
                                maxlength="100" placeholder="I got someone else's parcel" required>
                         <span class="helper validity"></span>
                         <label>Reason</label>
