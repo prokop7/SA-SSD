@@ -13,7 +13,7 @@
                         <f7-label class="range-title-inner">Search Distance:</f7-label>
                     </f7-block-title>
                     <div style="margin-top:48px;">
-                        <vue-slider v-model="value"></vue-slider>
+                        <vue-slider v-model="value"  @drag-end="dragEnd()"></vue-slider>
                     </div>
                 </f7-block>
 
@@ -94,11 +94,14 @@
             return data
         },
         methods: {
+        	dragEnd:function(){
+        		console.log("test", this.value)
+		        this.refreshParcels()
+            },
             setParcels(parcels) {
                 this.parcelsList = parcels;
             },
             loadParcels(done) {
-                console.log(this.value, "VALUE")
                 var pos = {lat: this.location.coords.latitude, lng: this.location.coords.longitude}
                 api.searchParcels(this.token, pos, this.value, this.setParcels)
                 if (done)
@@ -125,22 +128,6 @@
             this.token = localStorage.getItem('token')
         },
         mounted: function () {
-            var timer = null;
-            this.$watch(
-                () => {
-                    return this.value
-                },
-                (newVal, oldVal) => {
-                    if (timer == null) {
-                        //send api request throw 1500ms
-                        timer = setTimeout(() => {
-                            this.refreshParcels()
-                            timer = null;
-                        }, 1500);
-                    }
-
-                }
-            )
             this.$nextTick(function () {
                 this.refreshParcels()
             })
