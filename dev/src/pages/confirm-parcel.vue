@@ -68,7 +68,6 @@
                 if (this.state === 'Reject') {
                     data = {img: image, parcelId: this.id, statusId: status_id, rejectedMessage: this.rejectedMessage}
                 }
-
                 if (this.state === 'Reject' && this.rejectedMessage.length < 5) {
                     return;
                 }
