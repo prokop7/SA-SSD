@@ -18,6 +18,7 @@
 						<span class="helper validity"></span>
 						<label>Reason</label>
 					</div>
+				</form>
 
 					<!--Block for entering reason of cancellation - end-->
 
@@ -33,7 +34,7 @@
 					           @click="save()">
 						Confirm
 					</f7-button>
-				</form>
+
 				<!--Signature block - end-->
 			</f7-block>
 		</f7-page>
